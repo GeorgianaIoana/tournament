@@ -701,7 +701,8 @@ em {
     height: 32px;
     object-fit: contain;
     filter: drop-shadow(2px 4px 4px rgba(0, 0, 0, 0.5));
-    transition: transform 0.3s ease;
+    transform: rotateX(-50deg) rotateZ(30deg);
+    transform-origin: center bottom;
 }
 
 .piece.white {
