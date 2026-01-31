@@ -1487,6 +1487,12 @@ em {
     box-shadow: var(--shadow-lg);
 }
 
+.about-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
 .about-image-1 {
     width: 70%;
     height: 70%;
