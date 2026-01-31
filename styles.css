@@ -653,6 +653,66 @@ em {
     background: linear-gradient(135deg, #e0e6f4 0%, #d2dbf0 50%, #c5d0eb 100%);
 }
 
+/* Floating Chess Board */
+.floating-chessboard {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) perspective(800px) rotateX(55deg) rotateZ(-45deg);
+    z-index: 1;
+    animation: floatBoard 6s ease-in-out infinite;
+}
+
+.chessboard {
+    display: flex;
+    flex-direction: column;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow:
+        0 40px 80px rgba(32, 61, 53, 0.3),
+        0 0 0 4px var(--color-dark),
+        0 0 60px rgba(166, 185, 224, 0.4);
+}
+
+.chess-row {
+    display: flex;
+}
+
+.chess-square {
+    width: 35px;
+    height: 35px;
+    transition: all 0.3s ease;
+}
+
+.chess-square.light {
+    background: linear-gradient(135deg, #b8d9d4 0%, #c9e5e1 100%);
+}
+
+.chess-square.dark {
+    background: linear-gradient(135deg, #203d35 0%, #2d5449 100%);
+}
+
+@keyframes floatBoard {
+    0%, 100% {
+        transform: translate(-50%, -50%) perspective(800px) rotateX(55deg) rotateZ(-45deg) translateY(0);
+    }
+    50% {
+        transform: translate(-50%, -50%) perspective(800px) rotateX(55deg) rotateZ(-45deg) translateY(-20px);
+    }
+}
+
+/* Responsive chessboard */
+@media (max-width: 768px) {
+    .chess-square {
+        width: 25px;
+        height: 25px;
+    }
+
+    .floating-chessboard {
+        opacity: 0.5;
+    }
+}
+
 .hero-bg {
     position: absolute;
     inset: 0;
