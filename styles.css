@@ -596,12 +596,12 @@ em {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 2rem;
+    gap: 1.25rem;
 }
 
 .mobile-link {
     font-family: var(--font-display);
-    font-size: 2.5rem;
+    font-size: 1.5rem;
     opacity: 0;
     transform: translateY(20px);
     transition: all var(--duration-medium) var(--ease-out-expo);
