@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rules of the Game | Nordic Chess Open</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="rules.css">
+</head>
+<body>
+    <!-- Page Transition -->
+    <div class="page-transition" id="pageTransition">
+        <div class="transition-line transition-line-1"></div>
+        <div class="transition-line transition-line-2"></div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="nav scrolled" id="nav">
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">
+                <span class="logo-icon">&#9822;</span>
+                <span class="logo-text">Nordic Chess</span>
+            </a>
+            <div class="nav-links">
+                <a href="index.html#venue" class="nav-link">Venue</a>
+                <a href="index.html#about" class="nav-link">About</a>
+                <a href="index.html#events" class="nav-link">Events</a>
+                <a href="index.html#schedule" class="nav-link">Schedule</a>
+                <a href="index.html#players" class="nav-link">Players</a>
+                <a href="rules.html" class="nav-link active">Rules</a>
+                <a href="index.html#contact" class="nav-link">Contact</a>
+            </div>
+            <a href="index.html#register" class="nav-cta">Register Now</a>
+            <button class="nav-toggle" id="navToggle">
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobileMenu">
+        <div class="mobile-menu-content">
+            <a href="index.html#venue" class="mobile-link">Venue</a>
+            <a href="index.html#about" class="mobile-link">About</a>
+            <a href="index.html#events" class="mobile-link">Events</a>
+            <a href="index.html#schedule" class="mobile-link">Schedule</a>
+            <a href="index.html#players" class="mobile-link">Players</a>
+            <a href="rules.html" class="mobile-link active">Rules</a>
+            <a href="index.html#contact" class="mobile-link">Contact</a>
+            <a href="index.html#register" class="mobile-cta">Register Now</a>
+        </div>
+    </div>
+
+    <!-- Page Hero -->
+    <section class="page-hero">
+        <div class="container">
+            <span class="section-tag reveal-up">Tournament Guidelines</span>
+            <h1 class="page-hero-title reveal-up" style="--delay: 0.1s">Rules of the <em>Game</em></h1>
+            <p class="page-hero-subtitle reveal-up" style="--delay: 0.2s">
+                Everything you need to know about tournament regulations, time controls, and fair play standards.
+            </p>
+        </div>
+    </section>
+
+    <!-- Rules Content -->
+    <section class="rules-content">
+        <div class="container">
+            <div class="rules-layout">
+                <!-- Sidebar Navigation -->
+                <aside class="rules-sidebar">
+                    <nav class="rules-nav">
+                        <a href="#general" class="rules-nav-link active">General Rules</a>
+                        <a href="#time-controls" class="rules-nav-link">Time Controls</a>
+                        <a href="#pairings" class="rules-nav-link">Pairings & Standings</a>
+                        <a href="#conduct" class="rules-nav-link">Player Conduct</a>
+                        <a href="#equipment" class="rules-nav-link">Equipment</a>
+                        <a href="#appeals" class="rules-nav-link">Appeals & Disputes</a>
+                        <a href="#prizes" class="rules-nav-link">Prizes & Tiebreaks</a>
+                    </nav>
+                </aside>
+
+                <!-- Main Content -->
+                <main class="rules-main">
+                    <!-- General Rules -->
+                    <article class="rules-section" id="general">
+                        <div class="rules-section-header">
+                            <span class="rules-number">01</span>
+                            <h2>General Rules</h2>
+                        </div>
+                        <div class="rules-section-content">
+                            <p>The Nordic Chess Open follows the official FIDE Laws of Chess, with additional tournament-specific regulations outlined below.</p>
+
+                            <div class="rule-item">
+                                <h3>1.1 Eligibility</h3>
+                                <p>The tournament is open to all players with a valid FIDE ID. Players without a FIDE ID may register but will need to obtain one before the tournament begins. Age restrictions apply only to the Youth Championship category.</p>
+                            </div>
+
+                            <div class="rule-item">
+                                <h3>1.2 Registration</h3>
+                                <p>All participants must complete online registration and pay the entry fee at least 48 hours before the first round. Late registrations may be accepted at the discretion of the Chief Arbiter with an additional fee.</p>
+                            </div>
+
+                            <div class="rule-item">
+                                <h3>1.3 Rounds & Schedule</h3>
+                                <p>The tournament consists of 9 rounds played over 8 days. Players are expected to be present at the board when the round starts. A player who arrives more than 30 minutes late forfeits the game.</p>
+                            </div>
+
+                            <div class="rule-item">
+                                <h3>1.4 FIDE Rated</h3>
+                                <p>All games in the Grandmaster Open and Challenger Series are FIDE rated. The Youth Championship is nationally rated with FIDE rating implications for eligible games.</p>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Time Controls -->
+                    <article class="rules-section" id="time-controls">
+                        <div class="rules-section-header">
+                            <span class="rules-number">02</span>
+                            <h2>Time Controls</h2>
+                        </div>
+                        <div class="rules-section-content">
+                            <p>Different time controls apply to each tournament category to ensure appropriate pacing and FIDE rating requirements.</p>
+
+                            <div class="time-control-cards">
+                                <div class="time-control-card">
+                                    <h4>Grandmaster Open</h4>
+                                    <div class="time-value">90 min + 30 sec</div>
+                                    <p>90 minutes for the first 40 moves, then 30 minutes for the rest of the game, with 30 seconds increment from move 1.</p>
+                                </div>
+                                <div class="time-control-card">
+                                    <h4>Challenger Series</h4>
+                                    <div class="time-value">90 min + 30 sec</div>
+                                    <p>Same classical time control as the Grandmaster Open to maintain FIDE rating validity.</p>
+                                </div>
+                                <div class="time-control-card">
+                                    <h4>Youth Championship</h4>
+                                    <div class="time-value">60 min + 30 sec</div>
+                                    <p>60 minutes for the entire game with 30 seconds increment from move 1.</p>
+                                </div>
+                                <div class="time-control-card">
+                                    <h4>Blitz Championship</h4>
+                                    <div class="time-value">3 min + 2 sec</div>
+                                    <p>3 minutes per player with 2 seconds increment per move.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Pairings & Standings -->
+                    <article class="rules-section" id="pairings">
+                        <div class="rules-section-header">
+                            <span class="rules-number">03</span>
+                            <h2>Pairings & Standings</h2>
+                        </div>
+                        <div class="rules-section-content">
+                            <div class="rule-item">
+                                <h3>3.1 Swiss System</h3>
+                                <p>The tournament uses the Swiss pairing system. Pairings will be made using the official FIDE Dutch pairing rules and generated through approved pairing software.</p>
+                            </div>
+
+                            <div class="rule-item">
+                                <h3>3.2 Byes</h3>
+                                <p>Half-point byes are available upon request for a maximum of 2 rounds. Requests must be submitted at least 24 hours before the round. No byes are permitted in the final three rounds.</p>
+                            </div>
+
+                            <div class="rule-item">
+                                <h3>3.3 Withdrawals</h3>
+                                <p>Players who withdraw from the tournament must notify the tournament office. Players who do not appear for two consecutive rounds without notice will be automatically withdrawn.</p>
+                            </div>
+
+                            <div class="rule-item">
+                                <h3>3.4 Standings Publication</h3>
+                                <p>Updated standings will be published after each round on the tournament website and displayed at the venue. Preliminary pairings for the next round will be posted within 30 minutes of the last game finishing.</p>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Player Conduct -->
+                    <article class="rules-section" id="conduct">
+                        <div class="rules-section-header">
+                            <span class="rules-number">04</span>
+                            <h2>Player Conduct</h2>
+                        </div>
+                        <div class="rules-section-content">
+                            <div class="rule-item">
+                                <h3>4.1 Fair Play</h3>
+                                <p>All players must adhere to the FIDE Code of Ethics and Fair Play regulations. Any form of cheating, including the use of electronic assistance, will result in immediate expulsion and reporting to FIDE.</p>
+                            </div>
+
+                            <div class="rule-item">
+                                <h3>4.2 Electronic Devices</h3>
+                                <p>Mobile phones and electronic devices must be switched off and stored away from the playing area. Smartwatches are not permitted. Violation results in immediate loss of the game.</p>
+                            </div>
+
+                            <div class="rule-item">
+                                <h3>4.3 Dress Code</h3>
+                                <p>Smart casual attire is expected. Players wearing inappropriate clothing may be asked to change before being allowed to play.</p>
+                            </div>
+
+                            <div class="rule-item">
+                                <h3>4.4 Silence</h3>
+                                <p>The playing hall is a quiet zone. Spectators and players must maintain silence. Analysis and discussion of ongoing games is strictly prohibited in the playing area.</p>
+                            </div>
+
+                            <div class="highlight-box">
+                                <div class="highlight-icon">&#9888;</div>
+                                <div class="highlight-content">
+                                    <h4>Anti-Cheating Measures</h4>
+                                    <p>Random security checks may be conducted. All players consent to anti-cheating monitoring including game analysis and, if requested, physical screening.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Equipment -->
+                    <article class="rules-section" id="equipment">
+                        <div class="rules-section-header">
+                            <span class="rules-number">05</span>
+                            <h2>Equipment</h2>
+                        </div>
+                        <div class="rules-section-content">
+                            <div class="rule-item">
+                                <h3>5.1 Provided Equipment</h3>
+                                <p>The organizers provide all chess sets, boards, and digital clocks. Standard Staunton pieces (King height 95mm) and wooden boards with 55mm squares are used throughout.</p>
+                            </div>
+
+                            <div class="rule-item">
+                                <h3>5.2 Scoresheet</h3>
+                                <p>Players must record moves on the official scoresheets provided. Carbon copy scoresheets are mandatory in the Grandmaster Open. Electronic notation devices may be used with prior approval.</p>
+                            </div>
+
+                            <div class="rule-item">
+                                <h3>5.3 Personal Items</h3>
+                                <p>Players may bring their own pens, water bottles (non-metallic, transparent), and necessary medication. All other items must be stored in the designated areas.</p>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Appeals & Disputes -->
+                    <article class="rules-section" id="appeals">
+                        <div class="rules-section-header">
+                            <span class="rules-number">06</span>
+                            <h2>Appeals & Disputes</h2>
+                        </div>
+                        <div class="rules-section-content">
+                            <div class="rule-item">
+                                <h3>6.1 Arbiter Decisions</h3>
+                                <p>The Chief Arbiter has final authority on all matters during the tournament. Arbiter decisions may be appealed to the Appeals Committee within 30 minutes of the decision.</p>
+                            </div>
+
+                            <div class="rule-item">
+                                <h3>6.2 Appeals Committee</h3>
+                                <p>The Appeals Committee consists of three members: two Grandmasters and one FIDE arbiter not involved in the disputed decision. Their ruling is final.</p>
+                            </div>
+
+                            <div class="rule-item">
+                                <h3>6.3 Appeal Fee</h3>
+                                <p>A deposit of €50 is required to file an appeal. This fee is refunded if the appeal is successful.</p>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Prizes & Tiebreaks -->
+                    <article class="rules-section" id="prizes">
+                        <div class="rules-section-header">
+                            <span class="rules-number">07</span>
+                            <h2>Prizes & Tiebreaks</h2>
+                        </div>
+                        <div class="rules-section-content">
+                            <div class="rule-item">
+                                <h3>7.1 Prize Distribution</h3>
+                                <p>Prizes are awarded based on final standings after all tiebreaks are applied. A player can only receive one prize (the highest applicable). Prizes are paid via bank transfer within 30 days of tournament conclusion.</p>
+                            </div>
+
+                            <div class="rule-item">
+                                <h3>7.2 Tiebreak Order</h3>
+                                <p>In case of equal points, the following tiebreaks are applied in order:</p>
+                                <ol class="tiebreak-list">
+                                    <li>Direct encounter (if all tied players have played each other)</li>
+                                    <li>Buchholz Cut 1 (excluding the lowest opponent's score)</li>
+                                    <li>Buchholz Total</li>
+                                    <li>Sonneborn-Berger</li>
+                                    <li>Number of wins</li>
+                                    <li>Drawing of lots</li>
+                                </ol>
+                            </div>
+
+                            <div class="rule-item">
+                                <h3>7.3 Special Prizes</h3>
+                                <p>Additional prizes for best game, best female player, best junior, and best senior are awarded by a committee. These prizes are independent of placing prizes.</p>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Back to Home -->
+                    <div class="rules-footer">
+                        <a href="index.html" class="btn btn-primary">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M19 12H5M12 19l-7-7 7-7"/>
+                            </svg>
+                            <span>Back to Home</span>
+                        </a>
+                        <a href="index.html#register" class="btn btn-secondary">
+                            <span>Register Now</span>
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M5 12h14M12 5l7 7-7 7"/>
+                            </svg>
+                        </a>
+                    </div>
+                </main>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <!-- Logo -->
+                <div class="footer-brand">
+                    <a href="index.html" class="footer-logo">
+                        <span class="logo-icon">&#9822;</span>
+                        <div class="logo-text-group">
+                            <span class="logo-text">Nordic</span>
+                            <span class="logo-text">Chess</span>
+                        </div>
+                    </a>
+                    <p class="footer-tagline">Open Tournament</p>
+                </div>
+
+                <!-- Navigation Links -->
+                <nav class="footer-nav">
+                    <a href="index.html#about">About</a>
+                    <a href="index.html#venue">Our Venue</a>
+                    <a href="index.html#events">Events</a>
+                    <a href="index.html#players">Players</a>
+                    <a href="index.html#testimonials">Testimonials</a>
+                    <a href="index.html#contact">Contact</a>
+                </nav>
+
+                <!-- Social & Legal -->
+                <div class="footer-right">
+                    <div class="footer-social-section">
+                        <span class="social-label">Follow us on</span>
+                        <div class="footer-social">
+                            <a href="#" class="social-link" aria-label="Instagram">
+                                <svg viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/>
+                                </svg>
+                            </a>
+                            <a href="https://github.com/GeorgianaIoana/tournament" target="_blank" class="social-link" aria-label="GitHub">
+                                <svg viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="footer-legal">
+                        <p>&copy; 2026 Nordic Chess Open. All rights reserved.</p>
+                        <div class="legal-links">
+                            <a href="#">Privacy Policy</a>
+                            <a href="#">Terms of Service</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        // Rules page specific JS
+        document.addEventListener('DOMContentLoaded', function() {
+            // Sidebar navigation active state on scroll
+            const sections = document.querySelectorAll('.rules-section');
+            const navLinks = document.querySelectorAll('.rules-nav-link');
+
+            function setActiveLink() {
+                let current = '';
+                sections.forEach(section => {
+                    const sectionTop = section.offsetTop - 150;
+                    if (window.scrollY >= sectionTop) {
+                        current = section.getAttribute('id');
+                    }
+                });
+
+                navLinks.forEach(link => {
+                    link.classList.remove('active');
+                    if (link.getAttribute('href') === '#' + current) {
+                        link.classList.add('active');
+                    }
+                });
+            }
+
+            window.addEventListener('scroll', setActiveLink);
+
+            // Smooth scroll for sidebar links
+            navLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href').substring(1);
+                    const targetSection = document.getElementById(targetId);
+                    if (targetSection) {
+                        window.scrollTo({
+                            top: targetSection.offsetTop - 100,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+        });
+
+        // Page Transition Effect
+        (function() {
+            const transition = document.getElementById('pageTransition');
+            if (!transition) return;
+
+            // Animate on page load
+            window.addEventListener('load', function() {
+                transition.classList.add('entering');
+                setTimeout(function() {
+                    transition.classList.remove('entering');
+                }, 700);
+            });
+
+            // Handle clicks on page links
+            document.querySelectorAll('a').forEach(function(link) {
+                link.addEventListener('click', function(e) {
+                    const href = this.getAttribute('href');
+                    if (!href) return;
+                    if (href.startsWith('#')) return;
+                    if (!href.includes('.html')) return;
+
+                    e.preventDefault();
+                    transition.classList.add('active');
+
+                    setTimeout(function() {
+                        window.location.href = href;
+                    }, 800);
+                });
+            });
+        })();
+    </script>
+</body>
+</html>
