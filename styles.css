@@ -658,10 +658,9 @@ em {
     position: absolute;
     top: 50%;
     left: 50%;
-    transform: translate(-50%, -50%) perspective(1200px) rotateX(20deg) rotateY(-10deg);
+    transform: translate(-50%, -50%);
     z-index: 1;
     animation: floatBoard 6s ease-in-out infinite;
-    transform-style: preserve-3d;
 }
 
 .chessboard {
@@ -718,10 +717,10 @@ em {
 
 @keyframes floatBoard {
     0%, 100% {
-        transform: translate(-50%, -50%) perspective(1200px) rotateX(20deg) rotateY(-10deg) translateY(0);
+        transform: translate(-50%, -50%) translateY(0);
     }
     50% {
-        transform: translate(-50%, -50%) perspective(1200px) rotateX(20deg) rotateY(-10deg) translateY(-15px);
+        transform: translate(-50%, -50%) translateY(-15px);
     }
 }
 
