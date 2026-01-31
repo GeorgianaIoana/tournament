@@ -653,12 +653,12 @@ em {
     background: linear-gradient(135deg, #e0e6f4 0%, #d2dbf0 50%, #c5d0eb 100%);
 }
 
-/* Floating Chess Board */
+/* Floating Chess Board - Tournament Style */
 .floating-chessboard {
     position: absolute;
     top: 50%;
     left: 50%;
-    transform: translate(-50%, -50%) perspective(800px) rotateX(55deg) rotateZ(-45deg);
+    transform: translate(-50%, -50%) perspective(1000px) rotateX(50deg) rotateZ(-30deg);
     z-index: 1;
     animation: floatBoard 6s ease-in-out infinite;
 }
@@ -666,12 +666,13 @@ em {
 .chessboard {
     display: flex;
     flex-direction: column;
-    border-radius: 8px;
-    overflow: hidden;
+    background: #e8dcc8;
+    padding: 12px;
+    border-radius: 4px;
     box-shadow:
-        0 40px 80px rgba(32, 61, 53, 0.3),
-        0 0 0 4px var(--color-dark),
-        0 0 60px rgba(166, 185, 224, 0.4);
+        0 50px 100px rgba(0, 0, 0, 0.4),
+        0 20px 40px rgba(0, 0, 0, 0.2),
+        inset 0 0 0 2px rgba(0, 0, 0, 0.1);
 }
 
 .chess-row {
@@ -679,66 +680,68 @@ em {
 }
 
 .chess-square {
-    width: 35px;
-    height: 35px;
-    transition: all 0.3s ease;
+    width: 38px;
+    height: 38px;
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
 .chess-square.light {
-    background: linear-gradient(135deg, #b8d9d4 0%, #c9e5e1 100%);
+    background: #f0e6d3;
 }
 
 .chess-square.dark {
-    background: linear-gradient(135deg, #203d35 0%, #2d5449 100%);
+    background: #2d5a4a;
 }
 
 /* Chess Pieces */
 .piece {
-    font-size: 26px;
+    font-size: 28px;
     line-height: 1;
-    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
-    filter: drop-shadow(0 2px 2px rgba(0, 0, 0, 0.2));
+    filter: drop-shadow(1px 2px 2px rgba(0, 0, 0, 0.4));
 }
 
 .piece.white {
-    color: #f5e6c8;
+    color: #d4a544;
     text-shadow:
-        0 1px 1px rgba(0, 0, 0, 0.3),
-        0 0 2px rgba(255, 255, 255, 0.5);
+        0 1px 0 #c49535,
+        0 2px 0 #b48525;
 }
 
 .piece.black {
     color: #1a1a1a;
     text-shadow:
-        0 1px 1px rgba(255, 255, 255, 0.1),
-        0 0 3px rgba(0, 0, 0, 0.5);
+        0 1px 0 #333,
+        0 -1px 0 #000;
 }
 
 @keyframes floatBoard {
     0%, 100% {
-        transform: translate(-50%, -50%) perspective(800px) rotateX(55deg) rotateZ(-45deg) translateY(0);
+        transform: translate(-50%, -50%) perspective(1000px) rotateX(50deg) rotateZ(-30deg) translateY(0);
     }
     50% {
-        transform: translate(-50%, -50%) perspective(800px) rotateX(55deg) rotateZ(-45deg) translateY(-20px);
+        transform: translate(-50%, -50%) perspective(1000px) rotateX(50deg) rotateZ(-30deg) translateY(-15px);
     }
 }
 
 /* Responsive chessboard */
 @media (max-width: 768px) {
     .chess-square {
-        width: 25px;
-        height: 25px;
+        width: 28px;
+        height: 28px;
     }
 
     .piece {
-        font-size: 18px;
+        font-size: 20px;
+    }
+
+    .chessboard {
+        padding: 8px;
     }
 
     .floating-chessboard {
-        opacity: 0.4;
+        opacity: 0.5;
     }
 }
 
