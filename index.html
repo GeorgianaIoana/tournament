@@ -10,12 +10,6 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <!-- Page Transition -->
-    <div class="page-transition" id="pageTransition">
-        <div class="transition-line transition-line-1"></div>
-        <div class="transition-line transition-line-2"></div>
-    </div>
-
     <div class="particles" id="particles"></div>
 
     <!-- Cursor follower -->
@@ -1017,37 +1011,5 @@
     </footer>
 
     <script src="script.js"></script>
-    <script>
-        // Page Transition Effect
-        (function() {
-            const transition = document.getElementById('pageTransition');
-            if (!transition) return;
-
-            // Animate on page load
-            window.addEventListener('load', function() {
-                transition.classList.add('entering');
-                setTimeout(function() {
-                    transition.classList.remove('entering');
-                }, 700);
-            });
-
-            // Handle clicks on Rules link
-            document.querySelectorAll('a').forEach(function(link) {
-                link.addEventListener('click', function(e) {
-                    const href = this.getAttribute('href');
-                    if (!href) return;
-                    if (href.startsWith('#')) return;
-                    if (!href.includes('.html')) return;
-
-                    e.preventDefault();
-                    transition.classList.add('active');
-
-                    setTimeout(function() {
-                        window.location.href = href;
-                    }, 800);
-                });
-            });
-        })();
-    </script>
 </body>
 </html>
