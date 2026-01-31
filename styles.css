@@ -695,25 +695,25 @@ em {
     background: #2d5a4a;
 }
 
-/* Chess Pieces */
+/* Chess Pieces - 3D Images */
 .piece {
-    font-size: 28px;
-    line-height: 1;
-    filter: drop-shadow(1px 2px 2px rgba(0, 0, 0, 0.4));
+    width: 32px;
+    height: 32px;
+    object-fit: contain;
+    filter: drop-shadow(2px 4px 4px rgba(0, 0, 0, 0.5));
+    transition: transform 0.3s ease;
 }
 
 .piece.white {
-    color: #d4a544;
-    text-shadow:
-        0 1px 0 #c49535,
-        0 2px 0 #b48525;
+    filter:
+        brightness(1.8)
+        saturate(0.3)
+        sepia(0.2)
+        drop-shadow(2px 4px 4px rgba(0, 0, 0, 0.5));
 }
 
 .piece.black {
-    color: #1a1a1a;
-    text-shadow:
-        0 1px 0 #333,
-        0 -1px 0 #000;
+    /* Keep original dark appearance */
 }
 
 @keyframes floatBoard {
@@ -733,7 +733,8 @@ em {
     }
 
     .piece {
-        font-size: 20px;
+        width: 24px;
+        height: 24px;
     }
 
     .chessboard {
