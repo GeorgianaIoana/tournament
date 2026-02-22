@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Program | THE SQUARE 2026</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="nav scrolled" id="nav">
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">
+                <span class="logo-icon">&#9822;</span>
+                <span class="logo-text">THE SQUARE</span>
+            </a>
+            <div class="nav-links">
+                <a href="index.html#venue" class="nav-link">Locație</a>
+                <a href="index.html#about" class="nav-link">Despre</a>
+                <a href="index.html#events" class="nav-link">Categorii</a>
+                <a href="schedule.html" class="nav-link active">Program</a>
+                <a href="rules.html" class="nav-link">Regulament</a>
+                <a href="contact.html" class="nav-link">Contact</a>
+            </div>
+            <a href="index.html#register" class="nav-cta">Înscrie-te</a>
+            <button class="nav-toggle" id="navToggle">
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobileMenu">
+        <div class="mobile-menu-content">
+            <a href="index.html#venue" class="mobile-link">Locație</a>
+            <a href="index.html#about" class="mobile-link">Despre</a>
+            <a href="index.html#events" class="mobile-link">Categorii</a>
+            <a href="schedule.html" class="mobile-link active">Program</a>
+            <a href="rules.html" class="mobile-link">Regulament</a>
+            <a href="contact.html" class="mobile-link">Contact</a>
+            <a href="index.html#register" class="mobile-cta">Înscrie-te</a>
+        </div>
+    </div>
+
+    <!-- Schedule Section -->
+    <section class="schedule schedule-page-standalone" id="schedule">
+        <div class="container">
+            <div class="schedule-layout">
+                <div class="schedule-header">
+                    <span class="section-tag reveal-up">Program Tehnic</span>
+                    <h2 class="section-title reveal-up" style="--delay: 0.1s">
+                        Trei Zile de <br><em>Competiție</em>
+                    </h2>
+                    <p class="schedule-note reveal-up" style="--delay: 0.2s">
+                        24 – 26 Aprilie 2026
+                    </p>
+                </div>
+
+                <div class="schedule-content">
+                    <div class="schedule-day reveal-up" style="--delay: 0.1s">
+                        <div class="day-header">
+                            <span class="day-date">24 Apr</span>
+                            <span class="day-name">Vineri</span>
+                        </div>
+                        <div class="day-events">
+                            <div class="day-event">
+                                <span class="event-time">17:30</span>
+                                <span class="event-name">Ședința tehnică</span>
+                            </div>
+                            <div class="day-event">
+                                <span class="event-time">18:00</span>
+                                <span class="event-name">Runda 1 (Rapid)</span>
+                            </div>
+                            <div class="day-event">
+                                <span class="event-time">19:00</span>
+                                <span class="event-name">Runda 2 (Rapid)</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="schedule-day reveal-up" style="--delay: 0.2s">
+                        <div class="day-header">
+                            <span class="day-date">25 Apr</span>
+                            <span class="day-name">Sâmbătă</span>
+                        </div>
+                        <div class="day-events">
+                            <div class="day-event">
+                                <span class="event-time">10:00</span>
+                                <span class="event-name">Runda 3 (Rapid)</span>
+                            </div>
+                            <div class="day-event">
+                                <span class="event-time">11:00</span>
+                                <span class="event-name">Runda 4 (Rapid)</span>
+                            </div>
+                            <div class="day-event">
+                                <span class="event-time">12:00</span>
+                                <span class="event-name">Runda 5 (Rapid)</span>
+                            </div>
+                            <div class="day-event">
+                                <span class="event-time">13:00</span>
+                                <span class="event-name">Pauză de masă</span>
+                            </div>
+                            <div class="day-event">
+                                <span class="event-time">14:00</span>
+                                <span class="event-name">Runda 6 (Rapid)</span>
+                            </div>
+                            <div class="day-event">
+                                <span class="event-time">15:00</span>
+                                <span class="event-name">Runda 7 (Rapid)</span>
+                            </div>
+                            <div class="day-event highlight">
+                                <span class="event-time">16:00</span>
+                                <span class="event-name">Festivitatea de Premiere – Rapid</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="schedule-day reveal-up" style="--delay: 0.3s">
+                        <div class="day-header">
+                            <span class="day-date">26 Apr</span>
+                            <span class="day-name">Duminică</span>
+                        </div>
+                        <div class="day-events">
+                            <div class="day-event">
+                                <span class="event-time">09:30</span>
+                                <span class="event-name">Ședința tehnică Blitz</span>
+                            </div>
+                            <div class="day-event">
+                                <span class="event-time">10:00</span>
+                                <span class="event-name">Runda 1 (Blitz)</span>
+                            </div>
+                            <div class="day-event">
+                                <span class="event-time">10:30</span>
+                                <span class="event-name">Runda 2 (Blitz)</span>
+                            </div>
+                            <div class="day-event">
+                                <span class="event-time">11:00</span>
+                                <span class="event-name">Runda 3 (Blitz)</span>
+                            </div>
+                            <div class="day-event">
+                                <span class="event-time">11:30</span>
+                                <span class="event-name">Pauză</span>
+                            </div>
+                            <div class="day-event">
+                                <span class="event-time">12:00</span>
+                                <span class="event-name">Runda 4 (Blitz)</span>
+                            </div>
+                            <div class="day-event">
+                                <span class="event-time">12:30</span>
+                                <span class="event-name">Runda 5 (Blitz)</span>
+                            </div>
+                            <div class="day-event">
+                                <span class="event-time">13:00</span>
+                                <span class="event-name">Runda 6 (Blitz)</span>
+                            </div>
+                            <div class="day-event">
+                                <span class="event-time">13:30</span>
+                                <span class="event-name">Runda 7 (Blitz)</span>
+                            </div>
+                            <div class="day-event highlight">
+                                <span class="event-time">14:00</span>
+                                <span class="event-name">Festivitatea de Premiere – Blitz</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <!-- Logo -->
+                <div class="footer-brand">
+                    <a href="index.html" class="footer-logo">
+                        <span class="logo-icon">&#9822;</span>
+                        <div class="logo-text-group">
+                            <span class="logo-text">THE</span>
+                            <span class="logo-text">SQUARE</span>
+                        </div>
+                    </a>
+                    <p class="footer-tagline">Clubul de Șah</p>
+                </div>
+
+                <!-- Navigation Links -->
+                <nav class="footer-nav">
+                    <a href="index.html#about">Despre</a>
+                    <a href="index.html#venue">Locație</a>
+                    <a href="index.html#events">Categorii</a>
+                    <a href="schedule.html">Program</a>
+                    <a href="rules.html">Regulament</a>
+                    <a href="contact.html">Contact</a>
+                </nav>
+
+                <!-- Social & Legal -->
+                <div class="footer-right">
+                    <div class="footer-social-section">
+                        <span class="social-label">Urmărește-ne pe</span>
+                        <div class="footer-social">
+                            <a href="#" class="social-link" aria-label="Instagram">
+                                <svg viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/>
+                                </svg>
+                            </a>
+                            <a href="mailto:contact@thesquarechessclub.com" class="social-link" aria-label="Email">
+                                <svg viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="footer-legal">
+                        <p>&copy; 2026 THE SQUARE Chess Club. Toate drepturile rezervate.</p>
+                        <div class="legal-links">
+                            <a href="#">Politica de Confidențialitate</a>
+                            <a href="#">Termeni și Condiții</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

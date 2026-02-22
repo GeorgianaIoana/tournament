@@ -20,12 +20,21 @@ document.addEventListener('DOMContentLoaded', () => {
     initHeroForm();
     initDiscoverMore();
 
+    // Speed up about section videos
+    const aboutVideos = document.querySelectorAll('.about-image video');
+    aboutVideos.forEach(video => {
+        video.playbackRate = 3;
+    });
+
     // Futuristic Effects
     initParticles();
     initDataStream();
 
-    // Venue Tour Carousel
-    initVenueCarousel();
+    // Venue Gallery - Horizontal Scroll
+    initVenueGallery();
+
+    // Team Banner entrance animation
+    initTeamBanner();
 });
 
 // ============================================
@@ -79,55 +88,151 @@ function initPageTransition() {
 }
 
 // ============================================
-// CUSTOM CURSOR
+// SPLASH CURSOR - WebGL Fluid Effect (Debug)
 // ============================================
 
 function initCustomCursor() {
-    const cursorDot = document.querySelector('.cursor-dot');
-    const cursorOutline = document.querySelector('.cursor-outline');
-
-    if (!cursorDot || !cursorOutline) return;
-
     // Only enable on devices with fine pointer (mouse)
-    if (!window.matchMedia('(hover: hover) and (pointer: fine)').matches) return;
+    if (!window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
+        console.log('Splash cursor: No fine pointer detected');
+        return;
+    }
 
-    let mouseX = 0;
-    let mouseY = 0;
-    let outlineX = 0;
-    let outlineY = 0;
+    console.log('Splash cursor: Initializing...');
 
+    // Test WebGL support
+    const testCanvas = document.createElement('canvas');
+    const gl = testCanvas.getContext('webgl2') || testCanvas.getContext('webgl');
+    if (!gl) {
+        console.log('Splash cursor: WebGL not supported, using Canvas 2D fallback');
+    } else {
+        console.log('Splash cursor: WebGL supported, version:', gl.getParameter(gl.VERSION));
+    }
+
+    // Project colors
+    const colors = [
+        'rgba(184, 217, 212, 0.8)',  // #b8d9d4 - teal
+        'rgba(166, 183, 224, 0.8)',  // #a6b7e0 - soft blue
+        'rgba(125, 211, 252, 0.8)',  // #7dd3fc - glow primary
+        'rgba(165, 243, 252, 0.8)',  // #a5f3fc - glow secondary
+        'rgba(196, 181, 253, 0.8)',  // #c4b5fd - glow accent
+    ];
+
+    // Create canvas
+    const canvas = document.createElement('canvas');
+    canvas.id = 'splash-canvas';
+    canvas.style.cssText = `
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+        z-index: 9999;
+    `;
+    document.body.appendChild(canvas);
+
+    const ctx = canvas.getContext('2d');
+
+    // Resize
+    function resize() {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+    }
+    resize();
+    window.addEventListener('resize', resize);
+
+    // Particles
+    const particles = [];
+    let mouseX = 0, mouseY = 0;
+    let lastMouseX = 0, lastMouseY = 0;
+
+    class Particle {
+        constructor(x, y, vx, vy) {
+            this.x = x;
+            this.y = y;
+            this.vx = vx;
+            this.vy = vy;
+            this.life = 1;
+            this.decay = 0.015 + Math.random() * 0.01;
+            this.size = 20 + Math.random() * 30;
+            this.color = colors[Math.floor(Math.random() * colors.length)];
+        }
+
+        update() {
+            this.x += this.vx;
+            this.y += this.vy;
+            this.vx *= 0.98;
+            this.vy *= 0.98;
+            this.life -= this.decay;
+            this.size *= 0.97;
+        }
+
+        draw() {
+            ctx.save();
+            ctx.globalAlpha = this.life * 0.6;
+            ctx.fillStyle = this.color;
+            ctx.shadowColor = this.color;
+            ctx.shadowBlur = 20;
+            ctx.beginPath();
+            ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+            ctx.fill();
+            ctx.restore();
+        }
+    }
+
+    // Mouse tracking
     document.addEventListener('mousemove', (e) => {
         mouseX = e.clientX;
         mouseY = e.clientY;
-
-        // Update dot position immediately
-        cursorDot.style.left = `${mouseX}px`;
-        cursorDot.style.top = `${mouseY}px`;
     });
 
-    // Smooth outline following
-    function animateCursor() {
-        outlineX += (mouseX - outlineX) * 0.15;
-        outlineY += (mouseY - outlineY) * 0.15;
+    // Animation
+    function animate() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-        cursorOutline.style.left = `${outlineX}px`;
-        cursorOutline.style.top = `${outlineY}px`;
+        // Calculate velocity
+        const vx = (mouseX - lastMouseX) * 0.3;
+        const vy = (mouseY - lastMouseY) * 0.3;
+        const speed = Math.sqrt(vx * vx + vy * vy);
 
-        requestAnimationFrame(animateCursor);
+        // Spawn particles based on movement
+        if (speed > 1) {
+            const count = Math.min(Math.floor(speed / 3), 5);
+            for (let i = 0; i < count; i++) {
+                const angle = Math.atan2(vy, vx) + (Math.random() - 0.5) * 1.5;
+                const vel = speed * 0.2 + Math.random() * 2;
+                particles.push(new Particle(
+                    mouseX + (Math.random() - 0.5) * 10,
+                    mouseY + (Math.random() - 0.5) * 10,
+                    Math.cos(angle) * vel,
+                    Math.sin(angle) * vel
+                ));
+            }
+        }
+
+        // Update and draw particles
+        for (let i = particles.length - 1; i >= 0; i--) {
+            const p = particles[i];
+            p.update();
+            p.draw();
+            if (p.life <= 0 || p.size < 1) {
+                particles.splice(i, 1);
+            }
+        }
+
+        // Limit particles
+        while (particles.length > 100) {
+            particles.shift();
+        }
+
+        lastMouseX = mouseX;
+        lastMouseY = mouseY;
+
+        requestAnimationFrame(animate);
     }
-    animateCursor();
 
-    // Hover effect on interactive elements
-    const interactiveElements = document.querySelectorAll('a, button, input, textarea, select, .event-card, .player-card');
-
-    interactiveElements.forEach(el => {
-        el.addEventListener('mouseenter', () => {
-            document.body.classList.add('cursor-hover');
-        });
-        el.addEventListener('mouseleave', () => {
-            document.body.classList.remove('cursor-hover');
-        });
-    });
+    animate();
 }
 
 // ============================================
@@ -595,144 +700,140 @@ function initDiscoverMore() {
 }
 
 // ============================================
-// VENUE TOUR 3D CAROUSEL
+// VENUE GALLERY - VOKU STUDIO EXACT REPLICA
 // ============================================
 
-function initVenueCarousel() {
-    const carousel = document.getElementById('venueCarousel');
-    const prevBtn = document.getElementById('venuePrev');
-    const nextBtn = document.getElementById('venueNext');
+function initVenueGallery() {
+    const section = document.querySelector('.venue-gallery');
+    const sticky = document.querySelector('.venue-gallery-sticky');
+    const slides = document.getElementById('venueGallerySlides');
 
-    if (!carousel || !prevBtn || !nextBtn) return;
+    if (!section || !sticky || !slides) return;
 
-    const slides = carousel.querySelectorAll('.venue-slide');
-    const totalSlides = slides.length;
-    let currentIndex = 0;
+    // Check for reduced motion preference
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-    // Position definitions for 3D effect
-    const positions = ['far-left', 'left', 'center', 'right', 'far-right', 'hidden'];
+    // Check if mobile
+    const isMobile = () => window.innerWidth <= 768;
 
-    // Update slide positions
-    function updateSlidePositions() {
-        slides.forEach((slide, index) => {
-            // Calculate position relative to current index
-            let position = index - currentIndex;
+    if (prefersReducedMotion) return;
 
-            // Normalize position for circular carousel
-            if (position < -2) position += totalSlides;
-            if (position > 2) position -= totalSlides;
+    // Get all venue items for parallax
+    const items = slides.querySelectorAll('.venue-item');
 
-            // Map position to CSS class
-            let positionName;
-            switch (position) {
-                case -2:
-                    positionName = 'far-left';
-                    break;
-                case -1:
-                    positionName = 'left';
-                    break;
-                case 0:
-                    positionName = 'center';
-                    break;
-                case 1:
-                    positionName = 'right';
-                    break;
-                case 2:
-                    positionName = 'far-right';
-                    break;
-                default:
-                    positionName = 'hidden';
-            }
+    // Parallax speeds and 3D transform data
+    // Lower speed = moves slower (appears further back)
+    // Higher speed = moves faster (appears closer)
+    const parallaxData = [
+        { speed: 0.7, vertical: -15, zOffset: -150, rotateY: 25, rotateX: 5 },   // Item 1 - far back
+        { speed: 0.85, vertical: 10, zOffset: -100, rotateY: 18, rotateX: 3 },   // Item 2
+        { speed: 0.9, vertical: -8, zOffset: -50, rotateY: 10, rotateX: 2 },     // Item 3
+        { speed: 1.0, vertical: 5, zOffset: 80, rotateY: 0, rotateX: 0 },        // Item 4 - center
+        { speed: 1.1, vertical: -12, zOffset: -50, rotateY: -10, rotateX: 2 },   // Item 5
+        { speed: 0.95, vertical: 8, zOffset: -100, rotateY: -18, rotateX: 3 },   // Item 6
+        { speed: 0.8, vertical: -10, zOffset: -150, rotateY: -25, rotateX: 5 },  // Item 7 - far back
+    ];
 
-            slide.setAttribute('data-position', positionName);
+    // Total horizontal travel distance (in vw)
+    const totalTravel = 50; // vw units
+
+    let rafId = null;
+    let lastProgress = -1;
+    let isEnabled = !isMobile();
+
+    // Update gallery position based on scroll
+    function updateOnScroll() {
+        if (!isEnabled || isMobile()) return;
+
+        const rect = section.getBoundingClientRect();
+        const sectionHeight = section.offsetHeight;
+        const stickyHeight = sticky.offsetHeight;
+
+        // Calculate scroll progress within the section (0 to 1)
+        const scrolled = -rect.top;
+        const scrollableDistance = sectionHeight - stickyHeight;
+        const progress = Math.max(0, Math.min(1, scrolled / scrollableDistance));
+
+        // Optimization: skip if no significant change
+        if (Math.abs(progress - lastProgress) < 0.001) return;
+        lastProgress = progress;
+
+        // Base horizontal movement in vw
+        const baseMove = progress * totalTravel;
+
+        // Apply parallax to each item while preserving 3D transforms
+        items.forEach((item, index) => {
+            const data = parallaxData[index] || { speed: 1, vertical: 0, zOffset: 0, rotateY: 0, rotateX: 0 };
+
+            // Horizontal parallax (moves items left as you scroll)
+            const xOffset = baseMove * data.speed;
+
+            // Vertical parallax (subtle floating effect)
+            const yOffset = progress * data.vertical;
+
+            // Apply transform with 3D properties preserved
+            item.style.transform = `translateX(-${xOffset}vw) translateY(${yOffset}px) translateZ(${data.zOffset}px) rotateY(${data.rotateY}deg) rotateX(${data.rotateX}deg)`;
         });
     }
 
-    // Navigate to next slide
-    function nextSlide() {
-        currentIndex = (currentIndex + 1) % totalSlides;
-        updateSlidePositions();
+    // Throttled scroll handler
+    function onScroll() {
+        if (rafId) return;
+        rafId = requestAnimationFrame(() => {
+            updateOnScroll();
+            rafId = null;
+        });
     }
 
-    // Navigate to previous slide
-    function prevSlide() {
-        currentIndex = (currentIndex - 1 + totalSlides) % totalSlides;
-        updateSlidePositions();
-    }
+    // Handle resize
+    function onResize() {
+        isEnabled = !isMobile();
 
-    // Click on slide to center it
-    function handleSlideClick(e) {
-        const slide = e.currentTarget;
-        const position = slide.getAttribute('data-position');
-
-        if (position === 'left' || position === 'far-left') {
-            prevSlide();
-        } else if (position === 'right' || position === 'far-right') {
-            nextSlide();
+        if (isMobile()) {
+            // Reset transforms on mobile
+            items.forEach(item => {
+                item.style.transform = '';
+            });
+            lastProgress = -1;
+        } else {
+            // Reset to initial 3D transforms before applying scroll-based parallax
+            items.forEach((item, index) => {
+                const data = parallaxData[index] || { zOffset: 0, rotateY: 0, rotateX: 0 };
+                item.style.transform = `translateZ(${data.zOffset}px) rotateY(${data.rotateY}deg) rotateX(${data.rotateX}deg)`;
+            });
+            updateOnScroll();
         }
     }
 
     // Event listeners
-    nextBtn.addEventListener('click', nextSlide);
-    prevBtn.addEventListener('click', prevSlide);
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', onResize, { passive: true });
 
-    slides.forEach(slide => {
-        slide.addEventListener('click', handleSlideClick);
-    });
-
-    // Keyboard navigation
-    document.addEventListener('keydown', (e) => {
-        // Only if carousel is in view
-        const rect = carousel.getBoundingClientRect();
-        const inView = rect.top < window.innerHeight && rect.bottom > 0;
-
-        if (inView) {
-            if (e.key === 'ArrowLeft') {
-                prevSlide();
-            } else if (e.key === 'ArrowRight') {
-                nextSlide();
-            }
-        }
-    });
-
-    // Touch/swipe support
-    let touchStartX = 0;
-    let touchEndX = 0;
-
-    carousel.addEventListener('touchstart', (e) => {
-        touchStartX = e.changedTouches[0].screenX;
-    }, { passive: true });
-
-    carousel.addEventListener('touchend', (e) => {
-        touchEndX = e.changedTouches[0].screenX;
-        handleSwipe();
-    }, { passive: true });
-
-    function handleSwipe() {
-        const threshold = 50;
-        const diff = touchStartX - touchEndX;
-
-        if (diff > threshold) {
-            nextSlide();
-        } else if (diff < -threshold) {
-            prevSlide();
-        }
+    // Initial update
+    if (isEnabled) {
+        updateOnScroll();
     }
 
-    // Auto-rotate (optional - can be removed if not desired)
-    let autoRotate = setInterval(nextSlide, 5000);
+    // Intersection Observer for entrance animation
+    const gallery = document.querySelector('.venue-gallery');
+    if (gallery) {
+        const entranceObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    gallery.classList.add('revealed');
+                    entranceObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.15 });
 
-    // Pause on hover
-    carousel.addEventListener('mouseenter', () => {
-        clearInterval(autoRotate);
-    });
+        entranceObserver.observe(gallery);
+    }
 
-    carousel.addEventListener('mouseleave', () => {
-        autoRotate = setInterval(nextSlide, 5000);
-    });
-
-    // Initialize positions
-    updateSlidePositions();
+    return function cleanup() {
+        window.removeEventListener('scroll', onScroll);
+        window.removeEventListener('resize', onResize);
+        if (rafId) cancelAnimationFrame(rafId);
+    };
 }
 
 // ============================================
@@ -828,6 +929,26 @@ function initDataStream() {
 // PRELOADER (Optional - Add HTML if needed)
 // ============================================
 
+// ============================================
+// TEAM BANNER - Entrance Animation
+// ============================================
+
+function initTeamBanner() {
+    const banner = document.querySelector('.team-banner');
+    if (!banner) return;
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                banner.classList.add('revealed');
+                observer.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.2 });
+
+    observer.observe(banner);
+}
+
 window.addEventListener('load', () => {
     // Remove preloader if exists
     const preloader = document.querySelector('.preloader');
@@ -844,3 +965,4 @@ window.addEventListener('load', () => {
         }, 100 * index);
     });
 });
+
