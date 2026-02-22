@@ -263,9 +263,9 @@ em {
     margin-bottom: var(--gap-md);
 }
 
-.section-tag::before {
-    content: '♔';
-    font-size: 0.9rem;
+.section-tag svg {
+    width: 16px;
+    height: 16px;
 }
 
 .section-title {
@@ -871,6 +871,37 @@ em {
     background: var(--color-dark-light);
     transform: translateY(-2px);
     box-shadow: 0 8px 25px rgba(32, 61, 53, 0.3);
+}
+
+.hero-form-side .btn-form-submit:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+    transform: none;
+}
+
+.hero-form-side .form-status {
+    margin-top: 0.75rem;
+    text-align: center;
+}
+
+.hero-form-side .form-success {
+    padding: 0.75rem 1rem;
+    background: rgba(34, 197, 94, 0.15);
+    border: 1px solid rgba(34, 197, 94, 0.3);
+    border-radius: 8px;
+    color: #22c55e;
+    font-size: 0.8rem;
+    font-weight: 500;
+}
+
+.hero-form-side .form-error {
+    padding: 0.75rem 1rem;
+    background: rgba(239, 68, 68, 0.15);
+    border: 1px solid rgba(239, 68, 68, 0.3);
+    border-radius: 8px;
+    color: #ef4444;
+    font-size: 0.8rem;
+    font-weight: 500;
 }
 
 .hero-form-side .form-field textarea {
@@ -1894,9 +1925,9 @@ em {
     box-shadow: 0 2px 8px rgba(120, 104, 168, 0.1);
 }
 
-.venue-label::before {
-    content: '♔';
-    font-size: 0.9rem;
+.venue-label svg {
+    width: 14px;
+    height: 14px;
 }
 
 .venue-title {
@@ -2107,6 +2138,14 @@ em {
 
 .marquee-dot {
     opacity: 0.4;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.marquee-dot svg {
+    width: 16px;
+    height: 16px;
 }
 
 @keyframes marquee {
@@ -2209,6 +2248,11 @@ em {
     border: 1px solid rgba(255, 255, 255, 1);
     flex-shrink: 0;
     transition: all 0.3s ease;
+}
+
+.feature-icon svg {
+    width: 28px;
+    height: 28px;
 }
 
 .feature:hover .feature-icon {
@@ -3262,6 +3306,9 @@ em {
     position: absolute;
     top: -1px;
     right: 1.5rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
     padding: 0.4rem 1rem;
     background: linear-gradient(135deg, #9b8ac4 0%, #8878b4 100%);
     color: #fff;
@@ -3271,6 +3318,11 @@ em {
     text-transform: uppercase;
     border-radius: 0 0 10px 10px;
     box-shadow: 0 4px 12px rgba(155, 138, 196, 0.35);
+}
+
+.pricing-featured-badge svg {
+    width: 12px;
+    height: 12px;
 }
 
 .pricing-glass-shimmer {
@@ -3313,9 +3365,16 @@ em {
 }
 
 .pricing-card-icon {
-    font-size: 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     color: #6b5a8a;
     line-height: 1;
+}
+
+.pricing-card-icon svg {
+    width: 24px;
+    height: 24px;
 }
 
 .pricing-glass-card-featured .pricing-card-icon {
@@ -3323,6 +3382,9 @@ em {
 }
 
 .pricing-card-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
     font-size: 0.8rem;
     font-weight: 700;
     letter-spacing: 0.1em;
@@ -3331,6 +3393,11 @@ em {
     padding: 0.4rem 0.85rem;
     background: rgba(136, 153, 196, 0.1);
     border-radius: 50px;
+}
+
+.pricing-card-label svg {
+    width: 12px;
+    height: 12px;
 }
 
 .pricing-glass-card-featured .pricing-card-label {
@@ -5963,9 +6030,9 @@ html {
     box-shadow: 0 2px 8px rgba(120, 104, 168, 0.1);
 }
 
-.team-label::before {
-    content: '♔';
-    font-size: 0.9rem;
+.team-label svg {
+    width: 16px;
+    height: 16px;
 }
 
 .team-title {
@@ -6460,6 +6527,37 @@ html {
 
 .contact-form-submit:hover svg {
     transform: translateX(3px);
+}
+
+.contact-form-submit:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+    transform: none;
+}
+
+.form-status {
+    margin-top: 1rem;
+    text-align: center;
+}
+
+.form-success {
+    padding: 1rem 1.5rem;
+    background: rgba(34, 197, 94, 0.1);
+    border: 1px solid rgba(34, 197, 94, 0.3);
+    border-radius: 10px;
+    color: #16a34a;
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+.form-error {
+    padding: 1rem 1.5rem;
+    background: rgba(239, 68, 68, 0.1);
+    border: 1px solid rgba(239, 68, 68, 0.3);
+    border-radius: 10px;
+    color: #dc2626;
+    font-size: 0.9rem;
+    font-weight: 500;
 }
 
 /* Contact Info Wrapper */

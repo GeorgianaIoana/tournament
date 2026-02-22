@@ -966,3 +966,67 @@ window.addEventListener('load', () => {
     });
 });
 
+// ============================================
+// FORM SUBMISSION HANDLER (Contact & Registration)
+// ============================================
+
+document.addEventListener('DOMContentLoaded', () => {
+    // Handle Contact Form
+    const contactForm = document.getElementById('contactForm');
+    if (contactForm) {
+        setupFormHandler(contactForm, 'formStatus', '.contact-form-submit');
+    }
+
+    // Handle Hero Registration Form
+    const heroForm = document.getElementById('heroForm');
+    if (heroForm) {
+        setupFormHandler(heroForm, 'heroFormStatus', '.btn-form-submit');
+    }
+});
+
+function setupFormHandler(form, statusId, submitBtnSelector) {
+    form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+
+        const submitBtn = form.querySelector(submitBtnSelector);
+        const formStatus = document.getElementById(statusId);
+        const originalBtnText = submitBtn.innerHTML;
+
+        // Show loading state
+        submitBtn.innerHTML = 'Se trimite...';
+        submitBtn.disabled = true;
+
+        try {
+            const formData = new FormData(form);
+            const response = await fetch(form.action, {
+                method: 'POST',
+                body: formData,
+                headers: {
+                    'Accept': 'application/json'
+                }
+            });
+
+            if (response.ok) {
+                // Success
+                formStatus.innerHTML = '<div class="form-success">✓ Trimis cu succes! Îți vom răspunde în curând.</div>';
+                form.reset();
+            } else {
+                // Error from API
+                formStatus.innerHTML = '<div class="form-error">✗ A apărut o eroare. Te rugăm să încerci din nou.</div>';
+            }
+        } catch (error) {
+            // Network error
+            formStatus.innerHTML = '<div class="form-error">✗ Eroare de conexiune. Te rugăm să încerci din nou.</div>';
+        }
+
+        // Reset button
+        submitBtn.innerHTML = originalBtnText;
+        submitBtn.disabled = false;
+
+        // Clear status after 5 seconds
+        setTimeout(() => {
+            formStatus.innerHTML = '';
+        }, 5000);
+    });
+}
+
