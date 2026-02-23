@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pagină Negăsită | THE SQUARE 2026</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" type="image/svg+xml" href="images/chess-queen.svg">
+    <style>
+        .error-page {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(180deg, #f5f6fb 0%, #e8eaf5 50%, #d4daf0 100%);
+            padding: 2rem;
+            text-align: center;
+        }
+
+        .error-content {
+            max-width: 600px;
+        }
+
+        .error-icon {
+            font-size: 8rem;
+            margin-bottom: 1rem;
+            opacity: 0.8;
+        }
+
+        .error-code {
+            font-family: var(--font-display);
+            font-size: clamp(6rem, 15vw, 10rem);
+            font-weight: 400;
+            color: #203d36;
+            line-height: 1;
+            margin-bottom: 1rem;
+            background: linear-gradient(
+                120deg,
+                #203d36 0%,
+                #2d8b7a 50%,
+                #6b5b95 100%
+            );
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .error-title {
+            font-family: var(--font-display);
+            font-size: clamp(1.5rem, 4vw, 2.5rem);
+            font-weight: 400;
+            color: #203d36;
+            margin-bottom: 1rem;
+        }
+
+        .error-title em {
+            font-style: italic;
+            background: linear-gradient(
+                120deg,
+                #6b5b95 0%,
+                #d4a5ff 50%,
+                #ff9de2 100%
+            );
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .error-message {
+            font-family: var(--font-body);
+            font-size: 1rem;
+            color: #6b7a8a;
+            line-height: 1.6;
+            margin-bottom: 2rem;
+        }
+
+        .error-actions {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .error-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.875rem 1.75rem;
+            font-family: var(--font-body);
+            font-size: 0.9rem;
+            font-weight: 500;
+            text-decoration: none;
+            border-radius: 50px;
+            transition: all 0.3s ease;
+        }
+
+        .error-btn--primary {
+            background: linear-gradient(135deg, #203d36 0%, #2d8b7a 100%);
+            color: #fff;
+            box-shadow: 0 4px 15px rgba(32, 61, 54, 0.3);
+        }
+
+        .error-btn--primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(32, 61, 54, 0.4);
+        }
+
+        .error-btn--secondary {
+            background: rgba(255, 255, 255, 0.8);
+            color: #203d36;
+            border: 1px solid rgba(32, 61, 54, 0.2);
+        }
+
+        .error-btn--secondary:hover {
+            background: #fff;
+            border-color: rgba(32, 61, 54, 0.3);
+        }
+
+        .error-btn svg {
+            width: 18px;
+            height: 18px;
+        }
+
+        .error-chess {
+            margin-top: 3rem;
+            display: flex;
+            justify-content: center;
+            gap: 0.5rem;
+            opacity: 0.3;
+        }
+
+        .error-chess span {
+            font-size: 2rem;
+        }
+
+        .error-links {
+            margin-top: 3rem;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1.5rem;
+        }
+
+        .error-links a {
+            font-family: var(--font-body);
+            font-size: 0.85rem;
+            color: #6b7a8a;
+            text-decoration: none;
+            transition: color 0.2s ease;
+        }
+
+        .error-links a:hover {
+            color: #2d8b7a;
+        }
+    </style>
+</head>
+<body>
+    <section class="error-page">
+        <div class="error-content">
+            <a href="index.html" class="error-logo">
+                <img src="images/logo-footer.png" alt="THE SQUARE" style="height: 60px; margin-bottom: 2rem;">
+            </a>
+            <div class="error-code">404</div>
+            <h1 class="error-title">Pagină <em>Negăsită</em></h1>
+            <p class="error-message">
+                Se pare că această pagină a fost mutată sau nu există.
+                Ca într-o partidă de șah, uneori trebuie să ne regândim strategia.
+            </p>
+
+            <div class="error-actions">
+                <a href="index.html" class="error-btn error-btn--primary">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+                        <polyline points="9,22 9,12 15,12 15,22"/>
+                    </svg>
+                    Pagina Principală
+                </a>
+                <a href="contact.html" class="error-btn error-btn--secondary">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                        <polyline points="22,6 12,13 2,6"/>
+                    </svg>
+                    Contactează-ne
+                </a>
+            </div>
+
+            <div class="error-chess">
+                <span>♜</span>
+                <span>♞</span>
+                <span>♝</span>
+                <span>♛</span>
+                <span>♚</span>
+                <span>♝</span>
+                <span>♞</span>
+                <span>♜</span>
+            </div>
+
+            <div class="error-links">
+                <a href="index.html#events">Categorii</a>
+                <a href="schedule.html">Program</a>
+                <a href="rules.html">Regulament</a>
+                <a href="index.html#register">Înscrie-te</a>
+            </div>
+        </div>
+    </section>
+</body>
+</html>

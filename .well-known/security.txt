@@ -1,0 +1,24 @@
+# THE SQUARE Chess Club Security Policy
+# https://thesquarechessclub.com/.well-known/security.txt
+
+# Contact for security issues
+Contact: mailto:contact@thesquarechessclub.com
+Contact: https://thesquarechessclub.com/contact.html
+
+# Encryption (optional - add PGP key if available)
+# Encryption: https://thesquarechessclub.com/.well-known/pgp-key.txt
+
+# Policy
+Policy: https://thesquarechessclub.com/privacy.html
+
+# Acknowledgments
+# Acknowledgments: https://thesquarechessclub.com/security-acknowledgments.html
+
+# Preferred Languages
+Preferred-Languages: ro, en
+
+# Canonical URL
+Canonical: https://thesquarechessclub.com/.well-known/security.txt
+
+# Expiration date
+Expires: 2027-04-30T23:59:59.000Z

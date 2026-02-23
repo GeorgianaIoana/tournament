@@ -1,0 +1,43 @@
+# robots.txt pentru THE SQUARE Chess Tournament 2026
+# https://thesquarechessclub.com
+
+# Permitem tuturor roboților să acceseze site-ul
+User-agent: *
+Allow: /
+
+# Blocăm accesul la fișiere și directoare neimportante
+Disallow: /*.json$
+Disallow: /*.css.map$
+Disallow: /*.js.map$
+
+# Crawl-delay pentru a nu supraîncărca serverul
+Crawl-delay: 1
+
+# Locația sitemap-ului
+Sitemap: https://thesquarechessclub.com/sitemap.xml
+
+# Reguli specifice pentru Google
+User-agent: Googlebot
+Allow: /
+Crawl-delay: 0
+
+# Reguli specifice pentru Bing
+User-agent: Bingbot
+Allow: /
+Crawl-delay: 1
+
+# Blocăm roboții de AI training (opțional)
+User-agent: GPTBot
+Disallow: /
+
+User-agent: ChatGPT-User
+Disallow: /
+
+User-agent: CCBot
+Disallow: /
+
+User-agent: anthropic-ai
+Disallow: /
+
+User-agent: Claude-Web
+Disallow: /

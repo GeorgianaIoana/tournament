@@ -968,6 +968,7 @@ window.addEventListener('load', () => {
 
 // ============================================
 // FORM SUBMISSION HANDLER (Contact & Registration)
+// Web3Forms - funcționează și local și online
 // ============================================
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -982,11 +983,27 @@ document.addEventListener('DOMContentLoaded', () => {
     if (heroForm) {
         setupFormHandler(heroForm, 'heroFormStatus', '.btn-form-submit');
     }
+
+    // Add "touched" class to select elements on change/blur for validation styling
+    document.querySelectorAll('select').forEach(select => {
+        select.addEventListener('change', () => select.classList.add('touched'));
+        select.addEventListener('blur', () => select.classList.add('touched'));
+    });
 });
 
 function setupFormHandler(form, statusId, submitBtnSelector) {
     form.addEventListener('submit', async (e) => {
         e.preventDefault();
+
+        // Mark all selects and checkboxes as touched on submit attempt
+        form.querySelectorAll('select').forEach(select => select.classList.add('touched'));
+        form.querySelectorAll('input[type="checkbox"]').forEach(cb => cb.classList.add('touched'));
+
+        // Check if form is valid
+        if (!form.checkValidity()) {
+            form.reportValidity();
+            return;
+        }
 
         const submitBtn = form.querySelector(submitBtnSelector);
         const formStatus = document.getElementById(statusId);
@@ -998,35 +1015,27 @@ function setupFormHandler(form, statusId, submitBtnSelector) {
 
         try {
             const formData = new FormData(form);
-            const response = await fetch(form.action, {
+            const response = await fetch('https://api.web3forms.com/submit', {
                 method: 'POST',
-                body: formData,
-                headers: {
-                    'Accept': 'application/json'
-                }
+                body: formData
             });
 
-            if (response.ok) {
-                // Success
+            const result = await response.json();
+
+            if (result.success) {
                 formStatus.innerHTML = '<div class="form-success">✓ Trimis cu succes! Îți vom răspunde în curând.</div>';
                 form.reset();
             } else {
-                // Error from API
-                formStatus.innerHTML = '<div class="form-error">✗ A apărut o eroare. Te rugăm să încerci din nou.</div>';
+                formStatus.innerHTML = '<div class="form-error">✗ ' + (result.message || 'A apărut o eroare.') + '</div>';
             }
         } catch (error) {
-            // Network error
             formStatus.innerHTML = '<div class="form-error">✗ Eroare de conexiune. Te rugăm să încerci din nou.</div>';
         }
 
-        // Reset button
         submitBtn.innerHTML = originalBtnText;
         submitBtn.disabled = false;
 
-        // Clear status after 5 seconds
-        setTimeout(() => {
-            formStatus.innerHTML = '';
-        }, 5000);
+        setTimeout(() => { formStatus.innerHTML = ''; }, 5000);
     });
 }
 

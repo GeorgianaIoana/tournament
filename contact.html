@@ -3,6 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Security Meta Tags -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="X-Content-Type-Options" content="nosniff">
+    <meta http-equiv="X-Frame-Options" content="SAMEORIGIN">
+    <meta http-equiv="X-XSS-Protection" content="1; mode=block">
+    <meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin">
+    <meta http-equiv="Permissions-Policy" content="geolocation=(), microphone=(), camera=()">
+    <meta name="format-detection" content="telephone=no">
     <title>Contact | THE SQUARE 2026</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -15,8 +23,7 @@
     <nav class="nav scrolled" id="nav">
         <div class="nav-container">
             <a href="index.html" class="nav-logo">
-                <span class="logo-icon">&#9822;</span>
-                <span class="logo-text">THE SQUARE</span>
+                <img src="images/logo.png" alt="THE SQUARE" class="logo-img">
             </a>
             <div class="nav-links">
                 <a href="index.html#venue" class="nav-link">Locație</a>
@@ -37,6 +44,9 @@
     <!-- Mobile Menu -->
     <div class="mobile-menu" id="mobileMenu">
         <div class="mobile-menu-content">
+            <a href="index.html" class="mobile-logo">
+                <img src="images/logo-footer.png" alt="THE SQUARE" class="mobile-logo-img">
+            </a>
             <a href="index.html#venue" class="mobile-link">Locație</a>
             <a href="index.html#about" class="mobile-link">Despre</a>
             <a href="index.html#events" class="mobile-link">Categorii</a>
@@ -76,14 +86,14 @@
                         <h2 class="contact-form-title">Trimite-ne un Mesaj</h2>
                         <p class="contact-form-subtitle">Completează formularul și îți vom răspunde în cel mai scurt timp.</p>
                     </div>
-                    <form class="contact-form" id="contactForm" action="https://formsubmit.co/contact@thesquarechessclub.com" method="POST">
-                        <input type="hidden" name="_subject" value="Mesaj nou de pe THE SQUARE 2026">
-                        <input type="hidden" name="_captcha" value="false">
-                        <input type="hidden" name="_template" value="table">
+                    <form class="contact-form" id="contactForm" action="https://api.web3forms.com/submit" method="POST">
+                        <input type="hidden" name="access_key" value="e8bd70d0-01a2-445f-b01b-dc64cef4b284">
+                        <input type="hidden" name="subject" value="Mesaj nou - THE SQUARE 2026">
+                        <input type="hidden" name="from_name" value="THE SQUARE Contact">
                         <div class="contact-form-row">
                             <div class="contact-form-field">
                                 <label for="name">Nume Complet</label>
-                                <input type="text" id="name" name="name" placeholder="Ion Popescu" required>
+                                <input type="text" id="name" name="name" placeholder="Ion Popescu" required minlength="3" maxlength="100">
                             </div>
                             <div class="contact-form-field">
                                 <label for="email">Email</label>
@@ -103,7 +113,7 @@
                         </div>
                         <div class="contact-form-field">
                             <label for="message">Mesaj</label>
-                            <textarea id="message" name="message" rows="5" placeholder="Scrie mesajul tău aici..." required></textarea>
+                            <textarea id="message" name="message" rows="5" placeholder="Scrie mesajul tău aici..." required minlength="10" maxlength="2000"></textarea>
                         </div>
                         <button type="submit" class="contact-form-submit">
                             <span>Trimite Mesajul</span>
@@ -153,6 +163,34 @@
                             <div class="contact-card-content">
                                 <h3>Data Turneului</h3>
                                 <p>24-26 Aprilie 2026</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Payment Info -->
+                    <div class="contact-payment">
+                        <div class="contact-payment-header">
+                            <span class="payment-label">Date Plată</span>
+                        </div>
+                        <div class="contact-payment-content">
+                            <h4 class="payment-name">ASOCIAȚIA CLUB SPORTIV DE ȘAH "THE SQUARE"</h4>
+                            <div class="payment-details">
+                                <div class="payment-row">
+                                    <span class="payment-label-small">CIF:</span>
+                                    <span class="payment-value">50954939</span>
+                                </div>
+                                <div class="payment-row">
+                                    <span class="payment-label-small">IBAN:</span>
+                                    <span class="payment-value">RO51INGB0000999916814361</span>
+                                </div>
+                                <div class="payment-row">
+                                    <span class="payment-label-small">Banca:</span>
+                                    <span class="payment-value">ING BANK NV</span>
+                                </div>
+                                <div class="payment-row">
+                                    <span class="payment-label-small">Descriere transfer:</span>
+                                    <span class="payment-value">donație taxă concurs</span>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -225,7 +263,7 @@
                     <div class="map-info-content">
                         <h3>THE SQUARE 2026</h3>
                         <p>Nod Makerspace</p>
-                        <a href="https://maps.google.com/?q=Nod+Makerspace+Splaiul+Unirii+160+Bucuresti" target="_blank" class="map-directions-btn">
+                        <a href="https://maps.google.com/?q=Nod+Makerspace+Splaiul+Unirii+160+Bucuresti" target="_blank" rel="noopener noreferrer" class="map-directions-btn">
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                                 <path d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7"/>
                             </svg>
@@ -292,11 +330,7 @@
                 <!-- Logo -->
                 <div class="footer-brand">
                     <a href="index.html" class="footer-logo">
-                        <span class="logo-icon">&#9822;</span>
-                        <div class="logo-text-group">
-                            <span class="logo-text">THE</span>
-                            <span class="logo-text">SQUARE</span>
-                        </div>
+                        <img src="images/logo-footer.png" alt="THE SQUARE" class="logo-img">
                     </a>
                     <p class="footer-tagline">Clubul de Șah</p>
                 </div>
@@ -331,8 +365,9 @@
                     <div class="footer-legal">
                         <p>&copy; 2026 THE SQUARE Chess Club. Toate drepturile rezervate.</p>
                         <div class="legal-links">
-                            <a href="#">Politica de Confidențialitate</a>
-                            <a href="#">Termeni și Condiții</a>
+                            <a href="privacy.html">Politica de Confidențialitate</a>
+                            <a href="terms.html">Termeni și Condiții</a>
+                            <a href="cookies.html">Cookies</a>
                         </div>
                     </div>
                 </div>
