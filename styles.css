@@ -429,8 +429,14 @@ em {
     left: 0;
     right: 0;
     z-index: 1000;
-    padding: 1.5rem 0;
+    padding: 3rem 0 1.5rem;
     transition: all var(--duration-fast) ease;
+}
+
+@media (min-width: 1024px) {
+    .nav {
+        padding: 6rem 0 1.5rem;
+    }
 }
 
 .nav.scrolled {
@@ -2571,11 +2577,11 @@ a.event-info-link:hover .event-info-text span {
 }
 
 .about-image-2:hover {
-    transform: rotateY(0deg) rotateX(0deg) translateY(-10px);
-    z-index: 3;
-    box-shadow:
-        0 35px 80px rgba(100, 80, 150, 0.25),
-        0 15px 35px rgba(100, 80, 150, 0.18);
+    transform: rotateY(3deg) rotateX(-2deg);
+}
+
+.about-image-2:hover video {
+    transform: none;
 }
 
 .about-decoration {
@@ -2651,9 +2657,12 @@ a.event-info-link:hover .event-info-text span {
         transform: none;
     }
 
-    .about-image-1:hover,
-    .about-image-2:hover {
+    .about-image-1:hover {
         transform: translateY(-8px);
+    }
+
+    .about-image-2:hover {
+        transform: none;
     }
 }
 
@@ -4554,6 +4563,60 @@ a.event-info-link:hover .event-info-text span {
 }
 
 /* ============================================
+   PARTNERS SECTION
+   ============================================ */
+
+.partners {
+    padding: var(--section-padding) 0;
+    background: var(--color-cream);
+}
+
+.partners .section-header {
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+.partners-grid {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 3rem 4rem;
+}
+
+.partner-card {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1.5rem 2rem;
+    background: var(--color-white);
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--color-gray-200);
+    transition: all var(--duration-fast) var(--ease-out-expo);
+}
+
+.partner-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-md);
+    border-color: var(--color-accent);
+}
+
+.partner-logo {
+    height: 60px;
+    width: auto;
+    max-width: 180px;
+    object-fit: contain;
+    filter: grayscale(0);
+    opacity: 0.85;
+    transition: all var(--duration-fast) var(--ease-out-expo);
+}
+
+.partner-card:hover .partner-logo {
+    opacity: 1;
+    filter: grayscale(0);
+}
+
+/* ============================================
    FOOTER
    ============================================ */
 
@@ -4596,6 +4659,36 @@ a.event-info-link:hover .event-info-text span {
     color: #203d36;
     opacity: 0.7;
     letter-spacing: 0.05em;
+}
+
+/* Footer Federation Logo */
+.footer-federation {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 1.5rem;
+}
+
+.federation-label {
+    font-family: var(--font-body);
+    font-size: 0.75rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: #203d36;
+    opacity: 0.7;
+}
+
+.federation-logo {
+    height: 60px;
+    width: auto;
+    transition: transform var(--duration-fast) var(--ease-out-expo),
+                filter var(--duration-fast) var(--ease-out-expo);
+}
+
+.footer-federation a:hover .federation-logo {
+    transform: scale(1.05);
 }
 
 /* Footer Grid */
@@ -8204,7 +8297,7 @@ html {
 
     /* Navigation - Hide on mobile, show toggle */
     .nav {
-        padding: 0.75rem 0;
+        padding: 2rem 0 0.75rem;
     }
 
     .nav-container {
