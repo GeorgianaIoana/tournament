@@ -20,10 +20,19 @@ document.addEventListener('DOMContentLoaded', () => {
     initHeroForm();
     initDiscoverMore();
 
-    // Speed up about section videos
+    // Speed up about section videos and set start time for first video
     const aboutVideos = document.querySelectorAll('.about-image video');
-    aboutVideos.forEach(video => {
+    aboutVideos.forEach((video, index) => {
         video.playbackRate = 3;
+        if (index === 0) {
+            video.addEventListener('loadedmetadata', () => {
+                video.currentTime = 1;
+            }, { once: true });
+            // In case metadata already loaded
+            if (video.readyState >= 1) {
+                video.currentTime = 1;
+            }
+        }
     });
 
     // Futuristic Effects
@@ -324,6 +333,41 @@ function initScrollAnimations() {
     }, observerOptions);
 
     revealElements.forEach(el => observer.observe(el));
+
+    // Wing photos staggered reveal
+    const wingPhotos = document.querySelectorAll('.wing-photo');
+    if (wingPhotos.length) {
+        const wingObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    wingObserver.unobserve(entry.target);
+                }
+            });
+        }, { root: null, rootMargin: '0px', threshold: 0.2 });
+
+        wingPhotos.forEach(el => wingObserver.observe(el));
+    }
+
+    // Step cards staggered reveal
+    const stepCards = document.querySelectorAll('.step-card');
+    if (stepCards.length) {
+        const stepsObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const cards = document.querySelectorAll('.step-card');
+                    cards.forEach((card, index) => {
+                        setTimeout(() => {
+                            card.classList.add('visible');
+                        }, index * 200);
+                    });
+                    stepsObserver.unobserve(entry.target);
+                }
+            });
+        }, { root: null, rootMargin: '0px', threshold: 0.2 });
+
+        stepsObserver.observe(stepCards[0]);
+    }
 }
 
 // ============================================
