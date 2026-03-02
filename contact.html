@@ -56,6 +56,7 @@
             <button class="nav-toggle" id="navToggle">
                 <span></span>
                 <span></span>
+                <span></span>
             </button>
         </div>
     </nav>
@@ -109,6 +110,7 @@
                         <input type="hidden" name="access_key" value="e8bd70d0-01a2-445f-b01b-dc64cef4b284">
                         <input type="hidden" name="subject" value="Mesaj nou - THE SQUARE 2026">
                         <input type="hidden" name="from_name" value="THE SQUARE Contact">
+                        <input type="checkbox" name="botcheck" class="honeypot-field" style="display:none !important" tabindex="-1" autocomplete="off">
                         <div class="contact-form-row">
                             <div class="contact-form-field">
                                 <label for="name">Nume Complet</label>
@@ -119,9 +121,9 @@
                                 <input type="email" id="email" name="email" placeholder="ion@exemplu.ro" required>
                             </div>
                         </div>
-                        <div class="contact-form-field">
+                        <div class="contact-form-field contact-select-wrapper">
                             <label for="topic">Subiect</label>
-                            <select id="topic" name="topic" required>
+                            <select id="topic" name="topic" required class="visually-hidden-select">
                                 <option value="" disabled selected>Selectează subiectul</option>
                                 <option value="Înscriere turneu">Înscriere turneu</option>
                                 <option value="Informații generale">Informații generale</option>
@@ -129,6 +131,34 @@
                                 <option value="Presă & Media">Presă & Media</option>
                                 <option value="Altele">Altele</option>
                             </select>
+                            <div class="custom-select contact-custom-select" data-for="topic">
+                                <div class="custom-select-trigger">
+                                    <span class="custom-select-value">Selectează subiectul</span>
+                                    <svg class="custom-select-arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6,9 12,15 18,9"></polyline></svg>
+                                </div>
+                                <div class="custom-select-options">
+                                    <div class="custom-select-option" data-value="Înscriere turneu">
+                                        <span class="option-icon">♟</span>
+                                        <span class="option-text">Înscriere turneu</span>
+                                    </div>
+                                    <div class="custom-select-option" data-value="Informații generale">
+                                        <span class="option-icon">♜</span>
+                                        <span class="option-text">Informații generale</span>
+                                    </div>
+                                    <div class="custom-select-option" data-value="Parteneriate & Sponsorizări">
+                                        <span class="option-icon">♛</span>
+                                        <span class="option-text">Parteneriate & Sponsorizări</span>
+                                    </div>
+                                    <div class="custom-select-option" data-value="Presă & Media">
+                                        <span class="option-icon">♞</span>
+                                        <span class="option-text">Presă & Media</span>
+                                    </div>
+                                    <div class="custom-select-option" data-value="Altele">
+                                        <span class="option-icon">♝</span>
+                                        <span class="option-text">Altele</span>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                         <div class="contact-form-field">
                             <label for="message">Mesaj</label>

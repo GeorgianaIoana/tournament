@@ -14,13 +14,13 @@
     <meta name="format-detection" content="telephone=no">
 
     <!-- SEO Meta Tags -->
-    <meta name="description" content="THE SQUARE 2026 - Turneu de șah rapid și blitz la București. 24-26 Aprilie 2026, Nod Makerspace. Înscrieri deschise!">
-    <meta name="keywords" content="turneu șah, șah rapid, blitz, București, THE SQUARE, competiție șah, FRȘ">
+    <meta name="description" content="Open THE SQUARE 2026 - Turneu de șah rapid și blitz la București. 24-26 Aprilie 2026, Nod Makerspace. Înscrieri deschise!">
+    <meta name="keywords" content="turneu șah, șah rapid, blitz, București, Open THE SQUARE, THE SQUARE, competiție șah, FRȘ">
     <meta name="author" content="THE SQUARE Chess Club">
     <meta name="robots" content="index, follow">
 
     <!-- Open Graph -->
-    <meta property="og:title" content="THE SQUARE 2026 | Turneu de Șah">
+    <meta property="og:title" content="Open THE SQUARE 2026 | Turneu de Șah">
     <meta property="og:description" content="Turneu de șah rapid și blitz la București. 24-26 Aprilie 2026.">
     <meta property="og:type" content="website">
     <meta property="og:locale" content="ro_RO">
@@ -29,11 +29,11 @@
 
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="THE SQUARE 2026 | Turneu de Șah">
+    <meta name="twitter:title" content="Open THE SQUARE 2026 | Turneu de Șah">
     <meta name="twitter:description" content="Turneu de șah rapid și blitz la București. 24-26 Aprilie 2026.">
     <meta name="twitter:image" content="https://thesquarechessclub.com/images/hero.jpeg">
 
-    <title>THE SQUARE 2026 | Turneu de Șah</title>
+    <title>Open THE SQUARE 2026 | Turneu de Șah</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
@@ -65,6 +65,7 @@
             <button class="nav-toggle" id="navToggle">
                 <span></span>
                 <span></span>
+                <span></span>
             </button>
         </div>
     </nav>
@@ -89,7 +90,7 @@
     <section class="hero hero-split" id="hero">
         <!-- Left side: Video -->
         <div class="hero-video-side">
-            <video autoplay muted loop playsinline class="hero-video">
+            <video autoplay muted loop playsinline preload="auto" class="hero-video">
                 <source src="images/team-banner-bg.mp4" type="video/mp4">
             </video>
         </div>
@@ -107,8 +108,8 @@
 
                 <form class="hero-form" id="heroForm" action="https://api.web3forms.com/submit" method="POST">
                     <input type="hidden" name="access_key" value="e8bd70d0-01a2-445f-b01b-dc64cef4b284">
-                    <input type="hidden" name="subject" value="Înscriere nouă - THE SQUARE 2026">
-                    <input type="hidden" name="from_name" value="THE SQUARE Înscriere">
+                    <input type="hidden" name="subject" value="Înscriere nouă - Open THE SQUARE 2026">
+                    <input type="hidden" name="from_name" value="Open THE SQUARE Înscriere">
                     <div class="form-field">
                         <input type="text" name="fullName" placeholder="Nume Complet *" required minlength="3" maxlength="100">
                     </div>
@@ -119,18 +120,38 @@
                         <input type="tel" name="phone" placeholder="Telefon * (ex: 0765815641)" required pattern="^(07[0-9]{8}|(\+40)7[0-9]{8})$" title="Introdu un număr de telefon valid (ex: 0765815641)">
                     </div>
                     <div class="form-field">
-                        <input type="text" name="fideId" placeholder="ID FIDE (opțional)" pattern="^[0-9]{5,10}$" title="ID FIDE trebuie să conțină 5-10 cifre">
+                        <input type="text" name="fideId" placeholder="ID FIDE *" required pattern="^[0-9]{5,10}$" title="ID FIDE trebuie să conțină 5-10 cifre">
                     </div>
                     <div class="form-field">
                         <input type="text" name="club" placeholder="Club *" required minlength="2" maxlength="100">
                     </div>
                     <div class="form-field">
-                        <select name="category" required>
+                        <select name="category" required class="hidden-select">
                             <option value="" disabled selected>Alege turneul *</option>
                             <option value="Open Șah Rapid">Open Șah Rapid</option>
                             <option value="Open Blitz">Open Blitz</option>
                             <option value="Rapid + Blitz">Rapid + Blitz</option>
                         </select>
+                        <div class="custom-select" data-for="category">
+                            <div class="custom-select-trigger">
+                                <span class="custom-select-value">Alege turneul *</span>
+                                <svg class="custom-select-arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6,9 12,15 18,9"></polyline></svg>
+                            </div>
+                            <div class="custom-select-options">
+                                <div class="custom-select-option" data-value="Open Șah Rapid">
+                                    <span class="option-icon">♜</span>
+                                    <span class="option-text">Open Șah Rapid</span>
+                                </div>
+                                <div class="custom-select-option" data-value="Open Blitz">
+                                    <span class="option-icon">♞</span>
+                                    <span class="option-text">Open Blitz</span>
+                                </div>
+                                <div class="custom-select-option" data-value="Rapid + Blitz">
+                                    <span class="option-icon">♛</span>
+                                    <span class="option-text">Rapid + Blitz</span>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                     <div class="form-field">
                         <textarea name="message" placeholder="Mesaj (Opțional)" rows="3"></textarea>
@@ -167,10 +188,10 @@
                 <div class="about-content">
                     <span class="section-tag reveal-up"><svg viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg" fill="currentColor"><path d="M477.518 181.966a25 25 0 0 1-34.91 23l-62.29 150.26h-248.92l-62.24-150.19a25 25 0 1 1 9.73-7.29l87 71.2 20.92-126.4a25 25 0 1 1 14.7-1.85l54.31 117 54.42-117.3a25 25 0 1 1 14.58 2.08l20.93 126.42 87.26-71.3a25 25 0 1 1 44.51-15.63zm-71.66 241.25h-300v60h300v-60zm-27.75-52h-244.22v36h244.22v-36z"/></svg>Despre Turneu</span>
                     <h2 class="section-title reveal-up" style="--delay: 0.1s">
-                        Concursul de Șah <br><em>THE SQUARE</em>
+                        Concursul de Șah <br><em>Open THE SQUARE</em>
                     </h2>
                     <p class="about-text reveal-up" style="--delay: 0.2s">
-                        Clubul de Șah THE SQUARE vă invită la concursul de șah rapid și blitz cu sistem elvețian. Sunteți bineveniți și vă dorim mult succes!
+                        Clubul de Șah THE SQUARE vă invită la concursul Open THE SQUARE — turneu de șah rapid și blitz cu sistem elvețian. Sunteți bineveniți și vă dorim mult succes!
                     </p>
 
                     <div class="about-event-info reveal-up" style="--delay: 0.3s">
@@ -198,20 +219,20 @@
                     </div>
 
                     <div class="about-features reveal-up" style="--delay: 0.4s">
-                        <div class="feature">
+                        <a href="#card-rapid" class="feature">
                             <div class="feature-icon"><svg viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg" fill="currentColor"><path d="M477.518 181.966a25 25 0 0 1-34.91 23l-62.29 150.26h-248.92l-62.24-150.19a25 25 0 1 1 9.73-7.29l87 71.2 20.92-126.4a25 25 0 1 1 14.7-1.85l54.31 117 54.42-117.3a25 25 0 1 1 14.58 2.08l20.93 126.42 87.26-71.3a25 25 0 1 1 44.51-15.63zm-71.66 241.25h-300v60h300v-60zm-27.75-52h-244.22v36h244.22v-36z"/></svg></div>
                             <div class="feature-text">
                                 <h4>Șah Rapid</h4>
                                 <p>7 runde, Sistem Elvețian, 15 min + 3 sec/mutare</p>
                             </div>
-                        </div>
-                        <div class="feature">
+                        </a>
+                        <a href="#card-blitz" class="feature">
                             <div class="feature-icon"><svg viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg" fill="currentColor"><path d="M477.518 181.966a25 25 0 0 1-34.91 23l-62.29 150.26h-248.92l-62.24-150.19a25 25 0 1 1 9.73-7.29l87 71.2 20.92-126.4a25 25 0 1 1 14.7-1.85l54.31 117 54.42-117.3a25 25 0 1 1 14.58 2.08l20.93 126.42 87.26-71.3a25 25 0 1 1 44.51-15.63zm-71.66 241.25h-300v60h300v-60zm-27.75-52h-244.22v36h244.22v-36z"/></svg></div>
                             <div class="feature-text">
                                 <h4>Blitz</h4>
                                 <p>7 runde, Sistem Elvețian, 3 min + 2 sec/mutare</p>
                             </div>
-                        </div>
+                        </a>
                     </div>
 
                     <a href="#heroForm" class="about-cta-btn reveal-up" style="--delay: 0.5s">
@@ -278,12 +299,12 @@
                 </div>
             </div>
 
-            <!-- Organizator - Right -->
+            <!-- Arbitru - Right -->
             <div class="team-member team-member--right">
-                <img src="images/organizer.png" alt="Organizator">
+                <img src="images/organizer.png" alt="Arbitru">
                 <div class="team-member-info">
-                    <h4>Stanciu Cristiana</h4>
-                    <span>Organizator</span>
+                    <h4>Roxana Fieraru</h4>
+                    <span>Arbitru Fide</span>
                 </div>
             </div>
         </div>
@@ -456,7 +477,7 @@
             <div class="pricing-glass-container">
                 <div class="pricing-glass-cards">
                     <!-- Rapid Card -->
-                    <div class="pricing-glass-card">
+                    <div class="pricing-glass-card" id="card-rapid">
                         <h4 class="pricing-card-title">Rapid</h4>
                         <div class="pricing-card-price">
                             <span class="price-value">200</span>
@@ -489,7 +510,7 @@
                     </div>
 
                     <!-- Blitz Card -->
-                    <div class="pricing-glass-card">
+                    <div class="pricing-glass-card" id="card-blitz">
                         <h4 class="pricing-card-title">Blitz</h4>
                         <div class="pricing-card-price">
                             <span class="price-value">150</span>
@@ -740,6 +761,9 @@
                 </a>
                 <a href="https://www.spacemaker.ro" target="_blank" rel="noopener noreferrer" class="partner-card">
                     <img src="images/partner-spacemaker.svg" alt="Spacemaker" class="partner-logo">
+                </a>
+                <a href="https://www.fide.com" target="_blank" rel="noopener noreferrer" class="partner-card">
+                    <img src="images/partner-fide.png" alt="FIDE" class="partner-logo">
                 </a>
             </div>
         </div>

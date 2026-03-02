@@ -190,19 +190,14 @@ function initPageTransition() {
 function initCustomCursor() {
     // Only enable on devices with fine pointer (mouse)
     if (!window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
-        console.log('Splash cursor: No fine pointer detected');
         return;
     }
-
-    console.log('Splash cursor: Initializing...');
 
     // Test WebGL support
     const testCanvas = document.createElement('canvas');
     const gl = testCanvas.getContext('webgl2') || testCanvas.getContext('webgl');
     if (!gl) {
-        console.log('Splash cursor: WebGL not supported, using Canvas 2D fallback');
-    } else {
-        console.log('Splash cursor: WebGL supported, version:', gl.getParameter(gl.VERSION));
+        // WebGL not supported, using Canvas 2D fallback
     }
 
     // Project colors
@@ -378,9 +373,12 @@ function initMobileMenu() {
 
     if (!navToggle || !mobileMenu) return;
 
+    const navEl = document.getElementById('nav');
+
     navToggle.addEventListener('click', () => {
         navToggle.classList.toggle('active');
         mobileMenu.classList.toggle('active');
+        if (navEl) navEl.classList.toggle('menu-open');
         document.body.style.overflow = mobileMenu.classList.contains('active') ? 'hidden' : '';
     });
 
@@ -389,6 +387,7 @@ function initMobileMenu() {
         link.addEventListener('click', () => {
             navToggle.classList.remove('active');
             mobileMenu.classList.remove('active');
+            if (navEl) navEl.classList.remove('menu-open');
             document.body.style.overflow = '';
         });
     });
@@ -713,35 +712,8 @@ function initSmoothScroll() {
 }
 
 // ============================================
-// FORM SUBMISSION (Basic handling)
+// FORM SUBMISSION (handled by setupFormHandler below)
 // ============================================
-
-const contactForm = document.getElementById('contactForm');
-
-if (contactForm) {
-    contactForm.addEventListener('submit', (e) => {
-        e.preventDefault();
-
-        // Get form data
-        const formData = new FormData(contactForm);
-        const data = Object.fromEntries(formData);
-
-        // Here you would typically send the data to a server
-        console.log('Form submitted:', data);
-
-        // Show success message (you can customize this)
-        const btn = contactForm.querySelector('button[type="submit"]');
-        const originalText = btn.innerHTML;
-        btn.innerHTML = '<span>Message Sent!</span>';
-        btn.disabled = true;
-
-        setTimeout(() => {
-            btn.innerHTML = originalText;
-            btn.disabled = false;
-            contactForm.reset();
-        }, 3000);
-    });
-}
 
 // ============================================
 // PRELOADER (Optional - Add HTML if needed)
@@ -780,13 +752,6 @@ function initHeroForm() {
 
     heroForm.addEventListener('submit', (e) => {
         e.preventDefault();
-
-        // Get form data
-        const formData = new FormData(heroForm);
-        const data = Object.fromEntries(formData);
-
-        // Here you would typically send the data to a server
-        console.log('Hero form submitted:', data);
 
         // Show success message
         const btn = heroForm.querySelector('.btn-form-submit');
@@ -1229,6 +1194,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const contactForm = document.getElementById('contactForm');
     if (contactForm) {
         setupFormHandler(contactForm, 'formStatus', '.contact-form-submit');
+        initContactFormValidation(contactForm);
+        initCharacterCounter(contactForm);
     }
 
     // Handle Hero Registration Form
@@ -1242,7 +1209,96 @@ document.addEventListener('DOMContentLoaded', () => {
         select.addEventListener('change', () => select.classList.add('touched'));
         select.addEventListener('blur', () => select.classList.add('touched'));
     });
+
+    // Custom Select Dropdowns
+    initCustomSelects();
 });
+
+function initCustomSelects() {
+    document.querySelectorAll('.custom-select').forEach(customSelect => {
+        const trigger = customSelect.querySelector('.custom-select-trigger');
+        const valueDisplay = customSelect.querySelector('.custom-select-value');
+        const options = customSelect.querySelectorAll('.custom-select-option');
+        const selectName = customSelect.dataset.for;
+        const nativeSelect = customSelect.parentElement.querySelector(`select[name="${selectName}"]`);
+
+        // Toggle dropdown
+        trigger.addEventListener('click', (e) => {
+            e.stopPropagation();
+            const isOpen = customSelect.classList.contains('open');
+            closeAllCustomSelects();
+            if (!isOpen) {
+                customSelect.classList.add('open');
+            }
+        });
+
+        // Select an option
+        options.forEach(option => {
+            option.addEventListener('click', (e) => {
+                e.stopPropagation();
+                const value = option.dataset.value;
+                const text = option.querySelector('.option-text').textContent;
+
+                // Update display
+                valueDisplay.textContent = text;
+                customSelect.classList.add('has-value');
+                customSelect.classList.remove('invalid');
+                customSelect.classList.add('touched');
+
+                // Mark selected
+                options.forEach(o => o.classList.remove('selected'));
+                option.classList.add('selected');
+
+                // Sync native select
+                if (nativeSelect) {
+                    nativeSelect.value = value;
+                    nativeSelect.classList.add('touched');
+                    nativeSelect.dispatchEvent(new Event('change', { bubbles: true }));
+                }
+
+                // Close dropdown
+                customSelect.classList.remove('open');
+            });
+        });
+
+        // Keyboard navigation
+        trigger.setAttribute('tabindex', '0');
+        trigger.setAttribute('role', 'combobox');
+        trigger.setAttribute('aria-expanded', 'false');
+
+        trigger.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                trigger.click();
+            } else if (e.key === 'Escape') {
+                customSelect.classList.remove('open');
+            } else if (e.key === 'ArrowDown' || e.key === 'ArrowUp') {
+                e.preventDefault();
+                if (!customSelect.classList.contains('open')) {
+                    customSelect.classList.add('open');
+                    return;
+                }
+                const currentIdx = [...options].findIndex(o => o.classList.contains('selected'));
+                let nextIdx = e.key === 'ArrowDown' ? currentIdx + 1 : currentIdx - 1;
+                nextIdx = Math.max(0, Math.min(nextIdx, options.length - 1));
+                options[nextIdx].click();
+            }
+        });
+
+        // Update aria state
+        const observer = new MutationObserver(() => {
+            trigger.setAttribute('aria-expanded', customSelect.classList.contains('open'));
+        });
+        observer.observe(customSelect, { attributes: true, attributeFilter: ['class'] });
+    });
+
+    // Close on outside click
+    document.addEventListener('click', closeAllCustomSelects);
+}
+
+function closeAllCustomSelects() {
+    document.querySelectorAll('.custom-select.open').forEach(s => s.classList.remove('open'));
+}
 
 function setupFormHandler(form, statusId, submitBtnSelector) {
     form.addEventListener('submit', async (e) => {
@@ -1250,6 +1306,13 @@ function setupFormHandler(form, statusId, submitBtnSelector) {
 
         // Mark all selects and checkboxes as touched on submit attempt
         form.querySelectorAll('select').forEach(select => select.classList.add('touched'));
+        form.querySelectorAll('.custom-select').forEach(cs => {
+            cs.classList.add('touched');
+            const nativeSelect = cs.parentElement.querySelector('select');
+            if (nativeSelect && !nativeSelect.value) {
+                cs.classList.add('invalid');
+            }
+        });
         form.querySelectorAll('input[type="checkbox"]').forEach(cb => cb.classList.add('touched'));
 
         // Check if form is valid
@@ -1258,13 +1321,18 @@ function setupFormHandler(form, statusId, submitBtnSelector) {
             return;
         }
 
+        // Honeypot check — bots fill hidden fields
+        const honeypot = form.querySelector('input[name="botcheck"]');
+        if (honeypot && honeypot.checked) return;
+
         const submitBtn = form.querySelector(submitBtnSelector);
         const formStatus = document.getElementById(statusId);
         const originalBtnText = submitBtn.innerHTML;
 
-        // Show loading state
-        submitBtn.innerHTML = 'Se trimite...';
+        // Show loading state with spinner
+        submitBtn.innerHTML = '<span class="form-spinner"></span> Se trimite...';
         submitBtn.disabled = true;
+        submitBtn.classList.add('is-loading');
 
         try {
             const formData = new FormData(form);
@@ -1276,20 +1344,145 @@ function setupFormHandler(form, statusId, submitBtnSelector) {
             const result = await response.json();
 
             if (result.success) {
-                formStatus.innerHTML = '<div class="form-success">✓ Trimis cu succes! Îți vom răspunde în curând.</div>';
+                formStatus.innerHTML = '<div class="form-success"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18"><path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg> Mesajul a fost trimis cu succes! Îți vom răspunde în curând.</div>';
                 form.reset();
+                // Reset validation states
+                form.querySelectorAll('.field-valid, .field-invalid').forEach(el => {
+                    el.classList.remove('field-valid', 'field-invalid');
+                });
+                form.querySelectorAll('.field-error-msg').forEach(el => el.remove());
+                // Reset custom selects
+                form.querySelectorAll('.custom-select').forEach(cs => {
+                    cs.classList.remove('has-value', 'touched', 'invalid');
+                    const valueDisplay = cs.querySelector('.custom-select-value');
+                    if (valueDisplay) {
+                        const nativeSelect = cs.parentElement.querySelector('select');
+                        const placeholder = nativeSelect?.querySelector('option[disabled]');
+                        valueDisplay.textContent = placeholder ? placeholder.textContent : 'Selectează';
+                    }
+                    cs.querySelectorAll('.custom-select-option.selected').forEach(o => o.classList.remove('selected'));
+                });
+                const counter = form.querySelector('.char-counter');
+                if (counter) counter.textContent = '0 / 2000';
             } else {
-                formStatus.innerHTML = '<div class="form-error">✗ ' + (result.message || 'A apărut o eroare.') + '</div>';
+                formStatus.innerHTML = '<div class="form-error"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18"><path d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg> ' + (result.message || 'A apărut o eroare. Te rugăm să încerci din nou.') + '</div>';
             }
         } catch (error) {
-            formStatus.innerHTML = '<div class="form-error">✗ Eroare de conexiune. Te rugăm să încerci din nou.</div>';
+            formStatus.innerHTML = '<div class="form-error"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18"><path d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg> Eroare de conexiune. Te rugăm să încerci din nou.</div>';
         }
 
         submitBtn.innerHTML = originalBtnText;
         submitBtn.disabled = false;
+        submitBtn.classList.remove('is-loading');
 
+        // Auto-hide success message after 6s
         if (formStatus.querySelector('.form-success')) {
-            setTimeout(() => { formStatus.innerHTML = ''; }, 5000);
+            setTimeout(() => {
+                formStatus.innerHTML = '';
+            }, 6000);
+        }
+    });
+}
+
+// ============================================
+// CONTACT FORM - Inline Validation
+// ============================================
+
+function initContactFormValidation(form) {
+    const fields = form.querySelectorAll('input[required], textarea[required], select[required]');
+
+    fields.forEach(field => {
+        // Validate on blur (when user leaves field)
+        field.addEventListener('blur', () => {
+            if (field.value.trim() !== '' || field.classList.contains('touched')) {
+                field.classList.add('touched');
+                validateField(field);
+            }
+        });
+
+        // Re-validate on input for already-touched fields
+        field.addEventListener('input', () => {
+            if (field.classList.contains('touched')) {
+                validateField(field);
+            }
+        });
+
+        // Handle select change
+        if (field.tagName === 'SELECT') {
+            field.addEventListener('change', () => {
+                field.classList.add('touched');
+                validateField(field);
+            });
+        }
+    });
+}
+
+function validateField(field) {
+    const wrapper = field.closest('.contact-form-field');
+    if (!wrapper) return;
+
+    // Remove old error message
+    const oldMsg = wrapper.querySelector('.field-error-msg');
+    if (oldMsg) oldMsg.remove();
+
+    const value = field.value.trim();
+    let errorMsg = '';
+
+    if (!value) {
+        errorMsg = 'Acest câmp este obligatoriu.';
+    } else if (field.type === 'email' && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)) {
+        errorMsg = 'Te rugăm să introduci o adresă de email validă.';
+    } else if (field.name === 'name' && value.length < 3) {
+        errorMsg = 'Numele trebuie să aibă minim 3 caractere.';
+    } else if (field.name === 'message' && value.length < 10) {
+        errorMsg = 'Mesajul trebuie să aibă minim 10 caractere.';
+    } else if (field.tagName === 'SELECT' && !value) {
+        errorMsg = 'Te rugăm să selectezi un subiect.';
+    }
+
+    // Sync validation state with custom select if present
+    const customSelect = wrapper.querySelector('.custom-select');
+
+    if (errorMsg) {
+        field.classList.add('field-invalid');
+        field.classList.remove('field-valid');
+        if (customSelect) {
+            customSelect.classList.add('touched');
+            if (!field.value) customSelect.classList.add('invalid');
+        }
+        const msgEl = document.createElement('span');
+        msgEl.className = 'field-error-msg';
+        msgEl.textContent = errorMsg;
+        wrapper.appendChild(msgEl);
+    } else {
+        field.classList.remove('field-invalid');
+        field.classList.add('field-valid');
+        if (customSelect) customSelect.classList.remove('invalid');
+    }
+}
+
+// ============================================
+// CHARACTER COUNTER for message textarea
+// ============================================
+
+function initCharacterCounter(form) {
+    const textarea = form.querySelector('#message');
+    if (!textarea) return;
+
+    const maxLength = parseInt(textarea.getAttribute('maxlength')) || 2000;
+    const counter = document.createElement('div');
+    counter.className = 'char-counter';
+    counter.textContent = '0 / ' + maxLength;
+    textarea.parentElement.appendChild(counter);
+
+    textarea.addEventListener('input', () => {
+        const len = textarea.value.length;
+        counter.textContent = len + ' / ' + maxLength;
+
+        if (len > maxLength * 0.9) {
+            counter.classList.add('char-warning');
+        } else {
+            counter.classList.remove('char-warning');
         }
     });
 }
