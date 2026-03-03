@@ -4438,23 +4438,25 @@ a.event-info-link:hover .event-info-text span {
     }
 
     .pricing-glass-footer {
-        padding: 0.85rem 1rem;
-        margin-top: 1.5rem;
+        padding: 0.75rem 0.85rem;
+        margin-top: 0.75rem;
+        border-radius: 10px;
     }
 
     .pricing-glass-footer p {
         display: flex;
-        align-items: flex-start;
-        gap: 0.4rem;
-        font-size: 0.85rem;
-        text-align: left;
-        line-height: 1.5;
+        align-items: center;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 0.3rem;
+        font-size: 0.8rem;
+        text-align: center;
+        line-height: 1.45;
     }
 
     .pricing-footer-icon {
-        width: 16px;
-        height: 16px;
-        margin-top: 2px;
+        width: 14px;
+        height: 14px;
     }
 }
 
