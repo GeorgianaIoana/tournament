@@ -4436,6 +4436,26 @@ a.event-info-link:hover .event-info-text span {
     .price-value {
         font-size: 1.6rem;
     }
+
+    .pricing-glass-footer {
+        padding: 0.85rem 1rem;
+        margin-top: 1.5rem;
+    }
+
+    .pricing-glass-footer p {
+        display: flex;
+        align-items: flex-start;
+        gap: 0.4rem;
+        font-size: 0.85rem;
+        text-align: left;
+        line-height: 1.5;
+    }
+
+    .pricing-footer-icon {
+        width: 16px;
+        height: 16px;
+        margin-top: 2px;
+    }
 }
 
 /* ============================================
