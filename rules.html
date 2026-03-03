@@ -3,20 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- Security Meta Tags -->
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta http-equiv="X-Content-Type-Options" content="nosniff">
     <meta http-equiv="X-Frame-Options" content="SAMEORIGIN">
     <meta http-equiv="X-XSS-Protection" content="1; mode=block">
     <meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin">
     <meta http-equiv="Permissions-Policy" content="geolocation=(), microphone=(), camera=()">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; frame-src https://www.google.com https://maps.google.com; connect-src 'self' https://api.web3forms.com;">
     <meta name="format-detection" content="telephone=no">
 
-    <!-- SEO Meta Tags -->
     <meta name="description" content="Regulament oficial Open THE SQUARE 2026 - turneu de șah rapid și blitz, București.">
     <meta name="robots" content="index, follow">
 
-    <!-- Open Graph -->
     <meta property="og:title" content="Regulament | Open THE SQUARE 2026">
     <meta property="og:description" content="Regulament oficial Open THE SQUARE 2026 - turneu de șah rapid și blitz.">
     <meta property="og:type" content="website">
@@ -24,7 +22,6 @@
     <meta property="og:image" content="https://thesquarechessclub.com/images/hero.jpeg">
     <meta property="og:url" content="https://thesquarechessclub.com/rules.html">
 
-    <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Regulament | Open THE SQUARE 2026">
     <meta name="twitter:description" content="Regulament oficial Open THE SQUARE 2026 - turneu de șah rapid și blitz.">
@@ -39,7 +36,6 @@
     <link rel="icon" type="image/svg+xml" href="images/chess-queen.svg">
 </head>
 <body>
-    <!-- Navigation -->
     <nav class="nav scrolled" id="nav">
         <div class="nav-container">
             <a href="index.html" class="nav-logo">
@@ -62,7 +58,6 @@
         </div>
     </nav>
 
-    <!-- Mobile Menu -->
     <div class="mobile-menu" id="mobileMenu">
         <div class="mobile-menu-content">
             <a href="index.html" class="mobile-logo">
@@ -78,19 +73,15 @@
         </div>
     </div>
 
-    <!-- Page Hero -->
     <section class="page-hero">
         <div class="container">
-            <span class="section-tag reveal-up">Ghid Turneu</span>
-            <h1 class="page-hero-title reveal-up" style="--delay: 0.1s">Regulamentul <em>Turneului</em></h1>
+            <h1 class="page-hero-title reveal-up">Regulamentul <em>Turneului</em></h1>
             <p class="page-hero-subtitle reveal-up" style="--delay: 0.2s">
                 Tot ce trebuie să știi despre regulamentul competiției, timpul de joc și standardele de fair play.
             </p>
 
-            <!-- Floating Chess Board -->
             <div class="floating-chessboard rules-chessboard reveal-up" style="--delay: 0.3s">
                 <div class="chessboard">
-                    <!-- Row 8 - Black pieces -->
                     <div class="chess-row">
                         <div class="chess-square light"><img src="images/pieces/rook-black.png" class="piece black" alt="Rook"></div>
                         <div class="chess-square dark"><img src="images/pieces/knight-black.png" class="piece black" alt="Knight"></div>
@@ -101,7 +92,6 @@
                         <div class="chess-square light"><img src="images/pieces/knight-black.png" class="piece black" alt="Knight"></div>
                         <div class="chess-square dark"><img src="images/pieces/rook-black.png" class="piece black" alt="Rook"></div>
                     </div>
-                    <!-- Row 7 - Black pawns -->
                     <div class="chess-row">
                         <div class="chess-square dark"><img src="images/pieces/pawn-black.png" class="piece black" alt="Pawn"></div>
                         <div class="chess-square light"><img src="images/pieces/pawn-black.png" class="piece black" alt="Pawn"></div>
@@ -112,7 +102,6 @@
                         <div class="chess-square dark"><img src="images/pieces/pawn-black.png" class="piece black" alt="Pawn"></div>
                         <div class="chess-square light"><img src="images/pieces/pawn-black.png" class="piece black" alt="Pawn"></div>
                     </div>
-                    <!-- Row 6 - Empty -->
                     <div class="chess-row">
                         <div class="chess-square light"></div>
                         <div class="chess-square dark"></div>
@@ -123,7 +112,6 @@
                         <div class="chess-square light"></div>
                         <div class="chess-square dark"></div>
                     </div>
-                    <!-- Row 5 - Empty -->
                     <div class="chess-row">
                         <div class="chess-square dark"></div>
                         <div class="chess-square light"></div>
@@ -134,7 +122,6 @@
                         <div class="chess-square dark"></div>
                         <div class="chess-square light"></div>
                     </div>
-                    <!-- Row 4 - Empty -->
                     <div class="chess-row">
                         <div class="chess-square light"></div>
                         <div class="chess-square dark"></div>
@@ -145,7 +132,6 @@
                         <div class="chess-square light"></div>
                         <div class="chess-square dark"></div>
                     </div>
-                    <!-- Row 3 - Empty -->
                     <div class="chess-row">
                         <div class="chess-square dark"></div>
                         <div class="chess-square light"></div>
@@ -156,7 +142,6 @@
                         <div class="chess-square dark"></div>
                         <div class="chess-square light"></div>
                     </div>
-                    <!-- Row 2 - White pawns -->
                     <div class="chess-row">
                         <div class="chess-square light"><img src="images/pieces/pawn-black.png" class="piece white" alt="Pawn"></div>
                         <div class="chess-square dark"><img src="images/pieces/pawn-black.png" class="piece white" alt="Pawn"></div>
@@ -167,7 +152,6 @@
                         <div class="chess-square light"><img src="images/pieces/pawn-black.png" class="piece white" alt="Pawn"></div>
                         <div class="chess-square dark"><img src="images/pieces/pawn-black.png" class="piece white" alt="Pawn"></div>
                     </div>
-                    <!-- Row 1 - White pieces -->
                     <div class="chess-row">
                         <div class="chess-square dark"><img src="images/pieces/rook-black.png" class="piece white" alt="Rook"></div>
                         <div class="chess-square light"><img src="images/pieces/knight-black.png" class="piece white" alt="Knight"></div>
@@ -183,26 +167,22 @@
         </div>
     </section>
 
-    <!-- Rules Content -->
     <section class="rules-content">
         <div class="container">
             <div class="rules-layout">
-                <!-- Sidebar Navigation -->
                 <aside class="rules-sidebar">
                     <nav class="rules-nav">
                         <a href="#general" class="rules-nav-link active">Reguli Generale</a>
                         <a href="#time-controls" class="rules-nav-link">Timpul de Joc</a>
-                        <a href="#pairings" class="rules-nav-link">Împerecheri & Clasament</a>
+                        <a href="#pairings" class="rules-nav-link">Împerecheri și Clasament</a>
                         <a href="#conduct" class="rules-nav-link">Conduita Jucătorilor</a>
                         <a href="#equipment" class="rules-nav-link">Echipament</a>
-                        <a href="#appeals" class="rules-nav-link">Apeluri & Dispute</a>
-                        <a href="#prizes" class="rules-nav-link">Premii & Departajări</a>
+                        <a href="#appeals" class="rules-nav-link">Apeluri și Dispute</a>
+                        <a href="#prizes" class="rules-nav-link">Premii și Departajări</a>
                     </nav>
                 </aside>
 
-                <!-- Main Content -->
                 <main class="rules-main">
-                    <!-- General Rules -->
                     <article class="rules-section" id="general">
                         <div class="rules-section-header">
                             <span class="rules-number">01</span>
@@ -212,10 +192,9 @@
                             <p>Turneul Open THE SQUARE respectă Legile Oficiale FIDE ale Șahului, cu reglementări suplimentare specifice turneului detaliate mai jos.</p>
 
                             <div class="rule-item highlight-box">
-                                <div class="highlight-icon">&#9889;</div>
                                 <div class="highlight-content">
-                                    <h4>1.1 Eligibilitate</h4>
-                                    <p>Turneul este deschis tuturor jucătorilor legitimați FrŞah cu ID FIDE valid și cu viza anuală plătită la federație pentru anul 2026. Jucătorii fără ID FIDE se pot înscrie, dar vor trebui să obțină unul înainte de începerea turneului.</p>
+                                    <h3>1.1 Eligibilitate</h3>
+                                    <p>Turneul este deschis tuturor jucătorilor cu legitimație FRŞah și ID FIDE valid, cu viza anuală plătită pentru 2026. Nu ai încă ID FIDE? Nicio problemă — te poți înscrie, dar va trebui să îl obții înainte de startul turneului.</p>
                                 </div>
                             </div>
 
@@ -225,8 +204,8 @@
                             </div>
 
                             <div class="rule-item">
-                                <h3>1.3 Runde & Program</h3>
-                                <p>Turneul Rapid constă din 7 runde jucate pe parcursul a 2 zile (Vineri-Sâmbătă). Turneul Blitz constă din 7 runde jucate Duminică. Jucătorii trebuie să fie prezenți la tablă la startul rundei. Un jucător care întârzie mai mult de 5 minute pierde partida.</p>
+                                <h3>1.3 Runde și Program</h3>
+                                <p>Turneul Rapid constă din 7 runde jucate pe parcursul a 2 zile (Vineri-Sâmbătă). Turneul Blitz constă din 7 runde jucate Duminică. Te rugăm să fii punctual — conform regulamentului FIDE, o întârziere de peste 5 minute de la startul rundei înseamnă pierderea partidei, iar noi vrem să te vedem la tablă!</p>
                             </div>
 
                             <div class="rule-item">
@@ -241,24 +220,18 @@
 
                             <div class="rule-item">
                                 <h3>1.6 Participarea Minorilor</h3>
-                                <p>Participarea șahiștilor minori este posibilă doar dacă aceștia sunt înscriși de unul dintre părinți, tutore, curator sau alt reprezentant legal al acestuia, ocazie cu care este considerat exprimat acordul pentru participare.</p>
-                            </div>
-
-                            <div class="rule-item">
-                                <h3>1.7 Dreptul de Refuz</h3>
-                                <p>Organizatorii își rezervă dreptul de a refuza unor jucători înscrierea în concurs.</p>
+                                <p>Jucătorii minori sunt bineveniți! Înscrierea trebuie făcută de un părinte sau tutore legal, ceea ce constituie și acordul pentru participare.</p>
                             </div>
                         </div>
                     </article>
 
-                    <!-- Time Controls -->
                     <article class="rules-section" id="time-controls">
                         <div class="rules-section-header">
                             <span class="rules-number">02</span>
                             <h2>Timpul de Joc</h2>
                         </div>
                         <div class="rules-section-content">
-                            <p>Cadențe diferite se aplică fiecărei categorii de turneu pentru a asigura un ritm adecvat și cerințele de rating FrŞah.</p>
+                            <p>Ritmul de joc pentru fiecare concurs este stabilit în conformitate cu cerințele de omologare FIDE.</p>
 
                             <div class="time-control-cards">
                                 <div class="time-control-card">
@@ -275,13 +248,14 @@
                         </div>
                     </article>
 
-                    <!-- Pairings & Standings -->
                     <article class="rules-section" id="pairings">
                         <div class="rules-section-header">
                             <span class="rules-number">03</span>
-                            <h2>Împerecheri & Clasament</h2>
+                            <h2>Împerecheri și Clasament</h2>
                         </div>
                         <div class="rules-section-content">
+                            <p>Împerecherile sunt generate automat și publicate înainte de fiecare rundă. Iată ce trebuie să știi despre cum funcționează sistemul.</p>
+
                             <div class="rule-item">
                                 <h3>3.1 Sistem Elvețian</h3>
                                 <p>Turneul folosește sistemul elvețian de împerechere. Împerecherile vor fi făcute folosind regulile oficiale FIDE Dutch și generate prin software aprobat.</p>
@@ -294,7 +268,7 @@
 
                             <div class="rule-item">
                                 <h3>3.3 Retrageri</h3>
-                                <p>Jucătorii care se retrag din turneu trebuie să notifice biroul turneului. Jucătorii care nu se prezintă la două runde consecutive fără notificare vor fi retrași automat.</p>
+                                <p>Jucătorii care se retrag din turneu trebuie să notifice organizatorul. Jucătorii care nu se prezintă la două runde consecutive fără notificare vor fi retrași automat.</p>
                             </div>
 
                             <div class="rule-item">
@@ -304,55 +278,57 @@
                         </div>
                     </article>
 
-                    <!-- Player Conduct -->
                     <article class="rules-section" id="conduct">
                         <div class="rules-section-header">
                             <span class="rules-number">04</span>
                             <h2>Conduita Jucătorilor</h2>
                         </div>
                         <div class="rules-section-content">
+                            <p>Ne dorim o atmosferă plăcută și corectă pentru toată lumea. Câteva reguli simple ne ajută să menținem spiritul competiției.</p>
+
                             <div class="rule-item">
                                 <h3>4.1 Fair Play</h3>
-                                <p>Toți jucătorii trebuie să respecte Codul de Etică FIDE și regulamentele de Fair Play. Orice formă de trișare, inclusiv utilizarea asistenței electronice, va duce la expulzare imediată și raportare către FrŞah.</p>
+                                <p>Toți jucătorii trebuie să respecte Codul de Etică FIDE și regulamentele de Fair Play. Orice formă de trișare, inclusiv utilizarea asistenței electronice, poate atrage descalificarea din turneu și sesizarea FrŞah.</p>
                             </div>
 
                             <div class="rule-item">
                                 <h3>4.2 Dispozitive Electronice</h3>
-                                <p>Telefoanele mobile și dispozitivele electronice trebuie închise și depozitate departe de zona de joc. Ceasurile smart nu sunt permise. Încălcarea regulii duce la pierderea imediată a partidei.</p>
+                                <p>Telefoanele mobile și dispozitivele electronice trebuie închise și depozitate departe de zona de joc. Ceasurile smart nu sunt permise. Nerespectarea acestei reguli poate duce la pierderea partidei.</p>
                             </div>
 
                             <div class="rule-item">
-                                <h3>4.3 Comportament & Cod Vestimentar</h3>
-                                <p>Participanții sunt rugați să aibă un comportament civilizat și să se prezinte într-o ținută decentă. Jucătorilor cu îmbrăcăminte nepotrivită li se poate cere să se schimbe înainte de a li se permite să joace.</p>
+                                <h3>4.3 Comportament și Cod Vestimentar</h3>
+                                <p>Participanții sunt rugați să aibă un comportament civilizat și să se prezinte într-o ținută decentă. În cazul unei ținute neadecvate, organizatorii vă pot solicita o schimbare vestimentară.</p>
                             </div>
 
                             <div class="rule-item">
-                                <h3>4.4 Liniște</h3>
-                                <p>Sala de joc este o zonă de liniște. Spectatorii și jucătorii trebuie să mențină tăcerea. Analiza și discutarea partidelor în desfășurare este strict interzisă în zona de joc.</p>
+                                <h3>4.4 Liniște în Sala de Joc</h3>
+                                <p>Sala de joc este o zonă de liniște. Spectatorii și jucătorii trebuie să mențină tăcerea. Analiza și discutarea partidelor în desfășurare nu este permisă în zona de joc.</p>
                             </div>
 
                             <div class="rule-item">
-                                <h3>4.5 Acord Date Personale & Imagine</h3>
-                                <p>Prin înscrierea și participarea la acest concurs, fiecare concurent își dă acordul, în mod expres și neechivoc, cu privire la colectarea și prelucrarea datelor cu caracter personal, precum și promovarea evenimentului prin utilizarea imaginilor și înregistrărilor video realizate în timpul desfășurării concursului.</p>
+                                <h3>4.5 Acord Date Personale și Imagine</h3>
+                                <p>Prin înscrierea la turneu, accepți ca datele tale personale să fie folosite pentru organizarea competiției, iar fotografiile și înregistrările video realizate în timpul evenimentului să fie utilizate pentru promovarea acestuia.</p>
                             </div>
 
-                            <div class="highlight-box">
+                            <div class="rule-item highlight-box">
                                 <div class="highlight-icon">&#9888;</div>
                                 <div class="highlight-content">
-                                    <h4>Măsuri Anti-Trișare</h4>
-                                    <p>Se pot efectua controale de securitate aleatorii. Toți jucătorii consimt la monitorizarea anti-trișare, inclusiv analiza partidelor și, dacă este solicitat, controlul fizic.</p>
+                                    <h3>4.6 Măsuri Anti-Trișare</h3>
+                                    <p>Prin participare, jucătorii acceptă măsurile standard de fair play, care pot include analiza statistică a partidelor și, în cazuri excepționale, verificări suplimentare de securitate.</p>
                                 </div>
                             </div>
                         </div>
                     </article>
 
-                    <!-- Equipment -->
                     <article class="rules-section" id="equipment">
                         <div class="rules-section-header">
                             <span class="rules-number">05</span>
                             <h2>Echipament</h2>
                         </div>
                         <div class="rules-section-content">
+                            <p>Nu trebuie să aduci nimic cu tine — organizatorii se ocupă de tot echipamentul necesar. Totuși, iată câteva detalii utile.</p>
+
                             <div class="rule-item">
                                 <h3>5.1 Echipament Furnizat</h3>
                                 <p>Organizatorii furnizează toate seturile de șah, tablele și ceasurile digitale. Piese standard Staunton (înălțime Rege 95mm) și table cu pătrate de 55mm sunt folosite pe tot parcursul turneului.</p>
@@ -375,16 +351,17 @@
                         </div>
                     </article>
 
-                    <!-- Appeals & Disputes -->
                     <article class="rules-section" id="appeals">
                         <div class="rules-section-header">
                             <span class="rules-number">06</span>
-                            <h2>Apeluri & Dispute</h2>
+                            <h2>Apeluri și Dispute</h2>
                         </div>
                         <div class="rules-section-content">
+                            <p>Sperăm să nu fie cazul, dar dacă apare o situație contestată, iată cum funcționează procesul de apel.</p>
+
                             <div class="rule-item">
                                 <h3>6.1 Deciziile Arbitrului</h3>
-                                <p>Arbitrul Principal are autoritate finală în toate problemele din timpul turneului. Apelurile se depun imediat, pe loc, la finalul partidei. Nu se acceptă apeluri ulterioare.</p>
+                                <p>Arbitrul Principal are autoritate finală în toate problemele din timpul turneului. Apelurile se depun la finalul partidei, pe loc. Apelurile depuse ulterior nu vor putea fi luate în considerare.</p>
                             </div>
 
                             <div class="rule-item">
@@ -394,18 +371,19 @@
 
                             <div class="rule-item">
                                 <h3>6.3 Taxă de Apel</h3>
-                                <p>Este necesară o taxă de 100 RON pentru a depune un apel. Această taxă este rambursată dacă apelul are succes.</p>
+                                <p>Pentru a depune un apel este necesară o taxă de 100 RON. Dacă apelul este admis, taxa se returnează integral.</p>
                             </div>
                         </div>
                     </article>
 
-                    <!-- Prizes & Tiebreaks -->
                     <article class="rules-section" id="prizes">
                         <div class="rules-section-header">
                             <span class="rules-number">07</span>
-                            <h2>Premii & Departajări</h2>
+                            <h2>Premii și Departajări</h2>
                         </div>
                         <div class="rules-section-content">
+                            <p>Premiile sunt garantate și merită efortul! Iată cum funcționează distribuția și departajarea.</p>
+
                             <div class="rule-item">
                                 <h3>7.1 Premii Garantate</h3>
                                 <p>Premiile în bani sunt garantate indiferent de numărul de participanți.</p>
@@ -429,10 +407,21 @@
                                 </ol>
                             </div>
 
+                            <div class="rule-item">
+                                <h3>7.4 Premii Speciale</h3>
+                                <p>Pe lângă premiile pe clasament general, se acordă și premii speciale independente, atât la Rapid cât și la Blitz, pentru următoarele categorii:</p>
+                                <ol class="tiebreak-list">
+                                    <li>Locul I Feminin</li>
+                                    <li>Locul I ELO &lt;1800</li>
+                                    <li>Locul I ELO &lt;1600</li>
+                                    <li>Locul I ELO &lt;1400</li>
+                                </ol>
+                                <p class="rule-note">Premiile speciale sunt cumulabile cu cele de clasament general. Detaliile complete despre valoarea premiilor sunt disponibile pe <a href="index.html#prizes" class="rule-link">pagina principală</a>.</p>
+                            </div>
+
                         </div>
                     </article>
 
-                    <!-- Back to Home -->
                     <div class="rules-footer">
                         <a href="index.html" class="btn btn-primary">
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -455,48 +444,6 @@
     <div id="footer-placeholder"></div>
 
     <script src="script.js"></script>
-    <script>
-        // Rules page specific JS
-        document.addEventListener('DOMContentLoaded', function() {
-            // Sidebar navigation active state on scroll
-            const sections = document.querySelectorAll('.rules-section');
-            const navLinks = document.querySelectorAll('.rules-nav-link');
-
-            function setActiveLink() {
-                let current = '';
-                sections.forEach(section => {
-                    const sectionTop = section.offsetTop - 150;
-                    if (window.scrollY >= sectionTop) {
-                        current = section.getAttribute('id');
-                    }
-                });
-
-                navLinks.forEach(link => {
-                    link.classList.remove('active');
-                    if (link.getAttribute('href') === '#' + current) {
-                        link.classList.add('active');
-                    }
-                });
-            }
-
-            window.addEventListener('scroll', setActiveLink);
-
-            // Smooth scroll for sidebar links
-            navLinks.forEach(link => {
-                link.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    const targetId = this.getAttribute('href').substring(1);
-                    const targetSection = document.getElementById(targetId);
-                    if (targetSection) {
-                        window.scrollTo({
-                            top: targetSection.offsetTop - 100,
-                            behavior: 'smooth'
-                        });
-                    }
-                });
-            });
-        });
-
-    </script>
+    <script src="rules.js"></script>
 </body>
 </html>

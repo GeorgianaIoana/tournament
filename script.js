@@ -1,18 +1,11 @@
-// ============================================
-// NORDIC CHESS OPEN - JavaScript Interactions
-// ============================================
 
 document.addEventListener('DOMContentLoaded', () => {
-    // Generate dynamic footer
     initFooter();
 
-    // Cookie consent banner
     initCookieConsent();
 
-    // Initialize page transition on load
     initPageTransition();
 
-    // Initialize all modules
     initNavigation();
     initMobileMenu();
     initScrollAnimations();
@@ -25,7 +18,6 @@ document.addEventListener('DOMContentLoaded', () => {
     initHeroForm();
     initDiscoverMore();
 
-    // Speed up about section videos and set start time for first video
     const aboutVideos = document.querySelectorAll('.about-image video');
     aboutVideos.forEach((video, index) => {
         video.playbackRate = 3;
@@ -40,20 +32,14 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // Futuristic Effects
     initDataStream();
 
-    // Venue Gallery - 3D Arc (desktop) / Carousel (tablet & mobile)
     initVenueGallery();
     initVenueCarousel();
 
-    // Team Banner entrance animation
     initTeamBanner();
 });
 
-// ============================================
-// DYNAMIC FOOTER
-// ============================================
 
 function initFooter() {
     const placeholder = document.getElementById('footer-placeholder');
@@ -136,9 +122,6 @@ function initFooter() {
     </footer>`;
 }
 
-// ============================================
-// COOKIE CONSENT BANNER
-// ============================================
 
 function initCookieConsent() {
     const STORAGE_KEY = 'cookie_consent';
@@ -258,7 +241,6 @@ function initCookieConsent() {
         const banner = document.getElementById('cookieConsent');
         const prefs = document.getElementById('cookiePreferences');
 
-        // Animate in
         requestAnimationFrame(() => {
             requestAnimationFrame(() => {
                 banner.classList.add('cookie-consent-visible');
@@ -273,7 +255,6 @@ function initCookieConsent() {
             }, { once: true });
         }
 
-        // Accept All
         document.getElementById('cookieAcceptAll').addEventListener('click', () => {
             const consent = { analytics: true, functional: true };
             saveConsent(consent);
@@ -281,19 +262,16 @@ function initCookieConsent() {
             hideBanner();
         });
 
-        // Reject All
         document.getElementById('cookieRejectAll').addEventListener('click', () => {
             const consent = { analytics: false, functional: false };
             saveConsent(consent);
             hideBanner();
         });
 
-        // Manage / Personalizare
         document.getElementById('cookieManage').addEventListener('click', () => {
             prefs.classList.toggle('expanded');
         });
 
-        // Save Preferences
         document.getElementById('cookieSavePrefs').addEventListener('click', () => {
             const consent = {
                 analytics: document.getElementById('cookiePrefAnalytics').checked,
@@ -305,7 +283,6 @@ function initCookieConsent() {
         });
     }
 
-    // Attach re-open trigger to footer link
     const footerLink = document.getElementById('cookieSettingsFooter');
     if (footerLink) {
         footerLink.addEventListener('click', (e) => {
@@ -314,36 +291,28 @@ function initCookieConsent() {
         });
     }
 
-    // Check for existing consent
     const consent = getConsent();
     if (consent) {
         applyConsent(consent);
         return;
     }
 
-    // No consent stored — show banner
     showBanner(null);
 }
 
-// ============================================
-// PAGE TRANSITION
-// ============================================
 
 function initPageTransition() {
     const transition = document.getElementById('pageTransition');
     if (!transition) return;
 
-    // Play entering animation on page load
     setTimeout(() => {
         transition.classList.add('entering');
     }, 100);
 
-    // Remove entering class after animation
     setTimeout(() => {
         transition.classList.remove('entering');
     }, 800);
 
-    // Handle all links that go to other pages
     document.addEventListener('click', (e) => {
         const link = e.target.closest('a');
         if (!link) return;
@@ -351,27 +320,21 @@ function initPageTransition() {
         const href = link.getAttribute('href');
         if (!href) return;
 
-        // Skip anchor links
         if (href.startsWith('#')) return;
 
-        // Skip external links
         if (href.startsWith('http') && !href.includes(window.location.hostname)) return;
 
-        // Skip if modifier key is pressed
         if (e.metaKey || e.ctrlKey || e.shiftKey) return;
 
         // Check if it's an internal page link (ends with .html or is a relative path)
         if (href.endsWith('.html') || href.includes('.html#')) {
             e.preventDefault();
 
-            // Trigger exit animation
             transition.classList.add('active');
 
-            // Hide cookie banner during transition
             const cookieBanner = document.getElementById('cookieConsent');
             if (cookieBanner) cookieBanner.classList.add('cookie-consent-hiding');
 
-            // Navigate after animation
             setTimeout(() => {
                 window.location.href = href;
             }, 700);
@@ -379,9 +342,6 @@ function initPageTransition() {
     });
 }
 
-// ============================================
-// NAVIGATION
-// ============================================
 
 function initNavigation() {
     const nav = document.getElementById('nav');
@@ -404,7 +364,6 @@ function initNavigation() {
 
         const currentScroll = window.pageYOffset;
 
-        // Add scrolled class when past hero
         if (currentScroll > 100) {
             nav.classList.add('scrolled');
         } else {
@@ -414,13 +373,9 @@ function initNavigation() {
         lastScroll = currentScroll;
     }
 
-    // Initial check
     handleNavScroll();
 }
 
-// ============================================
-// MOBILE MENU
-// ============================================
 
 function initMobileMenu() {
     const navToggle = document.getElementById('navToggle');
@@ -438,7 +393,6 @@ function initMobileMenu() {
         document.body.style.overflow = mobileMenu.classList.contains('active') ? 'hidden' : '';
     });
 
-    // Close menu when clicking a link
     mobileLinks.forEach(link => {
         link.addEventListener('click', () => {
             navToggle.classList.remove('active');
@@ -449,9 +403,6 @@ function initMobileMenu() {
     });
 }
 
-// ============================================
-// SCROLL ANIMATIONS (Intersection Observer)
-// ============================================
 
 function initScrollAnimations() {
     const revealElements = document.querySelectorAll('.reveal-up, .reveal-scale, .reveal-left, .reveal-right');
@@ -475,7 +426,6 @@ function initScrollAnimations() {
 
     revealElements.forEach(el => observer.observe(el));
 
-    // Wing photos staggered reveal
     const wingPhotos = document.querySelectorAll('.wing-photo');
     if (wingPhotos.length) {
         const wingObserver = new IntersectionObserver((entries) => {
@@ -490,7 +440,6 @@ function initScrollAnimations() {
         wingPhotos.forEach(el => wingObserver.observe(el));
     }
 
-    // Step cards staggered reveal
     const stepCards = document.querySelectorAll('.step-card');
     if (stepCards.length) {
         const stepsObserver = new IntersectionObserver((entries) => {
@@ -511,9 +460,6 @@ function initScrollAnimations() {
     }
 }
 
-// ============================================
-// PARALLAX EFFECTS
-// ============================================
 
 function initParallax() {
     const parallaxImage = document.querySelector('.parallax-image');
@@ -550,9 +496,6 @@ function initParallax() {
     }
 }
 
-// ============================================
-// COUNTER ANIMATION
-// ============================================
 
 function initCounterAnimation() {
     const counters = document.querySelectorAll('[data-count]');
@@ -592,9 +535,6 @@ function initCounterAnimation() {
     }
 }
 
-// ============================================
-// TESTIMONIAL CAROUSEL
-// ============================================
 
 function initTestimonialCarousel() {
     const track = document.getElementById('testimonialTrack');
@@ -609,7 +549,6 @@ function initTestimonialCarousel() {
     let cardsPerView = getCardsPerView();
     let totalSlides = Math.ceil(cards.length / cardsPerView);
 
-    // Create dots
     function createDots() {
         dotsContainer.innerHTML = '';
         for (let i = 0; i < totalSlides; i++) {
@@ -621,14 +560,12 @@ function initTestimonialCarousel() {
         }
     }
 
-    // Get cards per view based on screen size
     function getCardsPerView() {
         if (window.innerWidth <= 640) return 1;
         if (window.innerWidth <= 1024) return 2;
         return 3;
     }
 
-    // Update carousel on resize
     window.addEventListener('resize', () => {
         const newCardsPerView = getCardsPerView();
         if (newCardsPerView !== cardsPerView) {
@@ -640,13 +577,11 @@ function initTestimonialCarousel() {
         }
     });
 
-    // Navigate to specific slide
     function goToSlide(index) {
         currentIndex = index;
         updateCarousel();
     }
 
-    // Update carousel position
     function updateCarousel() {
         const cardWidth = cards[0].offsetWidth;
         const gap = parseInt(getComputedStyle(track).gap) || 32;
@@ -654,35 +589,29 @@ function initTestimonialCarousel() {
 
         track.style.transform = `translateX(-${offset}px)`;
 
-        // Update dots
         const dots = dotsContainer.querySelectorAll('.carousel-dot');
         dots.forEach((dot, i) => {
             dot.classList.toggle('active', i === currentIndex);
         });
     }
 
-    // Previous slide
     prevBtn.addEventListener('click', () => {
         currentIndex = (currentIndex - 1 + totalSlides) % totalSlides;
         updateCarousel();
     });
 
-    // Next slide
     nextBtn.addEventListener('click', () => {
         currentIndex = (currentIndex + 1) % totalSlides;
         updateCarousel();
     });
 
-    // Initialize
     createDots();
 
-    // Auto-play (optional)
     let autoPlay = setInterval(() => {
         currentIndex = (currentIndex + 1) % totalSlides;
         updateCarousel();
     }, 5000);
 
-    // Pause on hover
     track.addEventListener('mouseenter', () => clearInterval(autoPlay));
     track.addEventListener('mouseleave', () => {
         clearInterval(autoPlay);
@@ -692,7 +621,6 @@ function initTestimonialCarousel() {
         }, 5000);
     });
 
-    // Touch/swipe support
     let touchStartX = 0;
     let touchEndX = 0;
 
@@ -710,20 +638,15 @@ function initTestimonialCarousel() {
         const diff = touchStartX - touchEndX;
 
         if (diff > threshold) {
-            // Swipe left - next
             currentIndex = (currentIndex + 1) % totalSlides;
             updateCarousel();
         } else if (diff < -threshold) {
-            // Swipe right - prev
             currentIndex = (currentIndex - 1 + totalSlides) % totalSlides;
             updateCarousel();
         }
     }
 }
 
-// ============================================
-// FORM LABELS (Floating labels fix)
-// ============================================
 
 function initFormLabels() {
     const inputs = document.querySelectorAll('.form-group input, .form-group textarea');
@@ -736,9 +659,6 @@ function initFormLabels() {
     });
 }
 
-// ============================================
-// SMOOTH SCROLL
-// ============================================
 
 function initSmoothScroll() {
     const links = document.querySelectorAll('a[href^="#"]');
@@ -767,17 +687,6 @@ function initSmoothScroll() {
     });
 }
 
-// ============================================
-// FORM SUBMISSION (handled by setupFormHandler below)
-// ============================================
-
-// ============================================
-// PRELOADER (Optional - Add HTML if needed)
-// ============================================
-
-// ============================================
-// SOUND TOGGLE
-// ============================================
 
 function initSoundToggle() {
     const soundToggle = document.getElementById('soundToggle');
@@ -785,7 +694,6 @@ function initSoundToggle() {
 
     if (!soundToggle) return;
 
-    // Start muted
     soundToggle.classList.add('muted');
 
     soundToggle.addEventListener('click', () => {
@@ -797,9 +705,6 @@ function initSoundToggle() {
     });
 }
 
-// ============================================
-// HERO FORM
-// ============================================
 
 function initHeroForm() {
     const heroForm = document.getElementById('heroForm');
@@ -809,7 +714,6 @@ function initHeroForm() {
     heroForm.addEventListener('submit', (e) => {
         e.preventDefault();
 
-        // Show success message
         const btn = heroForm.querySelector('.btn-form-submit');
         const originalText = btn.textContent;
         btn.textContent = 'Request Sent!';
@@ -825,9 +729,6 @@ function initHeroForm() {
     });
 }
 
-// ============================================
-// DISCOVER MORE (Scroll to next section)
-// ============================================
 
 function initDiscoverMore() {
     const discoverMore = document.querySelector('.hero-discover');
@@ -835,7 +736,6 @@ function initDiscoverMore() {
     if (!discoverMore) return;
 
     discoverMore.addEventListener('click', () => {
-        // Find the first section after hero
         const nextSection = document.querySelector('.hero + section, .hero ~ section');
 
         if (nextSection) {
@@ -851,9 +751,6 @@ function initDiscoverMore() {
     });
 }
 
-// ============================================
-// VENUE GALLERY - VOKU STUDIO EXACT REPLICA
-// ============================================
 
 function initVenueGallery() {
     const section = document.querySelector('.venue-gallery');
@@ -862,38 +759,30 @@ function initVenueGallery() {
 
     if (!section || !sticky || !slides) return;
 
-    // Check for reduced motion preference
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-    // Check if mobile
     const isMobile = () => window.innerWidth <= 1024;
 
     if (prefersReducedMotion) return;
 
-    // Get all venue items for parallax
     const items = slides.querySelectorAll('.venue-item');
 
-    // Parallax speeds and 3D transform data
-    // Lower speed = moves slower (appears further back)
-    // Higher speed = moves faster (appears closer)
     const parallaxData = [
-        { speed: 0.7, vertical: -15, zOffset: -150, rotateY: 25, rotateX: 5 },   // Item 1 - far back
-        { speed: 0.85, vertical: 10, zOffset: -100, rotateY: 18, rotateX: 3 },   // Item 2
-        { speed: 0.9, vertical: -8, zOffset: -50, rotateY: 10, rotateX: 2 },     // Item 3
-        { speed: 1.0, vertical: 5, zOffset: 80, rotateY: 0, rotateX: 0 },        // Item 4 - center
-        { speed: 1.1, vertical: -12, zOffset: -50, rotateY: -10, rotateX: 2 },   // Item 5
-        { speed: 0.95, vertical: 8, zOffset: -100, rotateY: -18, rotateX: 3 },   // Item 6
+        { speed: 0.7, vertical: -15, zOffset: -150, rotateY: 25, rotateX: 5 },
+        { speed: 0.85, vertical: 10, zOffset: -100, rotateY: 18, rotateX: 3 },
+        { speed: 0.9, vertical: -8, zOffset: -50, rotateY: 10, rotateX: 2 },  
+        { speed: 1.0, vertical: 5, zOffset: 80, rotateY: 0, rotateX: 0 },     
+        { speed: 1.1, vertical: -12, zOffset: -50, rotateY: -10, rotateX: 2 },
+        { speed: 0.95, vertical: 8, zOffset: -100, rotateY: -18, rotateX: 3 },
         { speed: 0.8, vertical: -10, zOffset: -150, rotateY: -25, rotateX: 5 },  // Item 7 - far back
     ];
 
-    // Total horizontal travel distance (in vw)
-    const totalTravel = 50; // vw units
+    const totalTravel = 50;
 
     let rafId = null;
     let lastProgress = -1;
     let isEnabled = !isMobile();
 
-    // Update gallery position based on scroll
     function updateOnScroll() {
         if (!isEnabled || isMobile()) return;
 
@@ -901,7 +790,6 @@ function initVenueGallery() {
         const sectionHeight = section.offsetHeight;
         const stickyHeight = sticky.offsetHeight;
 
-        // Calculate scroll progress within the section (0 to 1)
         const scrolled = -rect.top;
         const scrollableDistance = sectionHeight - stickyHeight;
         const progress = Math.max(0, Math.min(1, scrolled / scrollableDistance));
@@ -910,25 +798,19 @@ function initVenueGallery() {
         if (Math.abs(progress - lastProgress) < 0.001) return;
         lastProgress = progress;
 
-        // Base horizontal movement in vw
         const baseMove = progress * totalTravel;
 
-        // Apply parallax to each item while preserving 3D transforms
         items.forEach((item, index) => {
             const data = parallaxData[index] || { speed: 1, vertical: 0, zOffset: 0, rotateY: 0, rotateX: 0 };
 
-            // Horizontal parallax (moves items left as you scroll)
             const xOffset = baseMove * data.speed;
 
-            // Vertical parallax (subtle floating effect)
             const yOffset = progress * data.vertical;
 
-            // Apply transform with 3D properties preserved
             item.style.transform = `translateX(-${xOffset}vw) translateY(${yOffset}px) translateZ(${data.zOffset}px) rotateY(${data.rotateY}deg) rotateX(${data.rotateX}deg)`;
         });
     }
 
-    // Throttled scroll handler
     function onScroll() {
         if (rafId) return;
         rafId = requestAnimationFrame(() => {
@@ -937,18 +819,15 @@ function initVenueGallery() {
         });
     }
 
-    // Handle resize
     function onResize() {
         isEnabled = !isMobile();
 
         if (isMobile()) {
-            // Reset transforms on mobile
             items.forEach(item => {
                 item.style.transform = '';
             });
             lastProgress = -1;
         } else {
-            // Reset to initial 3D transforms before applying scroll-based parallax
             items.forEach((item, index) => {
                 const data = parallaxData[index] || { zOffset: 0, rotateY: 0, rotateX: 0 };
                 item.style.transform = `translateZ(${data.zOffset}px) rotateY(${data.rotateY}deg) rotateX(${data.rotateX}deg)`;
@@ -957,16 +836,13 @@ function initVenueGallery() {
         }
     }
 
-    // Event listeners
     window.addEventListener('scroll', onScroll, { passive: true });
     window.addEventListener('resize', onResize, { passive: true });
 
-    // Initial update
     if (isEnabled) {
         updateOnScroll();
     }
 
-    // Intersection Observer for entrance animation
     const gallery = document.querySelector('.venue-gallery');
     if (gallery) {
         const entranceObserver = new IntersectionObserver((entries) => {
@@ -988,9 +864,6 @@ function initVenueGallery() {
     };
 }
 
-// ============================================
-// VENUE GALLERY CAROUSEL (Tablet & Mobile)
-// ============================================
 
 function initVenueCarousel() {
     const track = document.getElementById('venueGallerySlides');
@@ -1050,7 +923,6 @@ function initVenueCarousel() {
         updateCarousel();
     });
 
-    // Touch/Swipe support
     let touchStartX = 0;
 
     track.addEventListener('touchstart', (e) => {
@@ -1071,7 +943,6 @@ function initVenueCarousel() {
         }
     }, { passive: true });
 
-    // Handle resize
     let resizeTimer;
     function onResize() {
         clearTimeout(resizeTimer);
@@ -1097,25 +968,19 @@ function initVenueCarousel() {
 
     window.addEventListener('resize', onResize, { passive: true });
 
-    // Initialize
     if (isCarouselActive) {
         createDots();
         updateCarousel();
     }
 }
 
-// ============================================
-// FUTURISTIC EFFECTS - DATA STREAM
-// ============================================
 
 function initDataStream() {
     const container = document.getElementById('dataStream');
     if (!container) return;
 
-    // Skip on mobile for performance
     if (window.innerWidth < 768) return;
 
-    // Check for reduced motion preference
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
 
     const lineCount = 15;
@@ -1124,14 +989,11 @@ function initDataStream() {
         const line = document.createElement('div');
         line.classList.add('data-line');
 
-        // Random horizontal position
         line.style.left = Math.random() * 100 + '%';
 
-        // Random height
         const height = Math.random() * 100 + 50;
         line.style.height = height + 'px';
 
-        // Random animation duration and delay
         const duration = Math.random() * 5 + 5;
         const delay = Math.random() * 8;
         line.style.animationDuration = duration + 's';
@@ -1141,13 +1003,6 @@ function initDataStream() {
     }
 }
 
-// ============================================
-// PRELOADER (Optional - Add HTML if needed)
-// ============================================
-
-// ============================================
-// TEAM BANNER - Entrance Animation
-// ============================================
 
 function initTeamBanner() {
     const banner = document.querySelector('.team-banner');
@@ -1166,14 +1021,12 @@ function initTeamBanner() {
 }
 
 window.addEventListener('load', () => {
-    // Remove preloader if exists
     const preloader = document.querySelector('.preloader');
     if (preloader) {
         preloader.classList.add('loaded');
         setTimeout(() => preloader.remove(), 500);
     }
 
-    // Trigger initial animations for hero elements
     const heroElements = document.querySelectorAll('.hero .reveal-up');
     heroElements.forEach((el, index) => {
         setTimeout(() => {
@@ -1182,13 +1035,8 @@ window.addEventListener('load', () => {
     });
 });
 
-// ============================================
-// FORM SUBMISSION HANDLER (Contact & Registration)
-// Web3Forms - funcționează și local și online
-// ============================================
 
 document.addEventListener('DOMContentLoaded', () => {
-    // Handle Contact Form
     const contactForm = document.getElementById('contactForm');
     if (contactForm) {
         setupFormHandler(contactForm, 'formStatus', '.contact-form-submit');
@@ -1196,19 +1044,16 @@ document.addEventListener('DOMContentLoaded', () => {
         initCharacterCounter(contactForm);
     }
 
-    // Handle Hero Registration Form
     const heroForm = document.getElementById('heroForm');
     if (heroForm) {
         setupFormHandler(heroForm, 'heroFormStatus', '.btn-form-submit');
     }
 
-    // Add "touched" class to select elements on change/blur for validation styling
     document.querySelectorAll('select').forEach(select => {
         select.addEventListener('change', () => select.classList.add('touched'));
         select.addEventListener('blur', () => select.classList.add('touched'));
     });
 
-    // Custom Select Dropdowns
     initCustomSelects();
 });
 
@@ -1220,7 +1065,6 @@ function initCustomSelects() {
         const selectName = customSelect.dataset.for;
         const nativeSelect = customSelect.parentElement.querySelector(`select[name="${selectName}"]`);
 
-        // Toggle dropdown
         trigger.addEventListener('click', (e) => {
             e.stopPropagation();
             const isOpen = customSelect.classList.contains('open');
@@ -1230,36 +1074,30 @@ function initCustomSelects() {
             }
         });
 
-        // Select an option
         options.forEach(option => {
             option.addEventListener('click', (e) => {
                 e.stopPropagation();
                 const value = option.dataset.value;
                 const text = option.querySelector('.option-text').textContent;
 
-                // Update display
                 valueDisplay.textContent = text;
                 customSelect.classList.add('has-value');
                 customSelect.classList.remove('invalid');
                 customSelect.classList.add('touched');
 
-                // Mark selected
                 options.forEach(o => o.classList.remove('selected'));
                 option.classList.add('selected');
 
-                // Sync native select
                 if (nativeSelect) {
                     nativeSelect.value = value;
                     nativeSelect.classList.add('touched');
                     nativeSelect.dispatchEvent(new Event('change', { bubbles: true }));
                 }
 
-                // Close dropdown
                 customSelect.classList.remove('open');
             });
         });
 
-        // Keyboard navigation
         trigger.setAttribute('tabindex', '0');
         trigger.setAttribute('role', 'combobox');
         trigger.setAttribute('aria-expanded', 'false');
@@ -1283,14 +1121,12 @@ function initCustomSelects() {
             }
         });
 
-        // Update aria state
         const observer = new MutationObserver(() => {
             trigger.setAttribute('aria-expanded', customSelect.classList.contains('open'));
         });
         observer.observe(customSelect, { attributes: true, attributeFilter: ['class'] });
     });
 
-    // Close on outside click
     document.addEventListener('click', closeAllCustomSelects);
 }
 
@@ -1298,11 +1134,47 @@ function closeAllCustomSelects() {
     document.querySelectorAll('.custom-select.open').forEach(s => s.classList.remove('open'));
 }
 
+function createStatusMessage(type, message) {
+    const div = document.createElement('div');
+    div.className = type === 'success' ? 'form-success' : 'form-error';
+
+    const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+    svg.setAttribute('viewBox', '0 0 24 24');
+    svg.setAttribute('fill', 'none');
+    svg.setAttribute('stroke', 'currentColor');
+    svg.setAttribute('stroke-width', '2');
+    svg.setAttribute('width', '18');
+    svg.setAttribute('height', '18');
+
+    const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+    path.setAttribute('d', type === 'success'
+        ? 'M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z'
+        : 'M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z');
+    svg.appendChild(path);
+
+    div.appendChild(svg);
+    div.appendChild(document.createTextNode(' ' + message));
+    return div;
+}
+
 function setupFormHandler(form, statusId, submitBtnSelector) {
+    let lastSubmitTime = 0;
+    const RATE_LIMIT_MS = 30000;
+
     form.addEventListener('submit', async (e) => {
         e.preventDefault();
 
-        // Mark all selects and checkboxes as touched on submit attempt
+        const formStatus = document.getElementById(statusId);
+
+        // Rate limit check
+        const now = Date.now();
+        if (now - lastSubmitTime < RATE_LIMIT_MS) {
+            const remaining = Math.ceil((RATE_LIMIT_MS - (now - lastSubmitTime)) / 1000);
+            formStatus.innerHTML = '';
+            formStatus.appendChild(createStatusMessage('error', 'Te rugăm să aștepți ' + remaining + ' secunde înainte de a trimite din nou.'));
+            return;
+        }
+
         form.querySelectorAll('select').forEach(select => select.classList.add('touched'));
         form.querySelectorAll('.custom-select').forEach(cs => {
             cs.classList.add('touched');
@@ -1313,7 +1185,6 @@ function setupFormHandler(form, statusId, submitBtnSelector) {
         });
         form.querySelectorAll('input[type="checkbox"]').forEach(cb => cb.classList.add('touched'));
 
-        // Check if form is valid
         if (!form.checkValidity()) {
             form.reportValidity();
             return;
@@ -1324,10 +1195,8 @@ function setupFormHandler(form, statusId, submitBtnSelector) {
         if (honeypot && honeypot.checked) return;
 
         const submitBtn = form.querySelector(submitBtnSelector);
-        const formStatus = document.getElementById(statusId);
         const originalBtnText = submitBtn.innerHTML;
 
-        // Show loading state with spinner
         submitBtn.innerHTML = '<span class="form-spinner"></span> Se trimite...';
         submitBtn.disabled = true;
         submitBtn.classList.add('is-loading');
@@ -1340,16 +1209,16 @@ function setupFormHandler(form, statusId, submitBtnSelector) {
             });
 
             const result = await response.json();
+            lastSubmitTime = Date.now();
 
             if (result.success) {
-                formStatus.innerHTML = '<div class="form-success"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18"><path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg> Mesajul a fost trimis cu succes! Îți vom răspunde în curând.</div>';
+                formStatus.innerHTML = '';
+                formStatus.appendChild(createStatusMessage('success', 'Mesajul a fost trimis cu succes! Îți vom răspunde în curând.'));
                 form.reset();
-                // Reset validation states
                 form.querySelectorAll('.field-valid, .field-invalid').forEach(el => {
                     el.classList.remove('field-valid', 'field-invalid');
                 });
                 form.querySelectorAll('.field-error-msg').forEach(el => el.remove());
-                // Reset custom selects
                 form.querySelectorAll('.custom-select').forEach(cs => {
                     cs.classList.remove('has-value', 'touched', 'invalid');
                     const valueDisplay = cs.querySelector('.custom-select-value');
@@ -1363,17 +1232,18 @@ function setupFormHandler(form, statusId, submitBtnSelector) {
                 const counter = form.querySelector('.char-counter');
                 if (counter) counter.textContent = '0 / 2000';
             } else {
-                formStatus.innerHTML = '<div class="form-error"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18"><path d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg> ' + (result.message || 'A apărut o eroare. Te rugăm să încerci din nou.') + '</div>';
+                formStatus.innerHTML = '';
+                formStatus.appendChild(createStatusMessage('error', result.message || 'A apărut o eroare. Te rugăm să încerci din nou.'));
             }
         } catch (error) {
-            formStatus.innerHTML = '<div class="form-error"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18"><path d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg> Eroare de conexiune. Te rugăm să încerci din nou.</div>';
+            formStatus.innerHTML = '';
+            formStatus.appendChild(createStatusMessage('error', 'Eroare de conexiune. Te rugăm să încerci din nou.'));
         }
 
         submitBtn.innerHTML = originalBtnText;
         submitBtn.disabled = false;
         submitBtn.classList.remove('is-loading');
 
-        // Auto-hide success message after 6s
         if (formStatus.querySelector('.form-success')) {
             setTimeout(() => {
                 formStatus.innerHTML = '';
@@ -1382,15 +1252,11 @@ function setupFormHandler(form, statusId, submitBtnSelector) {
     });
 }
 
-// ============================================
-// CONTACT FORM - Inline Validation
-// ============================================
 
 function initContactFormValidation(form) {
     const fields = form.querySelectorAll('input[required], textarea[required], select[required]');
 
     fields.forEach(field => {
-        // Validate on blur (when user leaves field)
         field.addEventListener('blur', () => {
             if (field.value.trim() !== '' || field.classList.contains('touched')) {
                 field.classList.add('touched');
@@ -1398,14 +1264,12 @@ function initContactFormValidation(form) {
             }
         });
 
-        // Re-validate on input for already-touched fields
         field.addEventListener('input', () => {
             if (field.classList.contains('touched')) {
                 validateField(field);
             }
         });
 
-        // Handle select change
         if (field.tagName === 'SELECT') {
             field.addEventListener('change', () => {
                 field.classList.add('touched');
@@ -1419,7 +1283,6 @@ function validateField(field) {
     const wrapper = field.closest('.contact-form-field');
     if (!wrapper) return;
 
-    // Remove old error message
     const oldMsg = wrapper.querySelector('.field-error-msg');
     if (oldMsg) oldMsg.remove();
 
@@ -1438,7 +1301,6 @@ function validateField(field) {
         errorMsg = 'Te rugăm să selectezi un subiect.';
     }
 
-    // Sync validation state with custom select if present
     const customSelect = wrapper.querySelector('.custom-select');
 
     if (errorMsg) {
@@ -1459,9 +1321,6 @@ function validateField(field) {
     }
 }
 
-// ============================================
-// CHARACTER COUNTER for message textarea
-// ============================================
 
 function initCharacterCounter(form) {
     const textarea = form.querySelector('#message');

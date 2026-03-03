@@ -1,22 +1,16 @@
-/* ============================================
-   RULES PAGE STYLES
-   ============================================ */
-
-/* Page Hero */
 .page-hero {
-    padding: 180px 0 80px;
+    padding: 120px 0 60px;
     background: linear-gradient(135deg, #d4ddf0 0%, #c5d0eb 50%, #b6c5e5 100%);
     text-align: center;
     overflow: visible;
 }
 
-/* Chessboard on Rules Page */
 .rules-chessboard {
     position: relative;
     top: auto;
     left: auto;
     transform: none;
-    margin: 60px auto 0;
+    margin: 60px auto 50px;
     display: inline-block;
     animation: floatBoardRules 6s ease-in-out infinite;
 }
@@ -47,7 +41,6 @@
     margin: 0 auto;
 }
 
-/* Rules Content Section */
 .rules-content {
     padding: var(--section-padding) 0;
     background: linear-gradient(180deg, #e8ecf7 0%, #dce3f4 50%, #d0d9f0 100%);
@@ -60,7 +53,6 @@
     align-items: start;
 }
 
-/* Sidebar */
 .rules-sidebar {
     position: sticky;
     top: 120px;
@@ -95,14 +87,12 @@
     font-weight: 500;
 }
 
-/* Main Content */
 .rules-main {
     display: flex;
     flex-direction: column;
     gap: var(--gap-lg);
 }
 
-/* Rules Section */
 .rules-section {
     background: var(--color-white);
     border-radius: var(--radius-xl);
@@ -141,7 +131,6 @@
     line-height: 1.7;
 }
 
-/* Rule Items */
 .rule-item {
     margin-bottom: 2rem;
 }
@@ -164,7 +153,6 @@
     line-height: 1.7;
 }
 
-/* Time Control Cards */
 .time-control-cards {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
@@ -203,7 +191,6 @@
     line-height: 1.6;
 }
 
-/* Highlight Box */
 .highlight-box {
     display: flex;
     gap: 1.25rem;
@@ -220,9 +207,9 @@
     flex-shrink: 0;
 }
 
-.highlight-content h4 {
+.highlight-content h3 {
     font-family: var(--font-body);
-    font-size: 1rem;
+    font-size: 1.0625rem;
     font-weight: 600;
     color: var(--color-dark);
     margin-bottom: 0.5rem;
@@ -234,7 +221,6 @@
     line-height: 1.6;
 }
 
-/* Tiebreak List */
 .tiebreak-list {
     margin-top: 1rem;
     padding-left: 1.5rem;
@@ -252,7 +238,20 @@
     font-weight: 600;
 }
 
-/* Rules Footer */
+.rule-note {
+    margin-top: 1rem;
+}
+
+.rule-link {
+    color: var(--color-accent-dark);
+    text-decoration: underline;
+    transition: color var(--duration-fast) ease;
+}
+
+.rule-link:hover {
+    color: var(--color-dark);
+}
+
 .rules-footer {
     display: flex;
     gap: 1rem;
@@ -269,10 +268,9 @@
     margin-right: 0.25rem;
 }
 
-/* Responsive */
 @media (max-width: 1024px) {
     .page-hero {
-        padding: 160px 0 60px;
+        padding: 110px 0 50px;
     }
 
     .rules-layout {
@@ -298,11 +296,11 @@
 
 @media (max-width: 768px) {
     .page-hero {
-        padding: 140px 0 60px;
+        padding: 100px 0 40px;
     }
 
     .rules-chessboard {
-        margin: 40px auto 0;
+        margin: 40px auto 40px;
         transform: scale(0.85);
     }
 
@@ -363,7 +361,7 @@
     }
 
     .rules-chessboard {
-        margin: 30px auto 0;
+        margin: 10px auto 10px;
         transform: scale(0.7);
     }
 
@@ -381,6 +379,6 @@
 @media (max-width: 400px) {
     .rules-chessboard {
         transform: scale(0.6);
-        margin: 20px auto -20px;
+        margin: 0 auto;
     }
 }
