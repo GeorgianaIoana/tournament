@@ -6,11 +6,13 @@ document.addEventListener('DOMContentLoaded', () => {
     // Generate dynamic footer
     initFooter();
 
+    // Cookie consent banner
+    initCookieConsent();
+
     // Initialize page transition on load
     initPageTransition();
 
     // Initialize all modules
-    initCustomCursor();
     initNavigation();
     initMobileMenu();
     initScrollAnimations();
@@ -39,7 +41,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // Futuristic Effects
-    initParticles();
     initDataStream();
 
     // Venue Gallery - 3D Arc (desktop) / Carousel (tablet & mobile)
@@ -127,10 +128,201 @@ function initFooter() {
                     <a href="terms.html">Termeni</a>
                     <span>•</span>
                     <a href="cookies.html">Cookies</a>
+                    <span>•</span>
+                    <a href="#" id="cookieSettingsFooter">Setări Cookies</a>
                 </div>
             </div>
         </div>
     </footer>`;
+}
+
+// ============================================
+// COOKIE CONSENT BANNER
+// ============================================
+
+function initCookieConsent() {
+    const STORAGE_KEY = 'cookie_consent';
+    const CONSENT_VERSION = '1';
+
+    function getConsent() {
+        try {
+            const stored = localStorage.getItem(STORAGE_KEY);
+            if (!stored) return null;
+            const parsed = JSON.parse(stored);
+            if (parsed.version === CONSENT_VERSION) return parsed;
+            localStorage.removeItem(STORAGE_KEY);
+            return null;
+        } catch (e) {
+            return null;
+        }
+    }
+
+    function saveConsent(consent) {
+        try {
+            localStorage.setItem(STORAGE_KEY, JSON.stringify({
+                version: CONSENT_VERSION,
+                timestamp: Date.now(),
+                essential: true,
+                analytics: consent.analytics || false,
+                functional: consent.functional || false
+            }));
+        } catch (e) {
+            // localStorage unavailable — fail silently
+        }
+    }
+
+    function applyConsent(consent) {
+        if (consent.analytics) {
+            // Load analytics scripts here when needed (e.g. Google Analytics)
+        }
+    }
+
+    function showBanner(existingConsent) {
+        // Remove any existing banner before creating a new one
+        const existingBanner = document.getElementById('cookieConsent');
+        if (existingBanner) {
+            existingBanner.remove();
+        }
+
+        const analyticsChecked = existingConsent ? existingConsent.analytics : false;
+        const functionalChecked = existingConsent ? existingConsent.functional : false;
+
+        const html = `
+        <div class="cookie-consent" id="cookieConsent">
+            <div class="cookie-consent-card">
+                <div class="cookie-consent-body">
+                    <div class="cookie-consent-header">
+                        <div class="cookie-consent-icon">♟</div>
+                        <h3>Preferințe Cookies</h3>
+                    </div>
+                    <div class="cookie-consent-text">
+                        <p>Folosim cookies pentru a-ți oferi cea mai bună experiență. Alege ce tipuri accepți sau <a href="cookies.html">citește politica noastră</a>.</p>
+                    </div>
+                    <div class="cookie-consent-actions">
+                        <button class="cookie-btn cookie-btn-accept" id="cookieAcceptAll">Acceptă Toate</button>
+                        <button class="cookie-btn cookie-btn-reject" id="cookieRejectAll">Doar Esențiale</button>
+                        <button class="cookie-btn cookie-btn-manage" id="cookieManage">Personalizare</button>
+                    </div>
+                    <div class="cookie-consent-preferences" id="cookiePreferences">
+                        <div class="cookie-consent-preferences-inner">
+                            <div class="cookie-pref-category">
+                                <div class="cookie-pref-details">
+                                    <div class="cookie-pref-icon cookie-pref-icon-essential">♜</div>
+                                    <div class="cookie-pref-info">
+                                        <h4>Esențiale <span class="cookie-pref-badge">Mereu active</span></h4>
+                                        <p>Necesare pentru funcționarea site-ului.</p>
+                                    </div>
+                                </div>
+                                <label class="cookie-toggle">
+                                    <input type="checkbox" checked disabled>
+                                    <span class="cookie-toggle-slider"></span>
+                                </label>
+                            </div>
+                            <div class="cookie-pref-category">
+                                <div class="cookie-pref-details">
+                                    <div class="cookie-pref-icon cookie-pref-icon-analytics">♞</div>
+                                    <div class="cookie-pref-info">
+                                        <h4>Analitice</h4>
+                                        <p>Ne ajută să înțelegem cum folosești site-ul.</p>
+                                    </div>
+                                </div>
+                                <label class="cookie-toggle">
+                                    <input type="checkbox" id="cookiePrefAnalytics" ${analyticsChecked ? 'checked' : ''}>
+                                    <span class="cookie-toggle-slider"></span>
+                                </label>
+                            </div>
+                            <div class="cookie-pref-category">
+                                <div class="cookie-pref-details">
+                                    <div class="cookie-pref-icon cookie-pref-icon-functional">♛</div>
+                                    <div class="cookie-pref-info">
+                                        <h4>Funcționale</h4>
+                                        <p>Hărți integrate, formulare și altele.</p>
+                                    </div>
+                                </div>
+                                <label class="cookie-toggle">
+                                    <input type="checkbox" id="cookiePrefFunctional" ${functionalChecked ? 'checked' : ''}>
+                                    <span class="cookie-toggle-slider"></span>
+                                </label>
+                            </div>
+                            <div class="cookie-pref-actions">
+                                <button class="cookie-btn cookie-btn-accept" id="cookieSavePrefs">Salvează Preferințele</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>`;
+
+        document.body.insertAdjacentHTML('beforeend', html);
+
+        const banner = document.getElementById('cookieConsent');
+        const prefs = document.getElementById('cookiePreferences');
+
+        // Animate in
+        requestAnimationFrame(() => {
+            requestAnimationFrame(() => {
+                banner.classList.add('cookie-consent-visible');
+            });
+        });
+
+        function hideBanner() {
+            banner.classList.remove('cookie-consent-visible');
+            banner.classList.add('cookie-consent-hiding');
+            banner.addEventListener('transitionend', () => {
+                banner.remove();
+            }, { once: true });
+        }
+
+        // Accept All
+        document.getElementById('cookieAcceptAll').addEventListener('click', () => {
+            const consent = { analytics: true, functional: true };
+            saveConsent(consent);
+            applyConsent(consent);
+            hideBanner();
+        });
+
+        // Reject All
+        document.getElementById('cookieRejectAll').addEventListener('click', () => {
+            const consent = { analytics: false, functional: false };
+            saveConsent(consent);
+            hideBanner();
+        });
+
+        // Manage / Personalizare
+        document.getElementById('cookieManage').addEventListener('click', () => {
+            prefs.classList.toggle('expanded');
+        });
+
+        // Save Preferences
+        document.getElementById('cookieSavePrefs').addEventListener('click', () => {
+            const consent = {
+                analytics: document.getElementById('cookiePrefAnalytics').checked,
+                functional: document.getElementById('cookiePrefFunctional').checked
+            };
+            saveConsent(consent);
+            applyConsent(consent);
+            hideBanner();
+        });
+    }
+
+    // Attach re-open trigger to footer link
+    const footerLink = document.getElementById('cookieSettingsFooter');
+    if (footerLink) {
+        footerLink.addEventListener('click', (e) => {
+            e.preventDefault();
+            showBanner(getConsent());
+        });
+    }
+
+    // Check for existing consent
+    const consent = getConsent();
+    if (consent) {
+        applyConsent(consent);
+        return;
+    }
+
+    // No consent stored — show banner
+    showBanner(null);
 }
 
 // ============================================
@@ -175,6 +367,10 @@ function initPageTransition() {
             // Trigger exit animation
             transition.classList.add('active');
 
+            // Hide cookie banner during transition
+            const cookieBanner = document.getElementById('cookieConsent');
+            if (cookieBanner) cookieBanner.classList.add('cookie-consent-hiding');
+
             // Navigate after animation
             setTimeout(() => {
                 window.location.href = href;
@@ -184,154 +380,12 @@ function initPageTransition() {
 }
 
 // ============================================
-// SPLASH CURSOR - WebGL Fluid Effect (Debug)
-// ============================================
-
-function initCustomCursor() {
-    // Only enable on devices with fine pointer (mouse)
-    if (!window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
-        return;
-    }
-
-    // Test WebGL support
-    const testCanvas = document.createElement('canvas');
-    const gl = testCanvas.getContext('webgl2') || testCanvas.getContext('webgl');
-    if (!gl) {
-        // WebGL not supported, using Canvas 2D fallback
-    }
-
-    // Project colors
-    const colors = [
-        'rgba(184, 217, 212, 0.8)',  // #b8d9d4 - teal
-        'rgba(166, 183, 224, 0.8)',  // #a6b7e0 - soft blue
-        'rgba(125, 211, 252, 0.8)',  // #7dd3fc - glow primary
-        'rgba(165, 243, 252, 0.8)',  // #a5f3fc - glow secondary
-        'rgba(196, 181, 253, 0.8)',  // #c4b5fd - glow accent
-    ];
-
-    // Create canvas
-    const canvas = document.createElement('canvas');
-    canvas.id = 'splash-canvas';
-    canvas.style.cssText = `
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        pointer-events: none;
-        z-index: 9999;
-    `;
-    document.body.appendChild(canvas);
-
-    const ctx = canvas.getContext('2d');
-
-    // Resize
-    function resize() {
-        canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight;
-    }
-    resize();
-    window.addEventListener('resize', resize);
-
-    // Particles
-    const particles = [];
-    let mouseX = 0, mouseY = 0;
-    let lastMouseX = 0, lastMouseY = 0;
-
-    class Particle {
-        constructor(x, y, vx, vy) {
-            this.x = x;
-            this.y = y;
-            this.vx = vx;
-            this.vy = vy;
-            this.life = 1;
-            this.decay = 0.015 + Math.random() * 0.01;
-            this.size = 20 + Math.random() * 30;
-            this.color = colors[Math.floor(Math.random() * colors.length)];
-        }
-
-        update() {
-            this.x += this.vx;
-            this.y += this.vy;
-            this.vx *= 0.98;
-            this.vy *= 0.98;
-            this.life -= this.decay;
-            this.size *= 0.97;
-        }
-
-        draw() {
-            ctx.save();
-            ctx.globalAlpha = this.life * 0.6;
-            ctx.fillStyle = this.color;
-            ctx.shadowColor = this.color;
-            ctx.shadowBlur = 20;
-            ctx.beginPath();
-            ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-            ctx.fill();
-            ctx.restore();
-        }
-    }
-
-    // Mouse tracking
-    document.addEventListener('mousemove', (e) => {
-        mouseX = e.clientX;
-        mouseY = e.clientY;
-    });
-
-    // Animation
-    function animate() {
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-        // Calculate velocity
-        const vx = (mouseX - lastMouseX) * 0.3;
-        const vy = (mouseY - lastMouseY) * 0.3;
-        const speed = Math.sqrt(vx * vx + vy * vy);
-
-        // Spawn particles based on movement
-        if (speed > 1) {
-            const count = Math.min(Math.floor(speed / 3), 5);
-            for (let i = 0; i < count; i++) {
-                const angle = Math.atan2(vy, vx) + (Math.random() - 0.5) * 1.5;
-                const vel = speed * 0.2 + Math.random() * 2;
-                particles.push(new Particle(
-                    mouseX + (Math.random() - 0.5) * 10,
-                    mouseY + (Math.random() - 0.5) * 10,
-                    Math.cos(angle) * vel,
-                    Math.sin(angle) * vel
-                ));
-            }
-        }
-
-        // Update and draw particles
-        for (let i = particles.length - 1; i >= 0; i--) {
-            const p = particles[i];
-            p.update();
-            p.draw();
-            if (p.life <= 0 || p.size < 1) {
-                particles.splice(i, 1);
-            }
-        }
-
-        // Limit particles
-        while (particles.length > 100) {
-            particles.shift();
-        }
-
-        lastMouseX = mouseX;
-        lastMouseY = mouseY;
-
-        requestAnimationFrame(animate);
-    }
-
-    animate();
-}
-
-// ============================================
 // NAVIGATION
 // ============================================
 
 function initNavigation() {
     const nav = document.getElementById('nav');
+    const alwaysScrolled = nav.classList.contains('scrolled');
     let lastScroll = 0;
     let ticking = false;
 
@@ -346,6 +400,8 @@ function initNavigation() {
     });
 
     function handleNavScroll() {
+        if (alwaysScrolled) return;
+
         const currentScroll = window.pageYOffset;
 
         // Add scrolled class when past hero
@@ -1046,64 +1102,6 @@ function initVenueCarousel() {
         createDots();
         updateCarousel();
     }
-}
-
-// ============================================
-// FUTURISTIC EFFECTS - PARTICLES
-// ============================================
-
-function initParticles() {
-    const container = document.getElementById('particles');
-    if (!container) return;
-
-    // Skip on mobile for performance
-    if (window.innerWidth < 768) return;
-
-    // Check for reduced motion preference
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-
-    const particleCount = 30;
-
-    for (let i = 0; i < particleCount; i++) {
-        createParticle(container, i);
-    }
-}
-
-function createParticle(container, index) {
-    const particle = document.createElement('div');
-    particle.classList.add('particle');
-
-    // Random position
-    particle.style.left = Math.random() * 100 + '%';
-
-    // Random size
-    const size = Math.random() * 4 + 2;
-    particle.style.width = size + 'px';
-    particle.style.height = size + 'px';
-
-    // Random animation duration and delay
-    const duration = Math.random() * 10 + 10;
-    const delay = Math.random() * 15;
-    particle.style.animationDuration = duration + 's';
-    particle.style.animationDelay = delay + 's';
-
-    // Random color variation
-    const colors = [
-        'rgba(125, 211, 252, 0.8)',
-        'rgba(196, 181, 253, 0.8)',
-        'rgba(110, 231, 183, 0.8)',
-        'rgba(240, 171, 252, 0.8)'
-    ];
-    const color = colors[Math.floor(Math.random() * colors.length)];
-    particle.style.background = color;
-    particle.style.boxShadow = `0 0 10px ${color}, 0 0 20px ${color}`;
-
-    container.appendChild(particle);
-
-    // Activate with slight delay for staggered effect
-    setTimeout(() => {
-        particle.classList.add('active');
-    }, index * 100);
 }
 
 // ============================================
