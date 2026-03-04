@@ -1,5 +1,5 @@
 .page-hero {
-    padding: 120px 0 60px;
+    padding: 120px 0 80px;
     background: linear-gradient(135deg, #d4ddf0 0%, #c5d0eb 50%, #b6c5e5 100%);
     text-align: center;
     overflow: visible;
@@ -10,7 +10,7 @@
     top: auto;
     left: auto;
     transform: none;
-    margin: 60px auto 50px;
+    margin: 80px auto 70px;
     display: inline-block;
     animation: floatBoardRules 6s ease-in-out infinite;
 }
