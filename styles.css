@@ -10751,14 +10751,14 @@ html {
     }
 
     .contact-form-field.has-icon input {
-        padding-left: 2.85rem;
+        padding-left: 2.5rem;
     }
 
     .contact-field-icon {
         left: 0.9rem;
         top: 2.9rem;
-        width: 16px;
-        height: 16px;
+        width: 14px;
+        height: 14px;
     }
 
     .contact-custom-select .custom-select-trigger {

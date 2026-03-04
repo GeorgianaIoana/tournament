@@ -10,7 +10,7 @@
     <meta http-equiv="X-XSS-Protection" content="1; mode=block">
     <meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin">
     <meta http-equiv="Permissions-Policy" content="geolocation=(), microphone=(), camera=()">
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; frame-src https://www.google.com https://maps.google.com; connect-src 'self' https://api.web3forms.com;">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; frame-src https://www.google.com https://maps.google.com; connect-src 'self' https://api.web3forms.com; form-action 'self' https://api.web3forms.com;">
     <meta name="format-detection" content="telephone=no">
 
     <meta name="description" content="Open THE SQUARE 2026 - Turneu de șah rapid și blitz la București. 24-26 Aprilie 2026, Nod Makerspace. Înscrieri deschise!">
@@ -22,19 +22,20 @@
     <meta property="og:description" content="Turneu de șah rapid și blitz la București. 24-26 Aprilie 2026.">
     <meta property="og:type" content="website">
     <meta property="og:locale" content="ro_RO">
-    <meta property="og:image" content="https://thesquarechessclub.com/images/hero.jpeg">
+    <meta property="og:image" content="https://thesquarechessclub.com/images/hero.webp">
     <meta property="og:url" content="https://thesquarechessclub.com/">
 
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Open THE SQUARE 2026 | Turneu de Șah">
     <meta name="twitter:description" content="Turneu de șah rapid și blitz la București. 24-26 Aprilie 2026.">
-    <meta name="twitter:image" content="https://thesquarechessclub.com/images/hero.jpeg">
+    <meta name="twitter:image" content="https://thesquarechessclub.com/images/hero.webp">
 
     <title>Open THE SQUARE 2026 | Turneu de Șah</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
+    <link rel="preload" href="images/logo.webp" as="image" type="image/webp">
     <link rel="icon" type="image/svg+xml" href="images/chess-queen.svg">
 </head>
 <body>
@@ -42,7 +43,7 @@
     <nav class="nav" id="nav">
         <div class="nav-container">
             <a href="index.html" class="nav-logo">
-                <img src="images/logo.png" alt="THE SQUARE" class="logo-img">
+                <img src="images/logo.webp" alt="THE SQUARE" class="logo-img" fetchpriority="high">
             </a>
             <div class="nav-links">
                 <a href="#about" class="nav-link">Despre</a>
@@ -64,7 +65,7 @@
     <div class="mobile-menu" id="mobileMenu">
         <div class="mobile-menu-content">
             <a href="index.html" class="mobile-logo">
-                <img src="images/logo-footer.png" alt="THE SQUARE" class="mobile-logo-img">
+                <img src="images/logo-footer.webp" alt="THE SQUARE" class="mobile-logo-img">
             </a>
             <a href="#about" class="mobile-link">Despre</a>
             <a href="#venue" class="mobile-link">Locație</a>
@@ -219,7 +220,7 @@
                         </a>
                     </div>
 
-                    <a href="#heroForm" class="about-cta-btn reveal-up" style="--delay: 0.5s">
+                    <a href="#register" class="about-cta-btn reveal-up" style="--delay: 0.5s">
                         <span>Înscrie-te</span>
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                             <path d="M5 12h14M12 5l7 7-7 7"/>
@@ -230,12 +231,12 @@
                 <div class="about-visual">
                     <div class="about-image-stack">
                         <div class="about-image about-image-1 reveal-scale" style="--delay: 0.2s">
-                            <video autoplay muted loop playsinline>
+                            <video autoplay muted loop playsinline preload="metadata">
                                 <source src="images/about-video-1.mp4" type="video/mp4">
                             </video>
                         </div>
                         <div class="about-image about-image-2 reveal-scale" style="--delay: 0.4s">
-                            <video autoplay muted loop playsinline>
+                            <video autoplay muted loop playsinline preload="metadata">
                                 <source src="images/about-video.mp4" type="video/mp4">
                             </video>
                         </div>
@@ -255,7 +256,7 @@
     <section class="team-banner" id="team-banner">
         <div class="team-banner-container">
             <div class="team-member team-member--left">
-                <img src="images/organizer.png" alt="Arbitru">
+                <img loading="lazy" decoding="async" src="images/organizer.webp" alt="Arbitru">
                 <div class="team-member-info">
                     <h4>Roxana Firaru</h4>
                     <span>Arbitru Internațional</span>
@@ -281,7 +282,7 @@
             </div>
 
             <div class="team-member team-member--right">
-                <img src="images/arbiter.webp" alt="Arbitru">
+                <img loading="lazy" decoding="async" src="images/arbiter.webp" alt="Arbitru">
                 <div class="team-member-info">
                     <h4>Vlad Ghiță</h4>
                     <span>Arbitru Fide</span>
@@ -300,15 +301,15 @@
         <div class="organizer-wings-container">
             <div class="wing wing--left">
                 <div class="wing-photo wing-photo--top">
-                    <img src="images/chess-moment-1.jpg" alt="Moment turneu">
+                    <img loading="lazy" decoding="async" src="images/chess-moment-1.webp" alt="Moment turneu">
                 </div>
                 <div class="wing-photo wing-photo--bottom">
-                    <img src="images/chess-moment-2.jpg" alt="Moment turneu">
+                    <img loading="lazy" decoding="async" src="images/chess-moment-2.webp" alt="Moment turneu">
                 </div>
             </div>
 
             <div class="organizer-center">
-                <img src="images/organizer-center.jpg" alt="Stanciu Cristiana" class="organizer-center-photo">
+                <img loading="lazy" decoding="async" src="images/organizer-center.webp" alt="Stanciu Cristiana" class="organizer-center-photo">
                 <div class="organizer-center-info">
                     <span class="organizer-center-role">Organizator</span>
                     <h3 class="organizer-center-name">Stanciu Cristiana</h3>
@@ -317,10 +318,10 @@
 
             <div class="wing wing--right">
                 <div class="wing-photo wing-photo--top">
-                    <img src="images/chess-moment-3.jpg" alt="Moment turneu">
+                    <img loading="lazy" decoding="async" src="images/chess-moment-3.webp" alt="Moment turneu">
                 </div>
                 <div class="wing-photo wing-photo--bottom">
-                    <img src="images/chess-moment-4.jpg" alt="Moment turneu">
+                    <img loading="lazy" decoding="async" src="images/chess-moment-4.webp" alt="Moment turneu">
                 </div>
             </div>
         </div>
@@ -357,25 +358,25 @@
             <div class="venue-gallery-track">
                 <div class="venue-gallery-slides" id="venueGallerySlides">
                     <a href="contact.html#map" class="venue-item venue-item--1">
-                        <img src="images/venue-1.jpg" alt="Nod Makerspace">
+                        <img loading="lazy" decoding="async" src="images/venue-1.webp" alt="Nod Makerspace">
                     </a>
                     <a href="contact.html#map" class="venue-item venue-item--2">
-                        <img src="images/venue-2.jpg" alt="Nod Makerspace">
+                        <img loading="lazy" decoding="async" src="images/venue-2.webp" alt="Nod Makerspace">
                     </a>
                     <a href="contact.html#map" class="venue-item venue-item--3">
-                        <img src="images/venue-3.jpg" alt="Nod Makerspace">
+                        <img loading="lazy" decoding="async" src="images/venue-3.webp" alt="Nod Makerspace">
                     </a>
                     <a href="contact.html#map" class="venue-item venue-item--4">
-                        <img src="images/venue-4.jpg" alt="Nod Makerspace">
+                        <img loading="lazy" decoding="async" src="images/venue-4.webp" alt="Nod Makerspace">
                     </a>
                     <a href="contact.html#map" class="venue-item venue-item--5">
-                        <img src="images/venue-5.jpg" alt="Nod Makerspace">
+                        <img loading="lazy" decoding="async" src="images/venue-5.webp" alt="Nod Makerspace">
                     </a>
                     <a href="contact.html#map" class="venue-item venue-item--6">
-                        <img src="images/venue-6.jpg" alt="Nod Makerspace">
+                        <img loading="lazy" decoding="async" src="images/venue-6.webp" alt="Nod Makerspace">
                     </a>
                     <a href="contact.html#map" class="venue-item venue-item--7">
-                        <img src="images/venue-7.jpg" alt="Nod Makerspace">
+                        <img loading="lazy" decoding="async" src="images/venue-7.webp" alt="Nod Makerspace">
                     </a>
                 </div>
             </div>
@@ -725,16 +726,16 @@
             </div>
             <div class="partners-grid reveal-up" style="--delay: 0.2s">
                 <a href="https://carturesti.ro" target="_blank" rel="noopener noreferrer" class="partner-card">
-                    <img src="images/partner-carturesti.png" alt="Cărturești" class="partner-logo">
+                    <img loading="lazy" decoding="async" src="images/partner-carturesti.webp" alt="Cărturești" class="partner-logo">
                 </a>
                 <a href="https://frsah.ro" target="_blank" rel="noopener noreferrer" class="partner-card">
-                    <img src="images/frsah-logo-mini.png" alt="Federația Română de Șah" class="partner-logo">
+                    <img loading="lazy" decoding="async" src="images/frsah-logo-mini.webp" alt="Federația Română de Șah" class="partner-logo">
                 </a>
                 <a href="https://www.spacemaker.ro" target="_blank" rel="noopener noreferrer" class="partner-card">
-                    <img src="images/partner-spacemaker.svg" alt="Spacemaker" class="partner-logo">
+                    <img loading="lazy" decoding="async" src="images/partner-spacemaker.svg" alt="Spacemaker" class="partner-logo">
                 </a>
                 <a href="https://www.fide.com" target="_blank" rel="noopener noreferrer" class="partner-card">
-                    <img src="images/partner-fide.png" alt="FIDE" class="partner-logo">
+                    <img loading="lazy" decoding="async" src="images/partner-fide.webp" alt="FIDE" class="partner-logo">
                 </a>
             </div>
         </div>

@@ -69,7 +69,7 @@ function initFooter() {
         <div class="container">
             <div class="footer-top">
                 <div class="footer-logo">
-                    <img src="images/logo-footer.png" alt="THE SQUARE" class="logo-img">
+                    <img src="images/logo-footer.webp" alt="THE SQUARE" class="logo-img">
                 </div>
             </div>
             <div class="footer-grid">
