@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="X-Content-Type-Options" content="nosniff">
+    <meta http-equiv="X-Frame-Options" content="SAMEORIGIN">
+    <meta http-equiv="X-XSS-Protection" content="1; mode=block">
+    <meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin">
+    <meta http-equiv="Permissions-Policy" content="geolocation=(), microphone=(), camera=()">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:;">
+    <meta name="robots" content="noindex, nofollow">
+    <title>Mesaj Trimis | THE SQUARE 2026</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" type="image/svg+xml" href="images/chess-queen.svg">
+    <style>
+        .success-page {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(180deg, #f5f6fb 0%, #e8ecf5 50%, #dce2f2 100%);
+            padding: 2rem;
+            text-align: center;
+        }
+
+        .success-content {
+            max-width: 600px;
+        }
+
+        .success-icon {
+            width: 90px;
+            height: 90px;
+            margin: 0 auto 2rem;
+            background: linear-gradient(135deg, #9b8ac4 0%, #b8c4e6 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 8px 30px rgba(155, 138, 196, 0.35);
+            animation: successPop 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .success-icon svg {
+            width: 44px;
+            height: 44px;
+            color: #fff;
+            stroke-width: 2.5;
+        }
+
+        @keyframes successPop {
+            0% {
+                transform: scale(0);
+                opacity: 0;
+            }
+            60% {
+                transform: scale(1.15);
+            }
+            100% {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        .success-title {
+            font-family: var(--font-display);
+            font-size: clamp(1.75rem, 5vw, 2.75rem);
+            font-weight: 400;
+            color: #203d36;
+            margin-bottom: 1rem;
+            animation: successFadeUp 0.6s ease 0.2s both;
+        }
+
+        .success-title em {
+            font-style: italic;
+            background: linear-gradient(
+                120deg,
+                #9b8ac4 0%,
+                #b8c4e6 50%,
+                #8faad6 100%
+            );
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .success-message {
+            font-family: var(--font-body);
+            font-size: 1.05rem;
+            color: #6b7a8a;
+            line-height: 1.7;
+            margin-bottom: 2.5rem;
+            animation: successFadeUp 0.6s ease 0.35s both;
+        }
+
+        .success-actions {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            animation: successFadeUp 0.6s ease 0.5s both;
+        }
+
+        @keyframes successFadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(16px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .success-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.875rem 1.75rem;
+            font-family: var(--font-body);
+            font-size: 0.9rem;
+            font-weight: 500;
+            text-decoration: none;
+            border-radius: 50px;
+            transition: all 0.3s ease;
+        }
+
+        .success-btn--primary {
+            background: linear-gradient(135deg, #203d36 0%, #2d8b7a 100%);
+            color: #fff;
+            box-shadow: 0 4px 15px rgba(32, 61, 54, 0.3);
+        }
+
+        .success-btn--primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(32, 61, 54, 0.4);
+        }
+
+        .success-btn--secondary {
+            background: rgba(255, 255, 255, 0.8);
+            color: #203d36;
+            border: 1px solid rgba(32, 61, 54, 0.2);
+        }
+
+        .success-btn--secondary:hover {
+            background: #fff;
+            border-color: rgba(32, 61, 54, 0.3);
+        }
+
+        .success-btn svg {
+            width: 18px;
+            height: 18px;
+        }
+    </style>
+</head>
+<body>
+    <section class="success-page">
+        <div class="success-content">
+            <a href="index.html">
+                <img src="images/logo-footer.png" alt="THE SQUARE" style="height: 60px; margin-bottom: 2rem;">
+            </a>
+            <div class="success-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="20 6 9 17 4 12"></polyline>
+                </svg>
+            </div>
+            <h1 class="success-title">Mesaj <em>Trimis</em></h1>
+            <p class="success-message">
+                Mesajul tău a fost trimis cu succes!<br>
+                Îți vom răspunde în cel mai scurt timp posibil.
+            </p>
+
+            <div class="success-actions">
+                <a href="index.html" class="success-btn success-btn--primary">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+                        <polyline points="9,22 9,12 15,12 15,22"/>
+                    </svg>
+                    Pagina Principală
+                </a>
+                <a href="contact.html" class="success-btn success-btn--secondary">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                        <polyline points="22,6 12,13 2,6"/>
+                    </svg>
+                    Contactează-ne din Nou
+                </a>
+            </div>
+        </div>
+    </section>
+</body>
+</html>

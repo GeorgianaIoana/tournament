@@ -1293,19 +1293,13 @@ em {
     display: none;
 }
 
+.hero-form-side .btn-form-submit.is-loading {
+    pointer-events: none;
+}
+
 .hero-form-side .form-status {
     margin-top: 0.75rem;
     text-align: center;
-}
-
-.hero-form-side .form-success {
-    padding: 0.75rem 1rem;
-    background: rgba(34, 197, 94, 0.15);
-    border: 1px solid rgba(34, 197, 94, 0.3);
-    border-radius: 8px;
-    color: #22c55e;
-    font-size: 0.8rem;
-    font-weight: 500;
 }
 
 .hero-form-side .form-error {
@@ -8658,7 +8652,7 @@ html {
 .contact-field-icon {
     position: absolute;
     left: 1.1rem;
-    bottom: 0.95rem;
+    top: 3.1rem;
     width: 18px;
     height: 18px;
     color: #b0b9cc;
@@ -8936,25 +8930,6 @@ html {
 .form-status {
     margin-top: 1rem;
     text-align: center;
-}
-
-.form-success {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 0.5rem;
-    padding: 1rem 1.5rem;
-    background: rgba(34, 197, 94, 0.1);
-    border: 1px solid rgba(34, 197, 94, 0.3);
-    border-radius: 10px;
-    color: #16a34a;
-    font-size: 0.9rem;
-    font-weight: 500;
-    animation: formStatusIn 0.4s ease;
-}
-
-.form-success svg {
-    flex-shrink: 0;
 }
 
 .form-error {
@@ -10232,6 +10207,13 @@ html {
         min-width: 16px;
     }
 
+    .hero-form-side .checkbox-label input[type="checkbox"]:checked + .checkbox-custom::after {
+        top: 2px;
+        left: 4px;
+        width: 4px;
+        height: 7px;
+    }
+
     .hero-form-title {
         font-size: 1.25rem;
     }
@@ -10774,7 +10756,7 @@ html {
 
     .contact-field-icon {
         left: 0.9rem;
-        bottom: 0.8rem;
+        top: 2.9rem;
         width: 16px;
         height: 16px;
     }

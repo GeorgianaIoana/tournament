@@ -15,7 +15,6 @@ document.addEventListener('DOMContentLoaded', () => {
     initFormLabels();
     initSmoothScroll();
     initSoundToggle();
-    initHeroForm();
     initDiscoverMore();
 
     const aboutVideos = document.querySelectorAll('.about-image video');
@@ -706,30 +705,6 @@ function initSoundToggle() {
 }
 
 
-function initHeroForm() {
-    const heroForm = document.getElementById('heroForm');
-
-    if (!heroForm) return;
-
-    heroForm.addEventListener('submit', (e) => {
-        e.preventDefault();
-
-        const btn = heroForm.querySelector('.btn-form-submit');
-        const originalText = btn.textContent;
-        btn.textContent = 'Request Sent!';
-        btn.disabled = true;
-        btn.style.backgroundColor = 'var(--color-accent)';
-
-        setTimeout(() => {
-            btn.textContent = originalText;
-            btn.disabled = false;
-            btn.style.backgroundColor = '';
-            heroForm.reset();
-        }, 3000);
-    });
-}
-
-
 function initDiscoverMore() {
     const discoverMore = document.querySelector('.hero-discover');
 
@@ -1039,14 +1014,14 @@ window.addEventListener('load', () => {
 document.addEventListener('DOMContentLoaded', () => {
     const contactForm = document.getElementById('contactForm');
     if (contactForm) {
-        setupFormHandler(contactForm, 'formStatus', '.contact-form-submit');
+        setupFormHandler(contactForm, 'formStatus', '.contact-form-submit', 'Mesajul a fost trimis cu succes! Îți vom răspunde în curând.', 'success-contact.html');
         initContactFormValidation(contactForm);
         initCharacterCounter(contactForm);
     }
 
     const heroForm = document.getElementById('heroForm');
     if (heroForm) {
-        setupFormHandler(heroForm, 'heroFormStatus', '.btn-form-submit');
+        setupFormHandler(heroForm, 'heroFormStatus', '.btn-form-submit', 'Înscrierea a fost trimisă cu succes! Te vom contacta cu detalii.', 'success-register.html');
     }
 
     document.querySelectorAll('select').forEach(select => {
@@ -1157,7 +1132,7 @@ function createStatusMessage(type, message) {
     return div;
 }
 
-function setupFormHandler(form, statusId, submitBtnSelector) {
+function setupFormHandler(form, statusId, submitBtnSelector, successMessage, redirectUrl) {
     let lastSubmitTime = 0;
     const RATE_LIMIT_MS = 30000;
 
@@ -1212,8 +1187,12 @@ function setupFormHandler(form, statusId, submitBtnSelector) {
             lastSubmitTime = Date.now();
 
             if (result.success) {
+                if (redirectUrl) {
+                    window.location.href = redirectUrl;
+                    return;
+                }
                 formStatus.innerHTML = '';
-                formStatus.appendChild(createStatusMessage('success', 'Mesajul a fost trimis cu succes! Îți vom răspunde în curând.'));
+                formStatus.appendChild(createStatusMessage('success', successMessage));
                 form.reset();
                 form.querySelectorAll('.field-valid, .field-invalid').forEach(el => {
                     el.classList.remove('field-valid', 'field-invalid');
@@ -1243,12 +1222,6 @@ function setupFormHandler(form, statusId, submitBtnSelector) {
         submitBtn.innerHTML = originalBtnText;
         submitBtn.disabled = false;
         submitBtn.classList.remove('is-loading');
-
-        if (formStatus.querySelector('.form-success')) {
-            setTimeout(() => {
-                formStatus.innerHTML = '';
-            }, 6000);
-        }
     });
 }
 
