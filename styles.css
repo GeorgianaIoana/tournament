@@ -3197,6 +3197,8 @@ a.event-info-link:hover .event-info-text span {
 
     .about-visual {
         height: auto;
+        display: flex;
+        justify-content: center;
     }
 
     .about-image-stack {

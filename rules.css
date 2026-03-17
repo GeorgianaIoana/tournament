@@ -12,7 +12,7 @@
     transform: none;
     margin: 80px auto 70px;
     display: inline-block;
-    animation: floatBoardRules 6s ease-in-out infinite;
+    animation: none;
 }
 
 @keyframes floatBoardRules {
