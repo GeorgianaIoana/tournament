@@ -9,7 +9,7 @@
     <meta http-equiv="X-XSS-Protection" content="1; mode=block">
     <meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin">
     <meta http-equiv="Permissions-Policy" content="geolocation=(), microphone=(), camera=()">
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:;">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:;">
     <meta name="robots" content="noindex, nofollow">
     <title>Înscriere Confirmată | THE SQUARE 2026</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -168,8 +168,8 @@
                     <polyline points="20 6 9 17 4 12"></polyline>
                 </svg>
             </div>
-            <h1 class="success-title">Înscriere <em>Confirmată</em></h1>
-            <p class="success-message">
+            <h1 class="success-title" id="successTitle">Înscriere <em>Confirmată</em></h1>
+            <p class="success-message" id="successMessage">
                 Înscrierea ta a fost trimisă cu succes!<br>
                 Te vom contacta în curând cu toate detaliile necesare pentru turneu.
             </p>
@@ -194,5 +194,24 @@
             </div>
         </div>
     </section>
+    <script>
+        // Update message based on URL parameters
+        (function() {
+            const params = new URLSearchParams(window.location.search);
+            const isFreeEntry = params.get('free') === '1';
+            const hasSessionId = params.has('session_id');
+
+            const title = document.getElementById('successTitle');
+            const message = document.getElementById('successMessage');
+
+            if (isFreeEntry) {
+                title.innerHTML = 'Înscriere <em>Confirmată</em>';
+                message.innerHTML = 'Înscrierea ta a fost confirmată cu intrare gratuită!<br>Ne vedem la turneu pe 10-11 Octombrie 2026.';
+            } else if (hasSessionId) {
+                title.innerHTML = 'Plată <em>Reușită</em>';
+                message.innerHTML = 'Mulțumim pentru plată! Înscrierea ta este confirmată.<br>Vei primi un email de confirmare în curând.';
+            }
+        })();
+    </script>
 </body>
 </html>

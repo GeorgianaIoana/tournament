@@ -88,6 +88,7 @@ function initFooter() {
                     <h4>Linkuri</h4>
                     <a href="schedule.html">Program</a>
                     <a href="rules.html">Regulament</a>
+                    <a href="amintiri.html">Amintiri</a>
                     ${thirdNavLink}
                 </div>
                 <div class="footer-col">
@@ -1021,7 +1022,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const heroForm = document.getElementById('heroForm');
     if (heroForm) {
-        setupFormHandler(heroForm, 'heroFormStatus', '.btn-form-submit', 'Înscrierea a fost trimisă cu succes! Te vom contacta cu detalii.', 'success-register.html');
+        setupRegistrationFormHandler(heroForm);
     }
 
     document.querySelectorAll('select').forEach(select => {
@@ -1219,6 +1220,116 @@ function setupFormHandler(form, statusId, submitBtnSelector, successMessage, red
                 formStatus.innerHTML = '';
                 formStatus.appendChild(createStatusMessage('error', result.message || 'A apărut o eroare. Te rugăm să încerci din nou.'));
             }
+        } catch (error) {
+            formStatus.innerHTML = '';
+            formStatus.appendChild(createStatusMessage('error', 'Eroare de conexiune. Te rugăm să încerci din nou.'));
+        }
+
+        submitBtn.innerHTML = originalBtnText;
+        submitBtn.disabled = false;
+        submitBtn.classList.remove('is-loading');
+    });
+}
+
+
+function setupRegistrationFormHandler(form) {
+    let lastSubmitTime = 0;
+    const RATE_LIMIT_MS = 30000;
+    const statusId = 'heroFormStatus';
+    const submitBtnSelector = '.btn-form-submit';
+
+    form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+
+        const formStatus = document.getElementById(statusId);
+
+        // Rate limit check
+        const now = Date.now();
+        if (now - lastSubmitTime < RATE_LIMIT_MS) {
+            const remaining = Math.ceil((RATE_LIMIT_MS - (now - lastSubmitTime)) / 1000);
+            formStatus.innerHTML = '';
+            formStatus.appendChild(createStatusMessage('error', 'Te rugăm să aștepți ' + remaining + ' secunde înainte de a trimite din nou.'));
+            return;
+        }
+
+        form.querySelectorAll('select').forEach(select => select.classList.add('touched'));
+        form.querySelectorAll('.custom-select').forEach(cs => {
+            cs.classList.add('touched');
+            const nativeSelect = cs.parentElement.querySelector('select');
+            if (nativeSelect && !nativeSelect.value) {
+                cs.classList.add('invalid');
+            }
+        });
+        form.querySelectorAll('input[type="checkbox"]').forEach(cb => cb.classList.add('touched'));
+
+        if (!form.checkValidity()) {
+            form.reportValidity();
+            return;
+        }
+
+        // Honeypot check
+        const honeypot = form.querySelector('input[name="botcheck"]');
+        if (honeypot && honeypot.checked) return;
+
+        const submitBtn = form.querySelector(submitBtnSelector);
+        const originalBtnText = submitBtn.innerHTML;
+
+        submitBtn.innerHTML = '<span class="form-spinner"></span> Se procesează...';
+        submitBtn.disabled = true;
+        submitBtn.classList.add('is-loading');
+
+        try {
+            const formData = new FormData(form);
+            const data = {
+                fullName: formData.get('fullName'),
+                email: formData.get('email'),
+                phone: formData.get('phone'),
+                fideId: formData.get('fideId'),
+                club: formData.get('club'),
+                category: formData.get('category'),
+            };
+
+            const response = await fetch('/api/register', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json'
+                },
+                body: JSON.stringify(data)
+            });
+
+            const result = await response.json();
+            lastSubmitTime = Date.now();
+
+            if (!response.ok) {
+                formStatus.innerHTML = '';
+                formStatus.appendChild(createStatusMessage('error', result.error || 'A apărut o eroare. Te rugăm să încerci din nou.'));
+                submitBtn.innerHTML = originalBtnText;
+                submitBtn.disabled = false;
+                submitBtn.classList.remove('is-loading');
+                return;
+            }
+
+            if (result.success) {
+                if (result.isFreeEntry) {
+                    // Free entry - redirect directly to success page
+                    window.location.href = 'success-register.html?free=1';
+                    return;
+                }
+
+                if (result.checkoutUrl) {
+                    // Redirect to Stripe Checkout
+                    formStatus.innerHTML = '';
+                    formStatus.appendChild(createStatusMessage('success', 'Redirecționare către pagina de plată...'));
+                    window.location.href = result.checkoutUrl;
+                    return;
+                }
+            }
+
+            // Fallback error
+            formStatus.innerHTML = '';
+            formStatus.appendChild(createStatusMessage('error', 'A apărut o eroare neașteptată. Te rugăm să încerci din nou.'));
+
         } catch (error) {
             formStatus.innerHTML = '';
             formStatus.appendChild(createStatusMessage('error', 'Eroare de conexiune. Te rugăm să încerci din nou.'));
