@@ -1303,7 +1303,9 @@ function setupRegistrationFormHandler(form) {
 
             if (!response.ok) {
                 formStatus.innerHTML = '';
-                formStatus.appendChild(createStatusMessage('error', result.error || 'A apărut o eroare. Te rugăm să încerci din nou.'));
+                const errorMsg = typeof result.error === 'string' ? result.error : (result.error?.message || JSON.stringify(result.error) || 'A apărut o eroare. Te rugăm să încerci din nou.');
+                console.error('Registration error:', result);
+                formStatus.appendChild(createStatusMessage('error', errorMsg));
                 submitBtn.innerHTML = originalBtnText;
                 submitBtn.disabled = false;
                 submitBtn.classList.remove('is-loading');
