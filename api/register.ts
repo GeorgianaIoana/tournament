@@ -178,10 +178,12 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
       registrationId: insertedReg.id,
     });
 
-  } catch (error) {
+  } catch (error: any) {
     console.error('Registration error:', error);
+    const errorMessage = error?.message || error?.raw?.message || 'Unknown error';
+    const errorType = error?.type || error?.constructor?.name || 'UnknownError';
     return res.status(500).json({
-      error: 'A apărut o eroare. Te rugăm să încerci din nou.',
+      error: `Eroare ${errorType}: ${errorMessage}`,
     });
   }
 }
