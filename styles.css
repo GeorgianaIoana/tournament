@@ -7379,6 +7379,11 @@ html {
     opacity: 0.8;
     margin-top: 2rem;
     font-style: italic;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+    line-height: 1.6;
+    padding: 0 1rem;
 }
 
 @media (max-width: 1024px) {
