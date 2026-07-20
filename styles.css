@@ -7204,6 +7204,27 @@ html {
     background: linear-gradient(135deg, rgba(45, 84, 73, 0.1) 0%, rgba(61, 107, 95, 0.08) 100%);
     border-radius: 24px;
     border: 1px solid rgba(45, 84, 73, 0.2);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.2rem;
+}
+
+.prize-cash {
+    font-weight: 600;
+}
+
+.prize-voucher {
+    font-size: 0.65rem;
+    opacity: 0.85;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.15rem;
+}
+
+.prize-logo {
+    height: 14px;
 }
 
 .podium-bar {
@@ -7349,6 +7370,15 @@ html {
     font-size: 1.125rem;
     font-weight: 500;
     color: var(--color-dark);
+}
+
+.prizes-note {
+    text-align: center;
+    font-size: 1.15rem;
+    color: var(--color-dark);
+    opacity: 0.8;
+    margin-top: 2rem;
+    font-style: italic;
 }
 
 @media (max-width: 1024px) {
