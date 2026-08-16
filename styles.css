@@ -2827,7 +2827,8 @@ em {
         order: 2;
     }
 
-    .venue-carousel-dots {
+    .venue-carousel-dots,
+    .carousel-dots {
         display: none;
     }
 
