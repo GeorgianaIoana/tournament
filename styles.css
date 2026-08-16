@@ -2829,7 +2829,7 @@ em {
 
     .venue-carousel-dots,
     .carousel-dots {
-        display: none;
+        display: none !important;
     }
 
     .venue-carousel-controls .carousel-btn {

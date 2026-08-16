@@ -1478,7 +1478,7 @@
     }
 
     .coverflow-indicators {
-        display: none;
+        display: none !important;
     }
 
     .podium {
