@@ -1508,6 +1508,37 @@
         display: none !important;
     }
 
+    /* Fix video visibility on mobile - disable 3D transforms that cause issues */
+    .coverflow-item[data-type="video"] {
+        backface-visibility: visible;
+        transform-style: flat;
+    }
+
+    .coverflow-item[data-type="video"] video {
+        backface-visibility: visible;
+        transform: none;
+    }
+
+    .coverflow-item[data-type="video"].active {
+        transform: translateZ(0) scale(1);
+    }
+
+    .coverflow-item[data-type="video"].prev-1 {
+        transform: translateX(-120px) scale(0.65);
+    }
+
+    .coverflow-item[data-type="video"].next-1 {
+        transform: translateX(120px) scale(0.65);
+    }
+
+    .coverflow-top .coverflow-item[data-type="video"].prev-1 {
+        transform: translateX(-130px) scale(0.65);
+    }
+
+    .coverflow-top .coverflow-item[data-type="video"].next-1 {
+        transform: translateX(130px) scale(0.65);
+    }
+
     .podium {
         flex-direction: row;
         align-items: flex-end;
@@ -1722,6 +1753,37 @@
     .coverflow-dot {
         width: 6px;
         height: 6px;
+    }
+
+    /* Fix video visibility on small mobile - disable 3D transforms */
+    .coverflow-item[data-type="video"] {
+        backface-visibility: visible;
+        transform-style: flat;
+    }
+
+    .coverflow-item[data-type="video"] video {
+        backface-visibility: visible;
+        transform: none;
+    }
+
+    .coverflow-item[data-type="video"].active {
+        transform: translateZ(0) scale(1);
+    }
+
+    .coverflow-item[data-type="video"].prev-1 {
+        transform: translateX(-115px) scale(0.5);
+    }
+
+    .coverflow-item[data-type="video"].next-1 {
+        transform: translateX(115px) scale(0.5);
+    }
+
+    .coverflow-top .coverflow-item[data-type="video"].prev-1 {
+        transform: translateX(-125px) scale(0.5);
+    }
+
+    .coverflow-top .coverflow-item[data-type="video"].next-1 {
+        transform: translateX(125px) scale(0.5);
     }
 
     .testimonial-card {
