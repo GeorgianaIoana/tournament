@@ -628,12 +628,9 @@
     right: 2rem;
 }
 
-/* Indicators/dots */
+/* Indicators/dots - hidden */
 .coverflow-indicators {
-    display: flex;
-    justify-content: center;
-    gap: 0.5rem;
-    margin-top: 2rem;
+    display: none;
 }
 
 .coverflow-dot {
