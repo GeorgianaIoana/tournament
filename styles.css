@@ -5143,6 +5143,7 @@ a.event-info-link:hover .event-info-text span {
     border-radius: 50%;
     border: 1.5px solid var(--color-gray-300);
     background-color: var(--color-white);
+    color: var(--color-dark);
     cursor: pointer;
     display: flex;
     align-items: center;

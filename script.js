@@ -1,4 +1,30 @@
 
+// Click sound for carousel navigation using Web Audio API
+let carouselAudioContext = null;
+function playCarouselClickSound() {
+    try {
+        if (!carouselAudioContext) {
+            carouselAudioContext = new (window.AudioContext || window.webkitAudioContext)();
+        }
+        const oscillator = carouselAudioContext.createOscillator();
+        const gainNode = carouselAudioContext.createGain();
+
+        oscillator.connect(gainNode);
+        gainNode.connect(carouselAudioContext.destination);
+
+        oscillator.frequency.value = 1200;
+        oscillator.type = 'sine';
+
+        gainNode.gain.setValueAtTime(0.08, carouselAudioContext.currentTime);
+        gainNode.gain.exponentialRampToValueAtTime(0.001, carouselAudioContext.currentTime + 0.08);
+
+        oscillator.start(carouselAudioContext.currentTime);
+        oscillator.stop(carouselAudioContext.currentTime + 0.08);
+    } catch (e) {
+        // Silently fail if audio not supported
+    }
+}
+
 document.addEventListener('DOMContentLoaded', () => {
     initFooter();
 
@@ -408,6 +434,22 @@ function initNavigation() {
     }
 
     handleNavScroll();
+
+    // Click sound for nav CTA buttons
+    const navCta = document.querySelector('.nav-cta');
+    const mobileCta = document.querySelector('.mobile-cta');
+
+    if (navCta) {
+        navCta.addEventListener('click', () => {
+            playCarouselClickSound();
+        });
+    }
+
+    if (mobileCta) {
+        mobileCta.addEventListener('click', () => {
+            playCarouselClickSound();
+        });
+    }
 }
 
 
@@ -924,11 +966,13 @@ function initVenueCarousel() {
     }
 
     prevBtn.addEventListener('click', () => {
+        playCarouselClickSound();
         currentIndex = (currentIndex - 1 + totalSlides) % totalSlides;
         updateCarousel();
     });
 
     nextBtn.addEventListener('click', () => {
+        playCarouselClickSound();
         currentIndex = (currentIndex + 1) % totalSlides;
         updateCarousel();
     });
@@ -945,9 +989,11 @@ function initVenueCarousel() {
         const threshold = 50;
 
         if (diff > threshold) {
+            playCarouselClickSound();
             currentIndex = (currentIndex + 1) % totalSlides;
             updateCarousel();
         } else if (diff < -threshold) {
+            playCarouselClickSound();
             currentIndex = (currentIndex - 1 + totalSlides) % totalSlides;
             updateCarousel();
         }
@@ -1641,11 +1687,17 @@ function initCoverflowCarousel() {
 
         // Navigation button events
         if (prevBtn) {
-            prevBtn.addEventListener('click', prevSlide);
+            prevBtn.addEventListener('click', () => {
+                playCarouselClickSound();
+                prevSlide();
+            });
         }
 
         if (nextBtn) {
-            nextBtn.addEventListener('click', nextSlide);
+            nextBtn.addEventListener('click', () => {
+                playCarouselClickSound();
+                nextSlide();
+            });
         }
 
         // Click on items to navigate or open lightbox
@@ -1656,6 +1708,7 @@ function initCoverflowCarousel() {
                     lightboxCurrentIndex = mediaStartIndex + index;
                     openLightbox();
                 } else {
+                    playCarouselClickSound();
                     goToSlide(index);
                 }
             });
@@ -1692,6 +1745,7 @@ function initCoverflowCarousel() {
             const threshold = 50;
 
             if (Math.abs(diff) > threshold) {
+                playCarouselClickSound();
                 if (diff > 0) {
                     nextSlide();
                 } else {
