@@ -1324,8 +1324,9 @@
     }
 
     .amintiri-hero-bg {
-        background-image: url('images/galerie-7.webp');
+        background-image: url('images/galerie-16.webp');
         background-position: center top;
+        filter: brightness(1.25);
     }
 
     .hero-content-badge {
