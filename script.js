@@ -47,6 +47,25 @@ function initFooter() {
     const placeholder = document.getElementById('footer-placeholder');
     if (!placeholder) return;
 
+    renderFooter(placeholder);
+
+    // Listen for language changes to re-render footer
+    window.addEventListener('i18n:updated', () => {
+        const footer = document.querySelector('.footer');
+        if (footer) {
+            const wrapper = document.createElement('div');
+            wrapper.id = 'footer-placeholder';
+            footer.replaceWith(wrapper);
+            renderFooter(wrapper);
+            // Re-attach cookie settings listener
+            attachCookieSettingsListener();
+        }
+    });
+}
+
+function renderFooter(placeholder) {
+    const t = (key, fallback) => (typeof i18n !== 'undefined' && i18n.t) ? i18n.t(key, fallback) : fallback;
+
     const path = window.location.pathname;
     const page = path.substring(path.lastIndexOf('/') + 1) || 'index.html';
     const legalPages = ['privacy.html', 'cookies.html', 'terms.html'];
@@ -58,8 +77,8 @@ function initFooter() {
                     <a href="tel:0765815641">0765 815 641</a>`;
 
     const thirdNavLink = isLegalPage
-        ? '<a href="contact.html">Contact</a>'
-        : '<a href="contact.html">Înscriere</a>';
+        ? `<a href="contact.html">${t('nav.contact', 'Contact')}</a>`
+        : `<a href="contact.html" data-i18n="footer.register">${t('footer.register', 'Înscriere')}</a>`;
 
     const currentYear = new Date().getFullYear();
 
@@ -77,25 +96,25 @@ function initFooter() {
             </div>
             <div class="footer-grid">
                 <div class="footer-col">
-                    <h4>Contact</h4>
+                    <h4 data-i18n="footer.contact">${t('footer.contact', 'Contact')}</h4>
                     ${contactLinks}
                 </div>
                 <div class="footer-col">
-                    <h4>Locație</h4>
+                    <h4 data-i18n="footer.location">${t('footer.location', 'Locație')}</h4>
                     <a href="https://maps.google.com/?q=Aurrum+Palace+Soseaua+Electronicii+19+Bucuresti" target="_blank" rel="noopener noreferrer">
                         <p>Aurrum Palace</p>
                         <p>Șoseaua Electronicii 19, București</p>
                     </a>
                 </div>
                 <div class="footer-col">
-                    <h4>Linkuri</h4>
-                    <a href="schedule.html">Program</a>
-                    <a href="rules.html">Regulament</a>
-                    <a href="amintiri.html">Amintiri</a>
+                    <h4 data-i18n="footer.links">${t('footer.links', 'Linkuri')}</h4>
+                    <a href="schedule.html" data-i18n="footer.schedule">${t('footer.schedule', 'Program')}</a>
+                    <a href="rules.html" data-i18n="footer.rules">${t('footer.rules', 'Regulament')}</a>
+                    <a href="amintiri.html" data-i18n="footer.memories">${t('footer.memories', 'Amintiri')}</a>
                     ${thirdNavLink}
                 </div>
                 <div class="footer-col">
-                    <h4>Social</h4>
+                    <h4 data-i18n="footer.social">${t('footer.social', 'Social')}</h4>
                     <div class="footer-social">
                         <a href="https://www.instagram.com/thesquare_chess?igsh=MWNwcXdjcW9sNDNvcA==" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
                             ${instagramSVG}
@@ -112,13 +131,13 @@ function initFooter() {
             <div class="footer-bottom">
                 <p>&copy; ${currentYear} THE SQUARE Chess Club</p>
                 <div class="footer-legal">
-                    <a href="privacy.html">Confidențialitate</a>
+                    <a href="privacy.html" data-i18n="footer.privacy">${t('footer.privacy', 'Confidențialitate')}</a>
                     <span>•</span>
-                    <a href="terms.html">Termeni</a>
+                    <a href="terms.html" data-i18n="footer.terms">${t('footer.terms', 'Termeni')}</a>
                     <span>•</span>
-                    <a href="cookies.html">Cookies</a>
+                    <a href="cookies.html" data-i18n="footer.cookies">${t('footer.cookies', 'Cookies')}</a>
                     <span>•</span>
-                    <a href="#" id="cookieSettingsFooter">Setări Cookies</a>
+                    <a href="#" id="cookieSettingsFooter" data-i18n="footer.cookieSettings">${t('footer.cookieSettings', 'Setări Cookies')}</a>
                 </div>
             </div>
         </div>
@@ -170,6 +189,8 @@ function initCookieConsent() {
             existingBanner.remove();
         }
 
+        const t = (key, fallback) => (typeof i18n !== 'undefined' && i18n.t) ? i18n.t(key, fallback) : fallback;
+
         const analyticsChecked = existingConsent ? existingConsent.analytics : false;
         const functionalChecked = existingConsent ? existingConsent.functional : false;
 
@@ -179,15 +200,15 @@ function initCookieConsent() {
                 <div class="cookie-consent-body">
                     <div class="cookie-consent-header">
                         <div class="cookie-consent-icon">♟</div>
-                        <h3>Preferințe Cookies</h3>
+                        <h3 data-i18n="cookie.title">${t('cookie.title', 'Preferințe Cookies')}</h3>
                     </div>
                     <div class="cookie-consent-text">
-                        <p>Folosim cookies pentru a-ți oferi cea mai bună experiență. Alege ce tipuri accepți sau <a href="cookies.html">citește politica noastră</a>.</p>
+                        <p><span data-i18n="cookie.description">${t('cookie.description', 'Folosim cookies pentru a-ți oferi cea mai bună experiență. Alege ce tipuri accepți sau')}</span> <a href="cookies.html" data-i18n="cookie.policyLink">${t('cookie.policyLink', 'citește politica noastră')}</a>.</p>
                     </div>
                     <div class="cookie-consent-actions">
-                        <button class="cookie-btn cookie-btn-accept" id="cookieAcceptAll">Acceptă Toate</button>
-                        <button class="cookie-btn cookie-btn-reject" id="cookieRejectAll">Doar Esențiale</button>
-                        <button class="cookie-btn cookie-btn-manage" id="cookieManage">Personalizare</button>
+                        <button class="cookie-btn cookie-btn-accept" id="cookieAcceptAll" data-i18n="cookie.acceptAll">${t('cookie.acceptAll', 'Acceptă Toate')}</button>
+                        <button class="cookie-btn cookie-btn-reject" id="cookieRejectAll" data-i18n="cookie.rejectAll">${t('cookie.rejectAll', 'Doar Esențiale')}</button>
+                        <button class="cookie-btn cookie-btn-manage" id="cookieManage" data-i18n="cookie.manage">${t('cookie.manage', 'Personalizare')}</button>
                     </div>
                     <div class="cookie-consent-preferences" id="cookiePreferences">
                         <div class="cookie-consent-preferences-inner">
@@ -195,8 +216,8 @@ function initCookieConsent() {
                                 <div class="cookie-pref-details">
                                     <div class="cookie-pref-icon cookie-pref-icon-essential">♜</div>
                                     <div class="cookie-pref-info">
-                                        <h4>Esențiale <span class="cookie-pref-badge">Mereu active</span></h4>
-                                        <p>Necesare pentru funcționarea site-ului.</p>
+                                        <h4><span data-i18n="cookie.essential">${t('cookie.essential', 'Esențiale')}</span> <span class="cookie-pref-badge" data-i18n="cookie.essentialBadge">${t('cookie.essentialBadge', 'Mereu active')}</span></h4>
+                                        <p data-i18n="cookie.essentialDesc">${t('cookie.essentialDesc', 'Necesare pentru funcționarea site-ului.')}</p>
                                     </div>
                                 </div>
                                 <label class="cookie-toggle">
@@ -208,8 +229,8 @@ function initCookieConsent() {
                                 <div class="cookie-pref-details">
                                     <div class="cookie-pref-icon cookie-pref-icon-analytics">♞</div>
                                     <div class="cookie-pref-info">
-                                        <h4>Analitice</h4>
-                                        <p>Ne ajută să înțelegem cum folosești site-ul.</p>
+                                        <h4 data-i18n="cookie.analytics">${t('cookie.analytics', 'Analitice')}</h4>
+                                        <p data-i18n="cookie.analyticsDesc">${t('cookie.analyticsDesc', 'Ne ajută să înțelegem cum folosești site-ul.')}</p>
                                     </div>
                                 </div>
                                 <label class="cookie-toggle">
@@ -221,8 +242,8 @@ function initCookieConsent() {
                                 <div class="cookie-pref-details">
                                     <div class="cookie-pref-icon cookie-pref-icon-functional">♛</div>
                                     <div class="cookie-pref-info">
-                                        <h4>Funcționale</h4>
-                                        <p>Hărți integrate, formulare și altele.</p>
+                                        <h4 data-i18n="cookie.functional">${t('cookie.functional', 'Funcționale')}</h4>
+                                        <p data-i18n="cookie.functionalDesc">${t('cookie.functionalDesc', 'Hărți integrate, formulare și altele.')}</p>
                                     </div>
                                 </div>
                                 <label class="cookie-toggle">
@@ -231,7 +252,7 @@ function initCookieConsent() {
                                 </label>
                             </div>
                             <div class="cookie-pref-actions">
-                                <button class="cookie-btn cookie-btn-accept" id="cookieSavePrefs">Salvează Preferințele</button>
+                                <button class="cookie-btn cookie-btn-accept" id="cookieSavePrefs" data-i18n="cookie.save">${t('cookie.save', 'Salvează Preferințele')}</button>
                             </div>
                         </div>
                     </div>
@@ -286,13 +307,11 @@ function initCookieConsent() {
         });
     }
 
-    const footerLink = document.getElementById('cookieSettingsFooter');
-    if (footerLink) {
-        footerLink.addEventListener('click', (e) => {
-            e.preventDefault();
-            showBanner(getConsent());
-        });
-    }
+    // Store showBanner and getConsent globally for re-use
+    window._cookieConsentShowBanner = showBanner;
+    window._cookieConsentGetConsent = getConsent;
+
+    attachCookieSettingsListener();
 
     const consent = getConsent();
     if (consent) {
@@ -301,6 +320,18 @@ function initCookieConsent() {
     }
 
     showBanner(null);
+}
+
+function attachCookieSettingsListener() {
+    const footerLink = document.getElementById('cookieSettingsFooter');
+    if (footerLink) {
+        footerLink.addEventListener('click', (e) => {
+            e.preventDefault();
+            if (window._cookieConsentShowBanner && window._cookieConsentGetConsent) {
+                window._cookieConsentShowBanner(window._cookieConsentGetConsent());
+            }
+        });
+    }
 }
 
 
