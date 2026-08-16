@@ -2702,6 +2702,13 @@ em {
         height: auto;
         min-height: auto;
         padding: 4rem 0 3rem;
+        backdrop-filter: none;
+        -webkit-backdrop-filter: none;
+        background: linear-gradient(180deg, #f5f6fb 0%, #e6e8f5 50%, #b1bee3 100%);
+    }
+
+    .venue-gallery::after {
+        display: none;
     }
 
     .venue-gallery-sticky {
