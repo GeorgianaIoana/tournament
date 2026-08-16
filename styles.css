@@ -7718,16 +7718,19 @@ html {
 
     .category-special-prizes {
         padding: 0.85rem;
+        text-align: center;
     }
 
     .category-special-prizes h5 {
         font-size: 0.8rem;
         margin-bottom: 0.5rem;
+        justify-content: center;
     }
 
     .category-special-prizes .prize-row {
         flex-wrap: wrap;
         padding: 0.35rem 0.4rem;
+        justify-content: center;
     }
 
     .category-special-prizes .prize-dots {
@@ -7738,6 +7741,7 @@ html {
         font-size: 0.8rem;
         min-width: unset;
         width: 100%;
+        text-align: center;
     }
 
     .category-special-prizes .prize-value {
