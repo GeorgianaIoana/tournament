@@ -7660,6 +7660,16 @@ html {
         max-width: 480px;
         margin: 0 auto;
     }
+
+    .special-prize {
+        flex-direction: column;
+        text-align: center;
+        padding: 1.25rem 1rem;
+    }
+
+    .special-prize-info {
+        align-items: center;
+    }
 }
 
 @media (max-width: 768px) {
