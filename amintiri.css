@@ -1413,14 +1413,16 @@
     /* Coverflow - mobile adjustments */
     .coverflow-carousel {
         padding: 0.5rem 0 1.5rem;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: auto auto;
+        justify-items: center;
     }
 
     .coverflow-track {
         height: 240px;
-        order: 1;
+        grid-column: 1 / -1;
+        grid-row: 1;
     }
 
     .coverflow-item.active {
@@ -1468,7 +1470,7 @@
         transform: none;
         width: 44px;
         height: 44px;
-        order: 2;
+        grid-row: 2;
         margin-top: 1rem;
         background-color: #fff;
         border: 2px solid var(--color-gray-300);
@@ -1489,11 +1491,16 @@
 
     .coverflow-prev {
         left: auto;
-        margin-right: 1rem;
+        grid-column: 1;
+        justify-self: end;
+        margin-right: 0.5rem;
     }
 
     .coverflow-next {
         right: auto;
+        grid-column: 2;
+        justify-self: start;
+        margin-left: 0.5rem;
     }
 
     .coverflow-indicators {
@@ -1704,7 +1711,11 @@
     }
 
     .coverflow-prev {
-        margin-right: 0.75rem;
+        margin-right: 0.4rem;
+    }
+
+    .coverflow-next {
+        margin-left: 0.4rem;
     }
 
     .coverflow-dot {
