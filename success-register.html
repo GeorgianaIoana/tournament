@@ -155,6 +155,93 @@
             width: 18px;
             height: 18px;
         }
+
+        /* Bank transfer details card */
+        .bank-details-card {
+            background: #fff;
+            border: 1px solid rgba(175, 189, 227, 0.4);
+            border-radius: 16px;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            text-align: left;
+            animation: successFadeUp 0.6s ease 0.4s both;
+        }
+
+        .bank-details-card h3 {
+            font-family: var(--font-display);
+            font-size: 1.1rem;
+            color: #203d36;
+            margin: 0 0 1rem;
+            font-weight: 500;
+        }
+
+        .bank-detail-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.75rem 0;
+            border-bottom: 1px solid rgba(175, 189, 227, 0.2);
+        }
+
+        .bank-detail-row:last-child {
+            border-bottom: none;
+        }
+
+        .bank-detail-label {
+            color: #6b7a8a;
+            font-size: 0.9rem;
+        }
+
+        .bank-detail-value {
+            font-weight: 600;
+            color: #203d36;
+            font-family: 'JetBrains Mono', 'Fira Code', monospace;
+            font-size: 0.95rem;
+        }
+
+        .bank-detail-value.amount {
+            font-size: 1.2rem;
+            color: #059669;
+        }
+
+        .reference-highlight {
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+            border: 2px solid #f59e0b;
+            border-radius: 12px;
+            padding: 1rem;
+            margin: 1rem 0;
+            text-align: center;
+        }
+
+        .reference-highlight p {
+            margin: 0 0 0.5rem;
+            color: #92400e;
+            font-size: 0.85rem;
+            font-weight: 500;
+        }
+
+        .reference-code {
+            font-family: 'JetBrains Mono', 'Fira Code', monospace;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #203d36;
+            letter-spacing: 3px;
+            background: #fff;
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            display: inline-block;
+        }
+
+        .bank-warning {
+            background: rgba(245, 158, 11, 0.1);
+            border-left: 3px solid #f59e0b;
+            padding: 1rem;
+            margin-top: 1rem;
+            border-radius: 0 8px 8px 0;
+            font-size: 0.85rem;
+            color: #92400e;
+            text-align: left;
+        }
     </style>
 </head>
 <body>
@@ -174,7 +261,56 @@
                 Te vom contacta în curând cu toate detaliile necesare pentru turneu.
             </p>
 
-            <div class="success-actions">
+            <div id="bankDetailsContainer" style="display: none;">
+                <div class="bank-details-card">
+                    <h3>Detalii pentru transfer bancar</h3>
+                    <div class="bank-detail-row">
+                        <span class="bank-detail-label">IBAN</span>
+                        <span class="bank-detail-value">RO51INGB0000999916814361</span>
+                    </div>
+                    <div class="bank-detail-row">
+                        <span class="bank-detail-label">Beneficiar</span>
+                        <span class="bank-detail-value">ASOCIAȚIA CLUB SPORTIV DE ȘAH "THE SQUARE"</span>
+                    </div>
+                    <div class="bank-detail-row">
+                        <span class="bank-detail-label">Banca</span>
+                        <span class="bank-detail-value">ING BANK NV</span>
+                    </div>
+                    <div class="bank-detail-row">
+                        <span class="bank-detail-label">Descriere transfer</span>
+                        <span class="bank-detail-value">donație taxă concurs</span>
+                    </div>
+                    <div class="bank-detail-row">
+                        <span class="bank-detail-label">Sumă de plată</span>
+                        <span class="bank-detail-value amount" id="bankAmount">0 RON</span>
+                    </div>
+                </div>
+
+                <div class="bank-warning">
+                    <strong>Important:</strong> Rezervarea locului se face după efectuarea plății taxei de participare. Odată ce se finalizează înregistrarea, din motive logistice, plata nu se poate returna. Mulțumim de înțelegere și mult succes la concurs!
+                </div>
+            </div>
+
+            <div class="success-actions" id="bankTransferActions" style="display: none;">
+                <button type="button" class="success-btn success-btn--primary" onclick="confirmPayment()">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polyline points="20 6 9 17 4 12"></polyline>
+                    </svg>
+                    Confirm achitarea taxei de participare
+                </button>
+            </div>
+            <div id="thankYouMessage" style="display: none; text-align: center;">
+                <a href="schedule.html" class="success-btn success-btn--primary">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                        <line x1="16" y1="2" x2="16" y2="6"></line>
+                        <line x1="8" y1="2" x2="8" y2="6"></line>
+                        <line x1="3" y1="10" x2="21" y2="10"></line>
+                    </svg>
+                    Programul rundelor
+                </a>
+            </div>
+            <div class="success-actions" id="defaultActions">
                 <a href="index.html" class="success-btn success-btn--primary">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                         <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
@@ -200,18 +336,66 @@
             const params = new URLSearchParams(window.location.search);
             const isFreeEntry = params.get('free') === '1';
             const hasSessionId = params.has('session_id');
+            const isBankTransfer = params.get('bank') === '1';
+            const bankRef = params.get('ref');
+            const bankAmount = params.get('amount');
 
             const title = document.getElementById('successTitle');
             const message = document.getElementById('successMessage');
+            const bankDetailsContainer = document.getElementById('bankDetailsContainer');
+            const bankTransferActions = document.getElementById('bankTransferActions');
+            const defaultActions = document.getElementById('defaultActions');
 
             if (isFreeEntry) {
                 title.innerHTML = 'Înscriere <em>Confirmată</em>';
-                message.innerHTML = 'Înscrierea ta a fost confirmată cu intrare gratuită!<br>Ne vedem la turneu pe 10-11 Octombrie 2026.';
+                message.innerHTML = 'Înscrierea ta a fost confirmată cu intrare gratuită!<br>Ne vedem la turneu pe 14-15 Noiembrie 2026.';
+            } else if (isBankTransfer && bankAmount) {
+                title.innerHTML = 'Înscriere <em>Înregistrată</em>';
+                message.innerHTML = 'Urmează instrucțiunile de mai jos pentru a finaliza înscrierea.';
+
+                // Show bank details and correct buttons
+                bankDetailsContainer.style.display = 'block';
+                document.getElementById('bankAmount').textContent = bankAmount + ' RON';
+                bankTransferActions.style.display = 'flex';
+                defaultActions.style.display = 'none';
             } else if (hasSessionId) {
                 title.innerHTML = 'Plată <em>Reușită</em>';
                 message.innerHTML = 'Mulțumim pentru plată! Înscrierea ta este confirmată.<br>Vei primi un email de confirmare în curând.';
             }
         })();
+
+        async function confirmPayment() {
+            const params = new URLSearchParams(window.location.search);
+            const registrationId = params.get('id');
+
+            if (!registrationId) {
+                alert('Eroare: ID-ul înregistrării lipsește.');
+                return;
+            }
+
+            try {
+                const response = await fetch('/api/confirm-transfer', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ registrationId })
+                });
+
+                if (!response.ok) {
+                    throw new Error('Failed to confirm');
+                }
+
+                // Hide bank details and show thank you message
+                document.getElementById('bankDetailsContainer').style.display = 'none';
+                document.getElementById('bankTransferActions').style.display = 'none';
+                document.getElementById('thankYouMessage').style.display = 'block';
+                document.getElementById('successTitle').innerHTML = 'Plată <em>Confirmată</em>';
+                document.getElementById('successMessage').innerHTML = 'Mulțumim! Vei primi un mesaj de confirmare pe e-mail.<br>Îți dorim mult succes!';
+            } catch (error) {
+                console.error('Error confirming payment:', error);
+                alert('A apărut o eroare. Te rugăm să încerci din nou.');
+            }
+        }
     </script>
+    <script src="i18n.js?v=1"></script>
 </body>
 </html>

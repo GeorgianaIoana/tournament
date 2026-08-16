@@ -9,7 +9,7 @@
     <meta http-equiv="X-XSS-Protection" content="1; mode=block">
     <meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin">
     <meta http-equiv="Permissions-Policy" content="geolocation=(), microphone=(), camera=()">
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; frame-src https://www.google.com https://maps.google.com; connect-src 'self' https://api.web3forms.com; form-action 'self' https://api.web3forms.com;">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; media-src 'self'; frame-src https://www.google.com https://maps.google.com https://www.youtube.com https://www.youtube-nocookie.com https://player.vimeo.com; connect-src 'self' https://api.web3forms.com; form-action 'self' https://api.web3forms.com;">
     <meta name="format-detection" content="telephone=no">
 
     <meta name="description" content="Amintiri de la edițiile anterioare Open THE SQUARE - galerie foto și momente speciale.">
@@ -32,7 +32,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="amintiri.css">
+    <link rel="stylesheet" href="amintiri.css?v=115">
     <link rel="icon" type="image/svg+xml" href="images/chess-queen.svg">
 </head>
 <body>
@@ -42,15 +42,25 @@
                 <img src="images/logo.webp" alt="THE SQUARE" class="logo-img">
             </a>
             <div class="nav-links">
-                <a href="index.html#about" class="nav-link">Despre</a>
-                <a href="index.html#venue" class="nav-link">Locatie</a>
-                <a href="index.html#events" class="nav-link">Categorii</a>
-                <a href="schedule.html" class="nav-link">Program</a>
-                <a href="rules.html" class="nav-link">Regulament</a>
-                <a href="amintiri.html" class="nav-link active">Amintiri</a>
-                <a href="contact.html" class="nav-link">Contact</a>
+                <a href="index.html#about" class="nav-link" data-i18n="nav.about">Despre</a>
+                <a href="index.html#venue" class="nav-link" data-i18n="nav.venue">Locație</a>
+                <a href="index.html#events" class="nav-link" data-i18n="nav.categories">Categorii</a>
+                <a href="schedule.html" class="nav-link" data-i18n="nav.schedule">Program</a>
+                <a href="rules.html" class="nav-link" data-i18n="nav.rules">Regulament</a>
+                <a href="amintiri.html" class="nav-link active" data-i18n="nav.memories">Amintiri</a>
+                <a href="contact.html" class="nav-link" data-i18n="nav.contact">Contact</a>
             </div>
-            <a href="index.html#register" class="nav-cta">Inscrie-te</a>
+            <div class="lang-dropdown">
+                <button class="lang-toggle" id="langToggle">
+                    <span class="lang-current">RO</span>
+                    <svg class="lang-arrow" viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                </button>
+                <div class="lang-menu" id="langMenu">
+                    <button class="lang-option active" data-lang="ro">Română</button>
+                    <button class="lang-option" data-lang="en">English</button>
+                </div>
+            </div>
+            <a href="index.html#register" class="nav-cta" data-i18n="nav.register">Înscrie-te</a>
             <button class="nav-toggle" id="navToggle">
                 <span></span>
                 <span></span>
@@ -64,122 +74,454 @@
             <a href="index.html" class="mobile-logo">
                 <img src="images/logo-footer.webp" alt="THE SQUARE" class="mobile-logo-img">
             </a>
-            <a href="index.html#about" class="mobile-link">Despre</a>
-            <a href="index.html#venue" class="mobile-link">Locatie</a>
-            <a href="index.html#events" class="mobile-link">Categorii</a>
-            <a href="schedule.html" class="mobile-link">Program</a>
-            <a href="rules.html" class="mobile-link">Regulament</a>
-            <a href="amintiri.html" class="mobile-link active">Amintiri</a>
-            <a href="contact.html" class="mobile-link">Contact</a>
-            <a href="index.html#register" class="mobile-cta">Inscrie-te</a>
+            <a href="index.html#about" class="mobile-link" data-i18n="nav.about">Despre</a>
+            <a href="index.html#venue" class="mobile-link" data-i18n="nav.venue">Locație</a>
+            <a href="index.html#events" class="mobile-link" data-i18n="nav.categories">Categorii</a>
+            <a href="schedule.html" class="mobile-link" data-i18n="nav.schedule">Program</a>
+            <a href="rules.html" class="mobile-link" data-i18n="nav.rules">Regulament</a>
+            <a href="amintiri.html" class="mobile-link active" data-i18n="nav.memories">Amintiri</a>
+            <a href="contact.html" class="mobile-link" data-i18n="nav.contact">Contact</a>
+            <a href="index.html#register" class="mobile-cta" data-i18n="nav.register">Înscrie-te</a>
+            <div class="mobile-language-switcher">
+                <button class="lang-btn active" data-lang="ro">RO</button>
+                <span class="lang-separator">|</span>
+                <button class="lang-btn" data-lang="en">EN</button>
+            </div>
         </div>
     </div>
 
-    <section class="page-hero amintiri-hero">
+    <!-- 1. HERO SECTION -->
+    <section class="amintiri-hero">
+        <div class="amintiri-hero-bg"></div>
         <div class="container">
-            <span class="section-tag reveal-up"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="16" height="16"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>Galerie</span>
-            <h1 class="page-hero-title reveal-up" style="--delay: 0.1s">Amintiri <em>THE SQUARE</em></h1>
-            <p class="page-hero-subtitle reveal-up" style="--delay: 0.2s">
-                Momente speciale de la editiile anterioare ale turneului nostru de sah.
-            </p>
-        </div>
+                    </div>
     </section>
 
-    <section class="amintiri-content">
+    <!-- 2.5 GALERIE TOP - Coverflow Carousel -->
+    <section class="amintiri-gallery-top">
         <div class="container">
-            <article class="amintiri-edition" id="2025">
-                <div class="edition-header reveal-up">
-                    <div class="edition-year">2025</div>
-                    <div class="edition-info">
-                        <h2>Open THE SQUARE <em>2025</em></h2>
-                        <p class="edition-date">Prima editie a turneului</p>
-                    </div>
-                </div>
-
-                <div class="amintiri-gallery reveal-up" style="--delay: 0.1s">
-                    <div class="gallery-item gallery-item-large">
-                        <div class="gallery-placeholder">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                                <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
-                                <circle cx="8.5" cy="8.5" r="1.5"/>
-                                <polyline points="21 15 16 10 5 21"/>
-                            </svg>
-                            <span>Fotografie turneu</span>
-                        </div>
-                    </div>
-                    <div class="gallery-item">
-                        <div class="gallery-placeholder">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                                <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
-                                <circle cx="8.5" cy="8.5" r="1.5"/>
-                                <polyline points="21 15 16 10 5 21"/>
-                            </svg>
-                            <span>Fotografie turneu</span>
-                        </div>
-                    </div>
-                    <div class="gallery-item">
-                        <div class="gallery-placeholder">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                                <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
-                                <circle cx="8.5" cy="8.5" r="1.5"/>
-                                <polyline points="21 15 16 10 5 21"/>
-                            </svg>
-                            <span>Fotografie turneu</span>
-                        </div>
-                    </div>
-                    <div class="gallery-item">
-                        <div class="gallery-placeholder">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                                <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
-                                <circle cx="8.5" cy="8.5" r="1.5"/>
-                                <polyline points="21 15 16 10 5 21"/>
-                            </svg>
-                            <span>Fotografie turneu</span>
-                        </div>
-                    </div>
-                    <div class="gallery-item">
-                        <div class="gallery-placeholder">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                                <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
-                                <circle cx="8.5" cy="8.5" r="1.5"/>
-                                <polyline points="21 15 16 10 5 21"/>
-                            </svg>
-                            <span>Fotografie turneu</span>
-                        </div>
-                    </div>
-                    <div class="gallery-item">
-                        <div class="gallery-placeholder">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                                <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
-                                <circle cx="8.5" cy="8.5" r="1.5"/>
-                                <polyline points="21 15 16 10 5 21"/>
-                            </svg>
-                            <span>Fotografie turneu</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="edition-description reveal-up" style="--delay: 0.2s">
-                    <p>Fotografiile de la editia 2025 vor fi adaugate in curand. Revino pentru a descoperi momentele speciale de la primul nostru turneu!</p>
-                </div>
-            </article>
-        </div>
-    </section>
-
-    <section class="amintiri-cta">
-        <div class="container">
-            <div class="cta-content reveal-up">
-                <h2>Vrei sa fii parte din <em>urmatoarea editie</em>?</h2>
-                <p>Inscrie-te la Open THE SQUARE 2026 si creaza-ti propriile amintiri!</p>
-                <a href="index.html#register" class="btn btn-primary">
-                    <span>Inscrie-te acum</span>
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M5 12h14M12 5l7 7-7 7"/>
+            <div class="section-header reveal-up">
+                <span class="section-tag">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16">
+                        <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
+                        <circle cx="8.5" cy="8.5" r="1.5"/>
+                        <polyline points="21 15 16 10 5 21"/>
                     </svg>
-                </a>
+                    <span data-i18n="memories.galleryTag">Galerie</span>
+                </span>
+                <h2 data-i18n="memories.galleryTitle">Galerie foto</h2>
+                <p data-i18n="memories.galleryDesc">Momente surprinse din turneu</p>
+            </div>
+            <div class="coverflow-carousel coverflow-top reveal-up" style="--delay: 0.1s" id="coverflowTop">
+                <button class="coverflow-nav coverflow-prev" aria-label="Imaginea anterioară">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polyline points="15 18 9 12 15 6"/>
+                    </svg>
+                </button>
+                <div class="coverflow-track">
+                    <div class="coverflow-item" data-index="0" data-type="image">
+                        <img src="images/galerie-6.webp" alt="Partide multiple în desfășurare" loading="lazy">
+                    </div>
+                    <div class="coverflow-item" data-index="1" data-type="image">
+                        <img src="images/amintiri-1.webp" alt="Bufet cu dulciuri și sucuri" loading="lazy">
+                    </div>
+                    <div class="coverflow-item" data-index="2" data-type="image">
+                        <img src="images/amintiri-2.webp" alt="Câștigători cu trofee" loading="lazy">
+                    </div>
+                    <div class="coverflow-item" data-index="3" data-type="image">
+                        <img src="images/amintiri-3.webp" alt="Fată cu diplomă" loading="lazy">
+                    </div>
+                    <div class="coverflow-item" data-index="4" data-type="image">
+                        <img src="images/amintiri-4.webp" alt="Sala turneu - vedere generală" loading="lazy">
+                    </div>
+                    <div class="coverflow-item" data-index="5" data-type="image">
+                        <img src="images/amintiri-5.webp" alt="Medalie THE SQUARE" loading="lazy">
+                    </div>
+                    <div class="coverflow-item" data-index="6" data-type="image">
+                        <img src="images/amintiri-6.webp" alt="Jucătorcu ochelari de soare" loading="lazy">
+                    </div>
+                    <div class="coverflow-item" data-index="7" data-type="image">
+                        <img src="images/amintiri-7.webp" alt="Copil concentrat la șah" loading="lazy">
+                    </div>
+                    <div class="coverflow-item zoom-out" data-index="8" data-type="image">
+                        <img src="images/amintiri-8.webp" alt="Trofee podium" loading="lazy">
+                    </div>
+                    <div class="coverflow-item" data-index="9" data-type="image">
+                        <img src="images/amintiri-9.webp" alt="Sala turneu - partide" loading="lazy" style="filter: brightness(1.5);">
+                    </div>
+                    <div class="coverflow-item" data-index="10" data-type="image">
+                        <img src="images/amintiri-10.webp" alt="Jucătorgânditor" loading="lazy">
+                    </div>
+                    <div class="coverflow-item" data-index="11" data-type="image">
+                        <img src="images/amintiri-11.webp" alt="Piese șah detaliu" loading="lazy">
+                    </div>
+                    <div class="coverflow-item" data-index="12" data-type="image">
+                        <img src="images/amintiri-12.webp" alt="Sucuri Raw Juice" loading="lazy">
+                    </div>
+                    <div class="coverflow-item" data-index="13" data-type="image">
+                        <img src="images/amintiri-13.webp" alt="Bufet dulciuri" loading="lazy">
+                    </div>
+                    <div class="coverflow-item" data-index="14" data-type="image">
+                        <img src="images/galerie-1.webp" alt="Sala turneu - panorama" loading="lazy">
+                    </div>
+                    <div class="coverflow-item" data-index="15" data-type="image">
+                        <img src="images/galerie-3.webp" alt="Partidă intensă între juniori" loading="lazy">
+                    </div>
+                    <div class="coverflow-item" data-index="16" data-type="image">
+                        <img src="images/galerie-4.webp" alt="Jucătorconcentrat" loading="lazy">
+                    </div>
+                    <div class="coverflow-item" data-index="17" data-type="image">
+                        <img src="images/galerie-5.webp" alt="Partidă între juniori" loading="lazy">
+                    </div>
+                    <div class="coverflow-item" data-index="18" data-type="image">
+                        <img src="images/galerie-7.webp" alt="Jucătortânăr concentrat" loading="lazy">
+                    </div>
+                    <div class="coverflow-item" data-index="19" data-type="image">
+                        <img src="images/galerie-8.webp" alt="Față jucător la turneu" loading="lazy">
+                    </div>
+                    <div class="coverflow-item" data-index="20" data-type="image">
+                        <img src="images/galerie-9.webp" alt="Arbitru cu clipboard" loading="lazy">
+                    </div>
+                    <div class="coverflow-item" data-index="21" data-type="image">
+                        <img src="images/galerie-10.webp" alt="Jucătorgânditor" loading="lazy">
+                    </div>
+                    <div class="coverflow-item" data-index="22" data-type="image">
+                        <img src="images/galerie-11.webp" alt="Jucătorconcentrat" loading="lazy">
+                    </div>
+                    <div class="coverflow-item" data-index="23" data-type="image">
+                        <img src="images/galerie-12.webp" alt="Unghi tablă de șah" loading="lazy">
+                    </div>
+                    <div class="coverflow-item" data-index="24" data-type="image">
+                        <img src="images/galerie-13.webp" alt="Ceas de șah" loading="lazy">
+                    </div>
+                    <div class="coverflow-item" data-index="25" data-type="image">
+                        <img src="images/galerie-14.webp" alt="Organizator turneu șah" loading="lazy">
+                    </div>
+                    <div class="coverflow-item" data-index="26" data-type="image">
+                        <img src="images/galerie-15.webp" alt="Organizator turneu șah" loading="lazy">
+                    </div>
+                    <div class="coverflow-item" data-index="27" data-type="image">
+                        <img src="images/galerie-16.webp" alt="Partide de sah în desfășurare" loading="lazy">
+                    </div>
+                    <div class="coverflow-item" data-index="28" data-type="image">
+                        <img src="images/galerie-17.webp" alt="Jucătoare concentrată" loading="lazy">
+                    </div>
+                    <div class="coverflow-item" data-index="29" data-type="video">
+                        <video poster="images/video-thumb-5.webp" preload="metadata" muted playsinline loop aria-label="Turneu șah 2025 - Video">
+                            <source src="videos/amintiri-video-5.mp4" type="video/mp4">
+                        </video>
+                        <div class="coverflow-play-overlay">
+                            <svg viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21"/></svg>
+                        </div>
+                    </div>
+                    <div class="coverflow-item" data-index="30" data-type="video">
+                        <video poster="images/video-thumb-1.webp" preload="metadata" muted playsinline loop aria-label="Turneu șah 2025 - Video highlights">
+                            <source src="videos/amintiri-video-1.mp4" type="video/mp4">
+                        </video>
+                        <div class="coverflow-play-overlay">
+                            <svg viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21"/></svg>
+                        </div>
+                    </div>
+                    <div class="coverflow-item" data-index="31" data-type="video">
+                        <video poster="images/video-thumb-2.webp" preload="metadata" muted playsinline loop aria-label="Turneu șah 2025 - Video">
+                            <source src="videos/amintiri-video-2.mp4" type="video/mp4">
+                        </video>
+                        <div class="coverflow-play-overlay">
+                            <svg viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21"/></svg>
+                        </div>
+                    </div>
+                    <div class="coverflow-item" data-index="32" data-type="video">
+                        <video poster="images/video-thumb-3.webp" preload="metadata" muted playsinline loop aria-label="Turneu șah 2025 - Video">
+                            <source src="videos/amintiri-video-3.mp4" type="video/mp4">
+                        </video>
+                        <div class="coverflow-play-overlay">
+                            <svg viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21"/></svg>
+                        </div>
+                    </div>
+                    <div class="coverflow-item" data-index="33" data-type="video">
+                        <video poster="images/video-thumb-4.webp" preload="metadata" muted playsinline loop aria-label="Turneu șah 2025 - Video">
+                            <source src="videos/amintiri-video-4.mp4" type="video/mp4">
+                        </video>
+                        <div class="coverflow-play-overlay">
+                            <svg viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21"/></svg>
+                        </div>
+                    </div>
+                </div>
+                <button class="coverflow-nav coverflow-next" aria-label="Imaginea următoare">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polyline points="9 18 15 12 9 6"/>
+                    </svg>
+                </button>
+                <div class="coverflow-indicators"></div>
             </div>
         </div>
     </section>
+
+    <!-- PARTICIPANTI - Lista de Start -->
+    <section class="amintiri-participants">
+        <div class="container">
+            <div class="section-header reveal-up">
+                <span class="section-tag">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16">
+                        <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+                        <circle cx="9" cy="7" r="4"/>
+                        <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+                        <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+                    </svg>
+                    <span data-i18n="memories.participantsTag">Participanți</span>
+                </span>
+                <h2 data-i18n="memories.participantsTitle">Lista de start</h2>
+                <p data-i18n="memories.participantsDesc">Jucătorii înscriși la Open THE SQUARE 2025</p>
+            </div>
+            <div class="rankings-grid reveal-up" style="--delay: 0.1s">
+                <!-- Card Rapid -->
+                <div class="ranking-card">
+                    <div class="ranking-header">
+                        <h3 data-i18n="memories.rapid">Rapid</h3>
+                        <span class="participant-count" data-i18n="memories.rapidPlayers">63 jucători</span>
+                    </div>
+                    <div class="ranking-table-wrapper">
+                        <table class="ranking-table">
+                            <thead>
+                                <tr>
+                                    <th></th>
+                                    <th>Nr</th>
+                                    <th>Nume</th>
+                                    <th>ELO</th>
+                                    <th>Club</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr><td><svg class="flag-ro" viewBox="0 0 30 20" width="20" height="14"><rect x="0" width="10" height="20" fill="#002B7F"/><rect x="10" width="10" height="20" fill="#FCD116"/><rect x="20" width="10" height="20" fill="#CE1126"/></svg></td><td>1</td><td>GM Jianu, Vlad-Cristian</td><td>2460</td><td>CSU ASE Bucuresti</td></tr>
+                                <tr><td><svg class="flag-ro" viewBox="0 0 30 20" width="20" height="14"><rect x="0" width="10" height="20" fill="#002B7F"/><rect x="10" width="10" height="20" fill="#FCD116"/><rect x="20" width="10" height="20" fill="#CE1126"/></svg></td><td>2</td><td>IM Ghimpu, Samuel-Timotei</td><td>2412</td><td>CSU ASE Bucuresti</td></tr>
+                                <tr><td><svg class="flag-ro" viewBox="0 0 30 20" width="20" height="14"><rect x="0" width="10" height="20" fill="#002B7F"/><rect x="10" width="10" height="20" fill="#FCD116"/><rect x="20" width="10" height="20" fill="#CE1126"/></svg></td><td>3</td><td>FM Craciun, Sasha-Matei</td><td>2288</td><td>CS Otopeni</td></tr>
+                                <tr><td><svg class="flag-ro" viewBox="0 0 30 20" width="20" height="14"><rect x="0" width="10" height="20" fill="#002B7F"/><rect x="10" width="10" height="20" fill="#FCD116"/><rect x="20" width="10" height="20" fill="#CE1126"/></svg></td><td>4</td><td>CM Prelipcean, Eric-Matei</td><td>2253</td><td>CS Universitar de Sah Bucuresti</td></tr>
+                                <tr><td><svg class="flag-ro" viewBox="0 0 30 20" width="20" height="14"><rect x="0" width="10" height="20" fill="#002B7F"/><rect x="10" width="10" height="20" fill="#FCD116"/><rect x="20" width="10" height="20" fill="#CE1126"/></svg></td><td>5</td><td>Zlate-Ion, Matei</td><td>2099</td><td>Clubul Central de Sah Bucuresti</td></tr>
+                                <tr><td><svg class="flag-ro" viewBox="0 0 30 20" width="20" height="14"><rect x="0" width="10" height="20" fill="#002B7F"/><rect x="10" width="10" height="20" fill="#FCD116"/><rect x="20" width="10" height="20" fill="#CE1126"/></svg></td><td>6</td><td>Gulie, Cosmin</td><td>2067</td><td>ACS The Square</td></tr>
+                                <tr><td><svg class="flag-ro" viewBox="0 0 30 20" width="20" height="14"><rect x="0" width="10" height="20" fill="#002B7F"/><rect x="10" width="10" height="20" fill="#FCD116"/><rect x="20" width="10" height="20" fill="#CE1126"/></svg></td><td>7</td><td>Ignat, Matei-Marius</td><td>2061</td><td>CS Spartac Bucuresti</td></tr>
+                                <tr><td><svg class="flag-ro" viewBox="0 0 30 20" width="20" height="14"><rect x="0" width="10" height="20" fill="#002B7F"/><rect x="10" width="10" height="20" fill="#FCD116"/><rect x="20" width="10" height="20" fill="#CE1126"/></svg></td><td>8</td><td>Tudoroiu, Razvan-Catalin</td><td>1979</td><td>CSM Galati</td></tr>
+                                <tr><td><svg class="flag-ro" viewBox="0 0 30 20" width="20" height="14"><rect x="0" width="10" height="20" fill="#002B7F"/><rect x="10" width="10" height="20" fill="#FCD116"/><rect x="20" width="10" height="20" fill="#CE1126"/></svg></td><td>9</td><td>Tariceanu, Victor</td><td>1896</td><td>CSM Bucuresti</td></tr>
+                                <tr><td><svg class="flag-ro" viewBox="0 0 30 20" width="20" height="14"><rect x="0" width="10" height="20" fill="#002B7F"/><rect x="10" width="10" height="20" fill="#FCD116"/><rect x="20" width="10" height="20" fill="#CE1126"/></svg></td><td>10</td><td>Heckman, Alexandru-Stefan</td><td>1894</td><td>ACS The Square</td></tr>
+                                <tr><td><svg class="flag-ro" viewBox="0 0 30 20" width="20" height="14"><rect x="0" width="10" height="20" fill="#002B7F"/><rect x="10" width="10" height="20" fill="#FCD116"/><rect x="20" width="10" height="20" fill="#CE1126"/></svg></td><td>11</td><td>Vasiloi, Leonard</td><td>1885</td><td>ACS M.M. Mihail Marin Bucuresti</td></tr>
+                                <tr><td><svg class="flag-ro" viewBox="0 0 30 20" width="20" height="14"><rect x="0" width="10" height="20" fill="#002B7F"/><rect x="10" width="10" height="20" fill="#FCD116"/><rect x="20" width="10" height="20" fill="#CE1126"/></svg></td><td>12</td><td>Popa, Gabriel</td><td>1873</td><td>Clubul de Sah Diana Galati</td></tr>
+                                <tr><td><svg class="flag-ro" viewBox="0 0 30 20" width="20" height="14"><rect x="0" width="10" height="20" fill="#002B7F"/><rect x="10" width="10" height="20" fill="#FCD116"/><rect x="20" width="10" height="20" fill="#CE1126"/></svg></td><td>13</td><td>Grigore, Radu-Andrei</td><td>1828</td><td>CS Alcor Bucuresti</td></tr>
+                                <tr><td><svg class="flag-ro" viewBox="0 0 30 20" width="20" height="14"><rect x="0" width="10" height="20" fill="#002B7F"/><rect x="10" width="10" height="20" fill="#FCD116"/><rect x="20" width="10" height="20" fill="#CE1126"/></svg></td><td>14</td><td>Ferariu, Liviu-Andrei</td><td>1808</td><td>CS Universitar de Sah Bucuresti</td></tr>
+                                <tr><td><svg class="flag-ro" viewBox="0 0 30 20" width="20" height="14"><rect x="0" width="10" height="20" fill="#002B7F"/><rect x="10" width="10" height="20" fill="#FCD116"/><rect x="20" width="10" height="20" fill="#CE1126"/></svg></td><td>15</td><td>Preda, Laurentiu</td><td>1765</td><td>CS Universitar de Sah Bucuresti</td></tr>
+                                <tr><td><svg class="flag-ro" viewBox="0 0 30 20" width="20" height="14"><rect x="0" width="10" height="20" fill="#002B7F"/><rect x="10" width="10" height="20" fill="#FCD116"/><rect x="20" width="10" height="20" fill="#CE1126"/></svg></td><td>16</td><td>Bosinceanu, Iosif</td><td>1732</td><td>CS Alcor Bucuresti</td></tr>
+                                <tr><td><svg class="flag-ro" viewBox="0 0 30 20" width="20" height="14"><rect x="0" width="10" height="20" fill="#002B7F"/><rect x="10" width="10" height="20" fill="#FCD116"/><rect x="20" width="10" height="20" fill="#CE1126"/></svg></td><td>17</td><td>Mironescu, Stefan</td><td>1725</td><td>CS Universitar de Sah Bucuresti</td></tr>
+                                <tr><td><svg class="flag-ro" viewBox="0 0 30 20" width="20" height="14"><rect x="0" width="10" height="20" fill="#002B7F"/><rect x="10" width="10" height="20" fill="#FCD116"/><rect x="20" width="10" height="20" fill="#CE1126"/></svg></td><td>18</td><td>Bratu, Ioan-Valentin</td><td>1720</td><td>ACS Pheonix Buzau</td></tr>
+                                <tr><td><svg class="flag-ro" viewBox="0 0 30 20" width="20" height="14"><rect x="0" width="10" height="20" fill="#002B7F"/><rect x="10" width="10" height="20" fill="#FCD116"/><rect x="20" width="10" height="20" fill="#CE1126"/></svg></td><td>19</td><td>Alecu, Daniel</td><td>1715</td><td>ACS M.M. Mihail Marin Bucuresti</td></tr>
+                                <tr><td><svg class="flag-ro" viewBox="0 0 30 20" width="20" height="14"><rect x="0" width="10" height="20" fill="#002B7F"/><rect x="10" width="10" height="20" fill="#FCD116"/><rect x="20" width="10" height="20" fill="#CE1126"/></svg></td><td>20</td><td>Constantin-Ciuntu, Anne-Sophie</td><td>1711</td><td>ACS Oxygen</td></tr>
+                                <tr><td><svg class="flag-ro" viewBox="0 0 30 20" width="20" height="14"><rect x="0" width="10" height="20" fill="#002B7F"/><rect x="10" width="10" height="20" fill="#FCD116"/><rect x="20" width="10" height="20" fill="#CE1126"/></svg></td><td>21</td><td>Robescu, Andrei-Georgian</td><td>1699</td><td>ACS Elidor Bucuresti</td></tr>
+                                <tr><td><svg class="flag-ro" viewBox="0 0 30 20" width="20" height="14"><rect x="0" width="10" height="20" fill="#002B7F"/><rect x="10" width="10" height="20" fill="#FCD116"/><rect x="20" width="10" height="20" fill="#CE1126"/></svg></td><td>22</td><td>Patrascu, Maria</td><td>1687</td><td>ACS The Square</td></tr>
+                                <tr><td><svg class="flag-ro" viewBox="0 0 30 20" width="20" height="14"><rect x="0" width="10" height="20" fill="#002B7F"/><rect x="10" width="10" height="20" fill="#FCD116"/><rect x="20" width="10" height="20" fill="#CE1126"/></svg></td><td>23</td><td>Apostoaiei, Tudor-Andrei</td><td>1663</td><td>ACS Elidor Bucuresti</td></tr>
+                                <tr><td><svg class="flag-ro" viewBox="0 0 30 20" width="20" height="14"><rect x="0" width="10" height="20" fill="#002B7F"/><rect x="10" width="10" height="20" fill="#FCD116"/><rect x="20" width="10" height="20" fill="#CE1126"/></svg></td><td>24</td><td>Popa-Bochis, Anisia-Teodora</td><td>1654</td><td>ACS Chess Masters</td></tr>
+                                <tr><td><svg class="flag-ro" viewBox="0 0 30 20" width="20" height="14"><rect x="0" width="10" height="20" fill="#002B7F"/><rect x="10" width="10" height="20" fill="#FCD116"/><rect x="20" width="10" height="20" fill="#CE1126"/></svg></td><td>25</td><td>Alexa, Sebastian-Ioan</td><td>1635</td><td>CSM Bucuresti</td></tr>
+                                <tr><td>🇫🇷</td><td>26</td><td>Denis, Alexandra</td><td>1634</td><td>—</td></tr>
+                                <tr><td><svg class="flag-ro" viewBox="0 0 30 20" width="20" height="14"><rect x="0" width="10" height="20" fill="#002B7F"/><rect x="10" width="10" height="20" fill="#FCD116"/><rect x="20" width="10" height="20" fill="#CE1126"/></svg></td><td>27</td><td>Raducanu, Ovidiu-Mihai</td><td>1630</td><td>ACS The Square</td></tr>
+                                <tr><td><svg class="flag-ro" viewBox="0 0 30 20" width="20" height="14"><rect x="0" width="10" height="20" fill="#002B7F"/><rect x="10" width="10" height="20" fill="#FCD116"/><rect x="20" width="10" height="20" fill="#CE1126"/></svg></td><td>28</td><td>Bumbaru, Viorel</td><td>1626</td><td>ACS Oxygen</td></tr>
+                                <tr><td><svg class="flag-ro" viewBox="0 0 30 20" width="20" height="14"><rect x="0" width="10" height="20" fill="#002B7F"/><rect x="10" width="10" height="20" fill="#FCD116"/><rect x="20" width="10" height="20" fill="#CE1126"/></svg></td><td>29</td><td>Militaru, Andreea-Elena</td><td>1608</td><td>CSM Bucuresti</td></tr>
+                                <tr><td><svg class="flag-ro" viewBox="0 0 30 20" width="20" height="14"><rect x="0" width="10" height="20" fill="#002B7F"/><rect x="10" width="10" height="20" fill="#FCD116"/><rect x="20" width="10" height="20" fill="#CE1126"/></svg></td><td>30</td><td>Ghita, Mihai I.</td><td>1591</td><td>ASC Oraselul Copiilor Bucuresti</td></tr>
+                                <tr><td><svg class="flag-ro" viewBox="0 0 30 20" width="20" height="14"><rect x="0" width="10" height="20" fill="#002B7F"/><rect x="10" width="10" height="20" fill="#FCD116"/><rect x="20" width="10" height="20" fill="#CE1126"/></svg></td><td>31</td><td>Craciun, Dorian-Raul</td><td>1589</td><td>ACS The Square</td></tr>
+                                <tr><td><svg class="flag-ro" viewBox="0 0 30 20" width="20" height="14"><rect x="0" width="10" height="20" fill="#002B7F"/><rect x="10" width="10" height="20" fill="#FCD116"/><rect x="20" width="10" height="20" fill="#CE1126"/></svg></td><td>32</td><td>Tudor, Remus-Ion</td><td>1573</td><td>ACS Metropolitan Chess Academy</td></tr>
+                                <tr><td><svg class="flag-ro" viewBox="0 0 30 20" width="20" height="14"><rect x="0" width="10" height="20" fill="#002B7F"/><rect x="10" width="10" height="20" fill="#FCD116"/><rect x="20" width="10" height="20" fill="#CE1126"/></svg></td><td>33</td><td>Predescu, Ioan-Tudor</td><td>1566</td><td>ASC Daco-Getica Bucuresti</td></tr>
+                                <tr><td><svg class="flag-ro" viewBox="0 0 30 20" width="20" height="14"><rect x="0" width="10" height="20" fill="#002B7F"/><rect x="10" width="10" height="20" fill="#FCD116"/><rect x="20" width="10" height="20" fill="#CE1126"/></svg></td><td>34</td><td>Teslarasu, Pavel-Bogdan</td><td>1541</td><td>ACS The Square</td></tr>
+                                <tr><td><svg class="flag-ro" viewBox="0 0 30 20" width="20" height="14"><rect x="0" width="10" height="20" fill="#002B7F"/><rect x="10" width="10" height="20" fill="#FCD116"/><rect x="20" width="10" height="20" fill="#CE1126"/></svg></td><td>35</td><td>Hamdan, Mustafa</td><td>1514</td><td>ACS The Square</td></tr>
+                                <tr><td><svg class="flag-ro" viewBox="0 0 30 20" width="20" height="14"><rect x="0" width="10" height="20" fill="#002B7F"/><rect x="10" width="10" height="20" fill="#FCD116"/><rect x="20" width="10" height="20" fill="#CE1126"/></svg></td><td>36</td><td>Florescu, Dana-Maria</td><td>1501</td><td>CS Micul Print Braila</td></tr>
+                                <tr><td><svg class="flag-ro" viewBox="0 0 30 20" width="20" height="14"><rect x="0" width="10" height="20" fill="#002B7F"/><rect x="10" width="10" height="20" fill="#FCD116"/><rect x="20" width="10" height="20" fill="#CE1126"/></svg></td><td>37</td><td>Grigore, Miruna-Ioana</td><td>1458</td><td>CS Universitar de Sah Bucuresti</td></tr>
+                                <tr><td><svg class="flag-ro" viewBox="0 0 30 20" width="20" height="14"><rect x="0" width="10" height="20" fill="#002B7F"/><rect x="10" width="10" height="20" fill="#FCD116"/><rect x="20" width="10" height="20" fill="#CE1126"/></svg></td><td>38</td><td>Tuduruta, Ovidiu</td><td>1453</td><td>ACS The Square</td></tr>
+                                <tr><td><svg class="flag-ro" viewBox="0 0 30 20" width="20" height="14"><rect x="0" width="10" height="20" fill="#002B7F"/><rect x="10" width="10" height="20" fill="#FCD116"/><rect x="20" width="10" height="20" fill="#CE1126"/></svg></td><td>39</td><td>Enuca, Radu-Liviu</td><td>1419</td><td>ACS M.M. Mihail Marin Bucuresti</td></tr>
+                                <tr><td><svg class="flag-ro" viewBox="0 0 30 20" width="20" height="14"><rect x="0" width="10" height="20" fill="#002B7F"/><rect x="10" width="10" height="20" fill="#FCD116"/><rect x="20" width="10" height="20" fill="#CE1126"/></svg></td><td>40</td><td>Grigore, Stefan-Petru</td><td>1405</td><td>ACS The Square</td></tr>
+                                <tr><td><svg class="flag-ro" viewBox="0 0 30 20" width="20" height="14"><rect x="0" width="10" height="20" fill="#002B7F"/><rect x="10" width="10" height="20" fill="#FCD116"/><rect x="20" width="10" height="20" fill="#CE1126"/></svg></td><td>41</td><td>Stefan, Carol-Bogdan</td><td>1403</td><td>CS Universitar de Sah Bucuresti</td></tr>
+                                <tr><td><svg class="flag-ro" viewBox="0 0 30 20" width="20" height="14"><rect x="0" width="10" height="20" fill="#002B7F"/><rect x="10" width="10" height="20" fill="#FCD116"/><rect x="20" width="10" height="20" fill="#CE1126"/></svg></td><td>42</td><td>Musat, Roman-Constantin</td><td>1412</td><td>ACS The Square</td></tr>
+                                <tr><td><svg class="flag-ro" viewBox="0 0 30 20" width="20" height="14"><rect x="0" width="10" height="20" fill="#002B7F"/><rect x="10" width="10" height="20" fill="#FCD116"/><rect x="20" width="10" height="20" fill="#CE1126"/></svg></td><td>43</td><td>Gheorghe, Ana-Sofia</td><td>1403</td><td>CS Universitar de Sah Bucuresti</td></tr>
+                                <tr><td><svg class="flag-ro" viewBox="0 0 30 20" width="20" height="14"><rect x="0" width="10" height="20" fill="#002B7F"/><rect x="10" width="10" height="20" fill="#FCD116"/><rect x="20" width="10" height="20" fill="#CE1126"/></svg></td><td>44</td><td>Petre, Mihai-Sorel</td><td>1200</td><td>ACS The Square</td></tr>
+                                <tr><td><svg class="flag-ro" viewBox="0 0 30 20" width="20" height="14"><rect x="0" width="10" height="20" fill="#002B7F"/><rect x="10" width="10" height="20" fill="#FCD116"/><rect x="20" width="10" height="20" fill="#CE1126"/></svg></td><td>45</td><td>Cojocaru, Diana</td><td>901</td><td>ACS Pheonix Buzau</td></tr>
+                                <tr><td><svg class="flag-ro" viewBox="0 0 30 20" width="20" height="14"><rect x="0" width="10" height="20" fill="#002B7F"/><rect x="10" width="10" height="20" fill="#FCD116"/><rect x="20" width="10" height="20" fill="#CE1126"/></svg></td><td>46</td><td>Paun, Ioana-Florentina</td><td>901</td><td>CS Universitar de Sah Bucuresti</td></tr>
+                                <tr><td><svg class="flag-ro" viewBox="0 0 30 20" width="20" height="14"><rect x="0" width="10" height="20" fill="#002B7F"/><rect x="10" width="10" height="20" fill="#FCD116"/><rect x="20" width="10" height="20" fill="#CE1126"/></svg></td><td>47</td><td>Valeanu, Eduard-Antonio</td><td>744</td><td>CS Universitar de Sah Bucuresti</td></tr>
+                                <tr><td><svg class="flag-ro" viewBox="0 0 30 20" width="20" height="14"><rect x="0" width="10" height="20" fill="#002B7F"/><rect x="10" width="10" height="20" fill="#FCD116"/><rect x="20" width="10" height="20" fill="#CE1126"/></svg></td><td>48</td><td>Bolontoc, Raluca-Mihaela</td><td>701</td><td>ACS The Square</td></tr>
+                                <tr><td><svg class="flag-ro" viewBox="0 0 30 20" width="20" height="14"><rect x="0" width="10" height="20" fill="#002B7F"/><rect x="10" width="10" height="20" fill="#FCD116"/><rect x="20" width="10" height="20" fill="#CE1126"/></svg></td><td>49</td><td>Cioti, Nicolae</td><td>701</td><td>ACS The Square</td></tr>
+                                <tr><td><svg class="flag-ro" viewBox="0 0 30 20" width="20" height="14"><rect x="0" width="10" height="20" fill="#002B7F"/><rect x="10" width="10" height="20" fill="#FCD116"/><rect x="20" width="10" height="20" fill="#CE1126"/></svg></td><td>50</td><td>Dumitrescu, Serban</td><td>701</td><td>ACS The Square</td></tr>
+                                <tr><td><svg class="flag-ro" viewBox="0 0 30 20" width="20" height="14"><rect x="0" width="10" height="20" fill="#002B7F"/><rect x="10" width="10" height="20" fill="#FCD116"/><rect x="20" width="10" height="20" fill="#CE1126"/></svg></td><td>51</td><td>Gartner, Alexandru-Mihai</td><td>701</td><td>ACS The Square</td></tr>
+                                <tr><td><svg class="flag-ro" viewBox="0 0 30 20" width="20" height="14"><rect x="0" width="10" height="20" fill="#002B7F"/><rect x="10" width="10" height="20" fill="#FCD116"/><rect x="20" width="10" height="20" fill="#CE1126"/></svg></td><td>52</td><td>Gartner, Andrei-Ioan</td><td>701</td><td>ACS The Square</td></tr>
+                                <tr><td><svg class="flag-ro" viewBox="0 0 30 20" width="20" height="14"><rect x="0" width="10" height="20" fill="#002B7F"/><rect x="10" width="10" height="20" fill="#FCD116"/><rect x="20" width="10" height="20" fill="#CE1126"/></svg></td><td>53</td><td>Ionescu, Tudor-George</td><td>701</td><td>ACS The Square</td></tr>
+                                <tr><td><svg class="flag-ro" viewBox="0 0 30 20" width="20" height="14"><rect x="0" width="10" height="20" fill="#002B7F"/><rect x="10" width="10" height="20" fill="#FCD116"/><rect x="20" width="10" height="20" fill="#CE1126"/></svg></td><td>54</td><td>Marin, Mugurel-Mihai</td><td>701</td><td>ACS The Square</td></tr>
+                                <tr><td>🇨🇿</td><td>55</td><td>Matocha, Rostislav</td><td>701</td><td>—</td></tr>
+                                <tr><td><svg class="flag-ro" viewBox="0 0 30 20" width="20" height="14"><rect x="0" width="10" height="20" fill="#002B7F"/><rect x="10" width="10" height="20" fill="#FCD116"/><rect x="20" width="10" height="20" fill="#CE1126"/></svg></td><td>56</td><td>Morarasu-Filip, Gabriel-Constantin</td><td>701</td><td>ACS The Square</td></tr>
+                                <tr><td><svg class="flag-ro" viewBox="0 0 30 20" width="20" height="14"><rect x="0" width="10" height="20" fill="#002B7F"/><rect x="10" width="10" height="20" fill="#FCD116"/><rect x="20" width="10" height="20" fill="#CE1126"/></svg></td><td>57</td><td>Pelle, Matheo-Etienne-Alexandre</td><td>701</td><td>ACS Oxygen</td></tr>
+                                <tr><td><svg class="flag-ro" viewBox="0 0 30 20" width="20" height="14"><rect x="0" width="10" height="20" fill="#002B7F"/><rect x="10" width="10" height="20" fill="#FCD116"/><rect x="20" width="10" height="20" fill="#CE1126"/></svg></td><td>58</td><td>Pirtica, Razvan-Cedric</td><td>701</td><td>ACS The Square</td></tr>
+                                <tr><td><svg class="flag-ro" viewBox="0 0 30 20" width="20" height="14"><rect x="0" width="10" height="20" fill="#002B7F"/><rect x="10" width="10" height="20" fill="#FCD116"/><rect x="20" width="10" height="20" fill="#CE1126"/></svg></td><td>59</td><td>Serban, Ionut-Valentin</td><td>701</td><td>ACS The Square</td></tr>
+                                <tr><td><svg class="flag-ro" viewBox="0 0 30 20" width="20" height="14"><rect x="0" width="10" height="20" fill="#002B7F"/><rect x="10" width="10" height="20" fill="#FCD116"/><rect x="20" width="10" height="20" fill="#CE1126"/></svg></td><td>60</td><td>Sterescu, Alexandru</td><td>701</td><td>ACS The Square</td></tr>
+                                <tr><td><svg class="flag-ro" viewBox="0 0 30 20" width="20" height="14"><rect x="0" width="10" height="20" fill="#002B7F"/><rect x="10" width="10" height="20" fill="#FCD116"/><rect x="20" width="10" height="20" fill="#CE1126"/></svg></td><td>61</td><td>Toma, Ileana-Doriana</td><td>701</td><td>ACS The Square</td></tr>
+                                <tr><td><svg class="flag-ro" viewBox="0 0 30 20" width="20" height="14"><rect x="0" width="10" height="20" fill="#002B7F"/><rect x="10" width="10" height="20" fill="#FCD116"/><rect x="20" width="10" height="20" fill="#CE1126"/></svg></td><td>62</td><td>Vasiliu, Andrei</td><td>701</td><td>ACS The Square</td></tr>
+                                <tr><td><svg class="flag-ro" viewBox="0 0 30 20" width="20" height="14"><rect x="0" width="10" height="20" fill="#002B7F"/><rect x="10" width="10" height="20" fill="#FCD116"/><rect x="20" width="10" height="20" fill="#CE1126"/></svg></td><td>63</td><td>Yermakov, Arkadii</td><td>701</td><td>ACS The Square</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <a href="https://s2.chess-results.com/tnr1397532.aspx?lan=1" target="_blank" rel="noopener" class="ranking-link" data-i18n="memories.viewResults">
+                        Vezi pe Chess-Results →
+                    </a>
+                </div>
+
+                <!-- Card Blitz -->
+                <div class="ranking-card">
+                    <div class="ranking-header">
+                        <h3 data-i18n="memories.blitz">Blitz</h3>
+                        <span class="participant-count" data-i18n="memories.blitzPlayers">36 jucători</span>
+                    </div>
+                    <div class="ranking-table-wrapper">
+                        <table class="ranking-table">
+                            <thead>
+                                <tr>
+                                    <th></th>
+                                    <th>Nr</th>
+                                    <th>Nume</th>
+                                    <th>ELO</th>
+                                    <th>Club</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr><td><svg class="flag-ro" viewBox="0 0 30 20" width="20" height="14"><rect x="0" width="10" height="20" fill="#002B7F"/><rect x="10" width="10" height="20" fill="#FCD116"/><rect x="20" width="10" height="20" fill="#CE1126"/></svg></td><td>1</td><td>GM Jianu, Vlad-Cristian</td><td>2449</td><td>CSU ASE Bucuresti</td></tr>
+                                <tr><td><svg class="flag-ro" viewBox="0 0 30 20" width="20" height="14"><rect x="0" width="10" height="20" fill="#002B7F"/><rect x="10" width="10" height="20" fill="#FCD116"/><rect x="20" width="10" height="20" fill="#CE1126"/></svg></td><td>2</td><td>IM Ghimpu, Samuel-Timotei</td><td>2321</td><td>CSU ASE Bucuresti</td></tr>
+                                <tr><td><svg class="flag-ro" viewBox="0 0 30 20" width="20" height="14"><rect x="0" width="10" height="20" fill="#002B7F"/><rect x="10" width="10" height="20" fill="#FCD116"/><rect x="20" width="10" height="20" fill="#CE1126"/></svg></td><td>3</td><td>FM Craciun, Sasha-Matei</td><td>2282</td><td>CS Otopeni</td></tr>
+                                <tr><td><svg class="flag-ro" viewBox="0 0 30 20" width="20" height="14"><rect x="0" width="10" height="20" fill="#002B7F"/><rect x="10" width="10" height="20" fill="#FCD116"/><rect x="20" width="10" height="20" fill="#CE1126"/></svg></td><td>4</td><td>Ignat, Matei-Marius</td><td>2192</td><td>CS Spartac Bucuresti</td></tr>
+                                <tr><td><svg class="flag-ro" viewBox="0 0 30 20" width="20" height="14"><rect x="0" width="10" height="20" fill="#002B7F"/><rect x="10" width="10" height="20" fill="#FCD116"/><rect x="20" width="10" height="20" fill="#CE1126"/></svg></td><td>5</td><td>CM Danila, Tudor-Gabriel</td><td>2136</td><td>Clubul Central de Sah Bucuresti</td></tr>
+                                <tr><td><svg class="flag-ro" viewBox="0 0 30 20" width="20" height="14"><rect x="0" width="10" height="20" fill="#002B7F"/><rect x="10" width="10" height="20" fill="#FCD116"/><rect x="20" width="10" height="20" fill="#CE1126"/></svg></td><td>6</td><td>CM Prelipcean, Eric-Matei</td><td>2107</td><td>CS Universitar de Sah Bucuresti</td></tr>
+                                <tr><td><svg class="flag-ro" viewBox="0 0 30 20" width="20" height="14"><rect x="0" width="10" height="20" fill="#002B7F"/><rect x="10" width="10" height="20" fill="#FCD116"/><rect x="20" width="10" height="20" fill="#CE1126"/></svg></td><td>7</td><td>Zlate-Ion, Matei</td><td>2038</td><td>Clubul Central de Sah Bucuresti</td></tr>
+                                <tr><td><svg class="flag-ro" viewBox="0 0 30 20" width="20" height="14"><rect x="0" width="10" height="20" fill="#002B7F"/><rect x="10" width="10" height="20" fill="#FCD116"/><rect x="20" width="10" height="20" fill="#CE1126"/></svg></td><td>8</td><td>Gulie, Cosmin</td><td>2020</td><td>ACS The Square</td></tr>
+                                <tr><td><svg class="flag-ro" viewBox="0 0 30 20" width="20" height="14"><rect x="0" width="10" height="20" fill="#002B7F"/><rect x="10" width="10" height="20" fill="#FCD116"/><rect x="20" width="10" height="20" fill="#CE1126"/></svg></td><td>9</td><td>Vasiloi, Leonard</td><td>1939</td><td>ACS M.M. Mihail Marin Bucuresti</td></tr>
+                                <tr><td><svg class="flag-ro" viewBox="0 0 30 20" width="20" height="14"><rect x="0" width="10" height="20" fill="#002B7F"/><rect x="10" width="10" height="20" fill="#FCD116"/><rect x="20" width="10" height="20" fill="#CE1126"/></svg></td><td>10</td><td>CM Mazilu, Stefan Fabian</td><td>1905</td><td>CS Micul Sahist Iasi</td></tr>
+                                <tr><td><svg class="flag-ro" viewBox="0 0 30 20" width="20" height="14"><rect x="0" width="10" height="20" fill="#002B7F"/><rect x="10" width="10" height="20" fill="#FCD116"/><rect x="20" width="10" height="20" fill="#CE1126"/></svg></td><td>11</td><td>Popa, Gabriel</td><td>1901</td><td>Clubul de Sah Diana Galati</td></tr>
+                                <tr><td><svg class="flag-ro" viewBox="0 0 30 20" width="20" height="14"><rect x="0" width="10" height="20" fill="#002B7F"/><rect x="10" width="10" height="20" fill="#FCD116"/><rect x="20" width="10" height="20" fill="#CE1126"/></svg></td><td>12</td><td>Ferariu, Liviu-Andrei</td><td>1808</td><td>CS Universitar de Sah Bucuresti</td></tr>
+                                <tr><td><svg class="flag-ro" viewBox="0 0 30 20" width="20" height="14"><rect x="0" width="10" height="20" fill="#002B7F"/><rect x="10" width="10" height="20" fill="#FCD116"/><rect x="20" width="10" height="20" fill="#CE1126"/></svg></td><td>13</td><td>WCM Dobre, Ana-Margareta-Alexandra</td><td>1786</td><td>ACS Arnia Chessit</td></tr>
+                                <tr><td><svg class="flag-ro" viewBox="0 0 30 20" width="20" height="14"><rect x="0" width="10" height="20" fill="#002B7F"/><rect x="10" width="10" height="20" fill="#FCD116"/><rect x="20" width="10" height="20" fill="#CE1126"/></svg></td><td>14</td><td>Rosca, Dragos-Ioan</td><td>1740</td><td>CS Universitar de Sah Bucuresti</td></tr>
+                                <tr><td><svg class="flag-ro" viewBox="0 0 30 20" width="20" height="14"><rect x="0" width="10" height="20" fill="#002B7F"/><rect x="10" width="10" height="20" fill="#FCD116"/><rect x="20" width="10" height="20" fill="#CE1126"/></svg></td><td>15</td><td>Patrascu, Maria</td><td>1713</td><td>ACS The Square</td></tr>
+                                <tr><td><svg class="flag-ro" viewBox="0 0 30 20" width="20" height="14"><rect x="0" width="10" height="20" fill="#002B7F"/><rect x="10" width="10" height="20" fill="#FCD116"/><rect x="20" width="10" height="20" fill="#CE1126"/></svg></td><td>16</td><td>Gavrila, Vlad-Cristian</td><td>1709</td><td>CS Gambitul Damei Ploiesti</td></tr>
+                                <tr><td><svg class="flag-ro" viewBox="0 0 30 20" width="20" height="14"><rect x="0" width="10" height="20" fill="#002B7F"/><rect x="10" width="10" height="20" fill="#FCD116"/><rect x="20" width="10" height="20" fill="#CE1126"/></svg></td><td>17</td><td>Bratu, Ioan-Valentin</td><td>1704</td><td>ACS Pheonix Buzau</td></tr>
+                                <tr><td><svg class="flag-ro" viewBox="0 0 30 20" width="20" height="14"><rect x="0" width="10" height="20" fill="#002B7F"/><rect x="10" width="10" height="20" fill="#FCD116"/><rect x="20" width="10" height="20" fill="#CE1126"/></svg></td><td>18</td><td>Mironescu, Stefan</td><td>1698</td><td>CS Universitar de Sah Bucuresti</td></tr>
+                                <tr><td><svg class="flag-ro" viewBox="0 0 30 20" width="20" height="14"><rect x="0" width="10" height="20" fill="#002B7F"/><rect x="10" width="10" height="20" fill="#FCD116"/><rect x="20" width="10" height="20" fill="#CE1126"/></svg></td><td>19</td><td>Constantin, Radu</td><td>1684</td><td>CS Universitar de Sah Bucuresti</td></tr>
+                                <tr><td><svg class="flag-ro" viewBox="0 0 30 20" width="20" height="14"><rect x="0" width="10" height="20" fill="#002B7F"/><rect x="10" width="10" height="20" fill="#FCD116"/><rect x="20" width="10" height="20" fill="#CE1126"/></svg></td><td>20</td><td>Cirnu, Robert-Daniel</td><td>1635</td><td>CS Universitar de Sah Bucuresti</td></tr>
+                                <tr><td><svg class="flag-ro" viewBox="0 0 30 20" width="20" height="14"><rect x="0" width="10" height="20" fill="#002B7F"/><rect x="10" width="10" height="20" fill="#FCD116"/><rect x="20" width="10" height="20" fill="#CE1126"/></svg></td><td>21</td><td>Alecu, Daniel</td><td>1623</td><td>ACS M.M. Mihail Marin Bucuresti</td></tr>
+                                <tr><td>🇵🇹</td><td>22</td><td>Rautu, Andrei</td><td>1603</td><td>—</td></tr>
+                                <tr><td><svg class="flag-ro" viewBox="0 0 30 20" width="20" height="14"><rect x="0" width="10" height="20" fill="#002B7F"/><rect x="10" width="10" height="20" fill="#FCD116"/><rect x="20" width="10" height="20" fill="#CE1126"/></svg></td><td>23</td><td>Craciun, Dorian-Raul</td><td>1596</td><td>ACS The Square</td></tr>
+                                <tr><td><svg class="flag-ro" viewBox="0 0 30 20" width="20" height="14"><rect x="0" width="10" height="20" fill="#002B7F"/><rect x="10" width="10" height="20" fill="#FCD116"/><rect x="20" width="10" height="20" fill="#CE1126"/></svg></td><td>24</td><td>Ghita, Mihai I.</td><td>1579</td><td>ASC Oraselul Copiilor Bucuresti</td></tr>
+                                <tr><td><svg class="flag-ro" viewBox="0 0 30 20" width="20" height="14"><rect x="0" width="10" height="20" fill="#002B7F"/><rect x="10" width="10" height="20" fill="#FCD116"/><rect x="20" width="10" height="20" fill="#CE1126"/></svg></td><td>25</td><td>Predescu, Ioan-Tudor</td><td>1566</td><td>ASC Daco-Getica Bucuresti</td></tr>
+                                <tr><td><svg class="flag-ro" viewBox="0 0 30 20" width="20" height="14"><rect x="0" width="10" height="20" fill="#002B7F"/><rect x="10" width="10" height="20" fill="#FCD116"/><rect x="20" width="10" height="20" fill="#CE1126"/></svg></td><td>26</td><td>Hamdan, Mustafa</td><td>1549</td><td>ACS The Square</td></tr>
+                                <tr><td><svg class="flag-ro" viewBox="0 0 30 20" width="20" height="14"><rect x="0" width="10" height="20" fill="#002B7F"/><rect x="10" width="10" height="20" fill="#FCD116"/><rect x="20" width="10" height="20" fill="#CE1126"/></svg></td><td>27</td><td>Popa-Bochis, Anisia-Teodora</td><td>1494</td><td>ACS Chess Masters</td></tr>
+                                <tr><td><svg class="flag-ro" viewBox="0 0 30 20" width="20" height="14"><rect x="0" width="10" height="20" fill="#002B7F"/><rect x="10" width="10" height="20" fill="#FCD116"/><rect x="20" width="10" height="20" fill="#CE1126"/></svg></td><td>28</td><td>Tudor, George S.</td><td>1439</td><td>ACS M.M. Mihail Marin Bucuresti</td></tr>
+                                <tr><td><svg class="flag-ro" viewBox="0 0 30 20" width="20" height="14"><rect x="0" width="10" height="20" fill="#002B7F"/><rect x="10" width="10" height="20" fill="#FCD116"/><rect x="20" width="10" height="20" fill="#CE1126"/></svg></td><td>29</td><td>Florescu, Dana-Maria</td><td>—</td><td>CS Micul Print Braila</td></tr>
+                                <tr><td><svg class="flag-ro" viewBox="0 0 30 20" width="20" height="14"><rect x="0" width="10" height="20" fill="#002B7F"/><rect x="10" width="10" height="20" fill="#FCD116"/><rect x="20" width="10" height="20" fill="#CE1126"/></svg></td><td>30</td><td>Cojocaru, Diana</td><td>—</td><td>ACS Pheonix Buzau</td></tr>
+                                <tr><td><svg class="flag-ro" viewBox="0 0 30 20" width="20" height="14"><rect x="0" width="10" height="20" fill="#002B7F"/><rect x="10" width="10" height="20" fill="#FCD116"/><rect x="20" width="10" height="20" fill="#CE1126"/></svg></td><td>31</td><td>Carligel, Cornelia</td><td>—</td><td>ACS Elidor Bucuresti</td></tr>
+                                <tr><td><svg class="flag-ro" viewBox="0 0 30 20" width="20" height="14"><rect x="0" width="10" height="20" fill="#002B7F"/><rect x="10" width="10" height="20" fill="#FCD116"/><rect x="20" width="10" height="20" fill="#CE1126"/></svg></td><td>32</td><td>Gavril, Alexandru-Catalin</td><td>—</td><td>ACS The Square</td></tr>
+                                <tr><td><svg class="flag-ro" viewBox="0 0 30 20" width="20" height="14"><rect x="0" width="10" height="20" fill="#002B7F"/><rect x="10" width="10" height="20" fill="#FCD116"/><rect x="20" width="10" height="20" fill="#CE1126"/></svg></td><td>33</td><td>Gheorghe, David-Andrei A.</td><td>—</td><td>ACS The Square</td></tr>
+                                <tr><td><svg class="flag-ro" viewBox="0 0 30 20" width="20" height="14"><rect x="0" width="10" height="20" fill="#002B7F"/><rect x="10" width="10" height="20" fill="#FCD116"/><rect x="20" width="10" height="20" fill="#CE1126"/></svg></td><td>34</td><td>Marin, Mugurel-Mihai</td><td>—</td><td>ACS The Square</td></tr>
+                                <tr><td><svg class="flag-ro" viewBox="0 0 30 20" width="20" height="14"><rect x="0" width="10" height="20" fill="#002B7F"/><rect x="10" width="10" height="20" fill="#FCD116"/><rect x="20" width="10" height="20" fill="#CE1126"/></svg></td><td>35</td><td>Morarasu-Filip, Gabriel-Constantin</td><td>—</td><td>ACS The Square</td></tr>
+                                <tr><td><svg class="flag-ro" viewBox="0 0 30 20" width="20" height="14"><rect x="0" width="10" height="20" fill="#002B7F"/><rect x="10" width="10" height="20" fill="#FCD116"/><rect x="20" width="10" height="20" fill="#CE1126"/></svg></td><td>36</td><td>Vasiliu, Andrei</td><td>—</td><td>ACS The Square</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <a href="https://s1.chess-results.com/tnr1397533.aspx?lan=1&art=0&turdet=YES&flag=30&SNode=S0" target="_blank" rel="noopener" class="ranking-link" data-i18n="memories.viewResults">
+                        Vezi pe Chess-Results →
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 4. GALERIE FOTO - Coverflow Carousel -->
+    <section class="amintiri-gallery-section">
+        <div class="container">
+            <div class="section-header reveal-up">
+                <span class="section-tag">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16">
+                        <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
+                        <circle cx="8.5" cy="8.5" r="1.5"/>
+                        <polyline points="21 15 16 10 5 21"/>
+                    </svg>
+                    <span data-i18n="memories.galleryTag">Galerie</span>
+                </span>
+                <h2 data-i18n="memories.feedbackTitle">Părerea participanților</h2>
+                <p data-i18n="memories.feedbackDesc">Impresii de la ediția anterioară</p>
+            </div>
+            <div class="coverflow-carousel coverflow-top reveal-up" style="--delay: 0.1s">
+                <button class="coverflow-nav coverflow-prev" aria-label="Imaginea anterioară">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polyline points="15 18 9 12 15 6"/>
+                    </svg>
+                </button>
+                <div class="coverflow-track">
+                    <div class="coverflow-item" data-index="0" data-type="image">
+                        <img src="images/feedback-pizza-1.webp" alt="Pizza party la turneu - thumbs up" loading="lazy">
+                    </div>
+                    <div class="coverflow-item" data-index="1" data-type="image">
+                        <img src="images/feedback-pizza-2.webp" alt="Pizza party la turneu - bucurie" loading="lazy">
+                    </div>
+                    <div class="coverflow-item" data-index="2" data-type="image">
+                        <img src="images/feedback-pizza-3.webp" alt="Pizza party la turneu - participanți" loading="lazy">
+                    </div>
+                    <div class="coverflow-item" data-index="3" data-type="image">
+                        <img src="images/feedback-copil-zâmbind.webp" alt="Copil zâmbind la turneu" loading="lazy">
+                    </div>
+                    <div class="coverflow-item" data-index="4" data-type="image">
+                        <img src="images/feedback-jucator-mutare.webp" alt="Jucătorfăcând o mutare" loading="lazy">
+                    </div>
+                    <div class="coverflow-item zoom-out" data-index="5" data-type="image">
+                        <img src="images/feedback-Laura.webp" alt="Feedback Laura Patrascu - Părerea despre turneu" loading="lazy">
+                    </div>
+                    <div class="coverflow-item zoom-out" data-index="6" data-type="image">
+                        <img src="images/parere-Vasiloi.webp" alt="Feedback Vasiloi - Părerea despre turneu" loading="lazy">
+                    </div>
+                    <div class="coverflow-item" data-index="7" data-type="image">
+                        <img src="images/chess-moment-1.webp" alt="Turneu șah 2025 - Moment" loading="lazy">
+                    </div>
+                    <div class="coverflow-item" data-index="8" data-type="image">
+                        <img src="images/chess-moment-2.webp" alt="Turneu șah 2025 - Partida" loading="lazy">
+                    </div>
+                    <div class="coverflow-item" data-index="9" data-type="image">
+                        <img src="images/chess-moment-3.webp" alt="Turneu șah 2025 - Strategie" loading="lazy">
+                    </div>
+                    <div class="coverflow-item zoom-out" data-index="10" data-type="image">
+                        <img src="images/galerie-2.webp" alt="Galerie turneu șah 2025" loading="lazy">
+                    </div>
+                </div>
+                <button class="coverflow-nav coverflow-next" aria-label="Imaginea următoare">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polyline points="9 18 15 12 9 6"/>
+                    </svg>
+                </button>
+                <div class="coverflow-indicators"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Lightbox Modal -->
+    <div class="lightbox" id="lightbox">
+        <button class="lightbox-close" aria-label="Închide">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="18" y1="6" x2="6" y2="18"/>
+                <line x1="6" y1="6" x2="18" y2="18"/>
+            </svg>
+        </button>
+        <button class="lightbox-nav lightbox-prev" aria-label="Imaginea anterioară">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polyline points="15 18 9 12 15 6"/>
+            </svg>
+        </button>
+        <button class="lightbox-nav lightbox-next" aria-label="Imaginea următoare">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polyline points="9 18 15 12 9 6"/>
+            </svg>
+        </button>
+        <div class="lightbox-content">
+            <img src="" alt="" id="lightboxImage">
+            <video id="lightboxVideo" controls playsinline style="display: none;">
+                <source src="" type="video/mp4">
+            </video>
+        </div>
+        <div class="lightbox-counter">
+            <span id="lightboxCurrent">1</span> / <span id="lightboxTotal">13</span>
+        </div>
+    </div>
 
     <div id="footer-placeholder"></div>
 
@@ -188,6 +530,7 @@
         <div class="transition-line transition-line-2"></div>
     </div>
 
+    <script src="i18n.js?v=1"></script>
     <script src="script.js"></script>
 </body>
 </html>

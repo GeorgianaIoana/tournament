@@ -31,9 +31,13 @@
       "headers": [
         { "key": "Cache-Control", "value": "public, max-age=2592000" }
       ]
+    },
+    {
+      "source": "/locales/(.*\\.json)",
+      "headers": [
+        { "key": "Cache-Control", "value": "public, max-age=86400" },
+        { "key": "Content-Type", "value": "application/json; charset=utf-8" }
+      ]
     }
-  ],
-  "rewrites": [
-    { "source": "/((?!api/).*)", "destination": "/404.html" }
   ]
 }

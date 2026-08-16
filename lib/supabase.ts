@@ -28,12 +28,14 @@ export interface Registration {
   club: string;
   category: string;
   amount_ron: number;
-  status: 'pending' | 'paid' | 'confirmed' | 'cancelled';
+  status: 'pending' | 'paid' | 'confirmed' | 'cancelled' | 'verifying';
   is_free_entry: boolean;
   free_entry_reason?: string;
   stripe_checkout_session_id?: string;
   paid_at?: string;
   agreement_accepted_at: string;
+  payment_method: 'stripe' | 'bank_transfer';
+  bank_transfer_reference?: string;
 }
 
 export type NewRegistration = Omit<Registration, 'id' | 'created_at' | 'paid_at'>;

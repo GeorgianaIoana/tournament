@@ -2,6 +2,10 @@ import type { VercelRequest, VercelResponse } from '@vercel/node';
 import { supabase, type NewRegistration } from '../lib/supabase.js';
 import { stripe, PRODUCT_DESCRIPTIONS, type ProductCategory } from '../lib/stripe.js';
 import { calculatePrice, isValidCategory } from '../lib/pricing.js';
+import { sendRegistrationEmail, sendBankTransferEmail } from '../lib/email.js';
+import { randomUUID } from 'crypto';
+
+type Language = 'ro' | 'en';
 
 interface RegisterRequestBody {
   fullName: string;
@@ -11,6 +15,8 @@ interface RegisterRequestBody {
   club: string;
   category: string;
   fideTitle?: string;
+  paymentMethod?: 'stripe' | 'bank_transfer';
+  language?: Language;
 }
 
 // Validation helpers
@@ -40,7 +46,8 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     const body = req.body as RegisterRequestBody;
 
     // Validate required fields
-    const { fullName, email, phone, fideId, club, category, fideTitle } = body;
+    const { fullName, email, phone, fideId, club, category, fideTitle, paymentMethod, language = 'ro' } = body;
+    const userLanguage: Language = language === 'en' ? 'en' : 'ro';
 
     if (!fullName || !email || !phone || !fideId || !club || !category) {
       return res.status(400).json({ error: 'Toate câmpurile obligatorii trebuie completate.' });
@@ -96,6 +103,14 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     // Calculate price
     const priceResult = calculatePrice(sanitizedData.category, sanitizedData.fideTitle);
 
+    // Determine payment method (default to stripe)
+    const selectedPaymentMethod = paymentMethod === 'bank_transfer' ? 'bank_transfer' : 'stripe';
+
+    // Generate bank transfer reference if needed
+    const bankTransferReference = selectedPaymentMethod === 'bank_transfer'
+      ? `OTS-${randomUUID().slice(0, 8).toUpperCase()}`
+      : undefined;
+
     // Create registration record
     const registration: NewRegistration = {
       full_name: sanitizedData.fullName,
@@ -109,6 +124,8 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
       is_free_entry: priceResult.isFreeEntry,
       free_entry_reason: priceResult.freeEntryReason,
       agreement_accepted_at: new Date().toISOString(),
+      payment_method: selectedPaymentMethod,
+      bank_transfer_reference: bankTransferReference,
     };
 
     const { data: insertedReg, error: insertError } = await supabase
@@ -122,12 +139,47 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
       return res.status(500).json({ error: 'Eroare la salvarea înscrierii. Încearcă din nou.' });
     }
 
-    // If free entry, return success directly
+    // If free entry, send confirmation email and return success directly
     if (priceResult.isFreeEntry) {
+      sendRegistrationEmail({
+        fullName: sanitizedData.fullName,
+        email: sanitizedData.email,
+        category: sanitizedData.category,
+        fideId: sanitizedData.fideId,
+        club: sanitizedData.club,
+        isFreeEntry: true,
+        freeEntryReason: priceResult.freeEntryReason,
+        amountRon: priceResult.amountBani,
+        language: userLanguage,
+      });
+
       return res.status(200).json({
         success: true,
         isFreeEntry: true,
         message: `Înscriere confirmată! Intrare gratuită pentru ${priceResult.freeEntryReason}.`,
+        registrationId: insertedReg.id,
+      });
+    }
+
+    // If bank transfer, send email and return bank details
+    if (selectedPaymentMethod === 'bank_transfer') {
+      // Send bank transfer email with instructions
+      sendBankTransferEmail({
+        fullName: sanitizedData.fullName,
+        email: sanitizedData.email,
+        category: sanitizedData.category,
+        fideId: sanitizedData.fideId,
+        club: sanitizedData.club,
+        amountRon: priceResult.amountBani,
+        bankTransferReference: bankTransferReference!,
+        language: userLanguage,
+      });
+
+      return res.status(200).json({
+        success: true,
+        isBankTransfer: true,
+        bankTransferReference: bankTransferReference,
+        amountRon: priceResult.amountBani / 100, // Convert from bani to RON
         registrationId: insertedReg.id,
       });
     }

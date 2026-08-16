@@ -41,15 +41,25 @@
                 <img src="images/logo.webp" alt="THE SQUARE" class="logo-img">
             </a>
             <div class="nav-links">
-                <a href="index.html#about" class="nav-link">Despre</a>
-                <a href="index.html#venue" class="nav-link">Locație</a>
-                <a href="index.html#events" class="nav-link">Categorii</a>
-                <a href="schedule.html" class="nav-link">Program</a>
-                <a href="rules.html" class="nav-link">Regulament</a>
-                <a href="amintiri.html" class="nav-link">Amintiri</a>
-                <a href="contact.html" class="nav-link active">Contact</a>
+                <a href="index.html#about" class="nav-link" data-i18n="nav.about">Despre</a>
+                <a href="index.html#venue" class="nav-link" data-i18n="nav.venue">Locație</a>
+                <a href="index.html#events" class="nav-link" data-i18n="nav.categories">Categorii</a>
+                <a href="schedule.html" class="nav-link" data-i18n="nav.schedule">Program</a>
+                <a href="rules.html" class="nav-link" data-i18n="nav.rules">Regulament</a>
+                <a href="amintiri.html" class="nav-link" data-i18n="nav.memories">Amintiri</a>
+                <a href="contact.html" class="nav-link active" data-i18n="nav.contact">Contact</a>
             </div>
-            <a href="index.html#register" class="nav-cta">Înscrie-te</a>
+            <div class="lang-dropdown">
+                <button class="lang-toggle" id="langToggle">
+                    <span class="lang-current">RO</span>
+                    <svg class="lang-arrow" viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                </button>
+                <div class="lang-menu" id="langMenu">
+                    <button class="lang-option active" data-lang="ro">Română</button>
+                    <button class="lang-option" data-lang="en">English</button>
+                </div>
+            </div>
+            <a href="index.html#register" class="nav-cta" data-i18n="nav.register">Înscrie-te</a>
             <button class="nav-toggle" id="navToggle">
                 <span></span>
                 <span></span>
@@ -63,14 +73,19 @@
             <a href="index.html" class="mobile-logo">
                 <img src="images/logo-footer.webp" alt="THE SQUARE" class="mobile-logo-img">
             </a>
-            <a href="index.html#about" class="mobile-link">Despre</a>
-            <a href="index.html#venue" class="mobile-link">Locație</a>
-            <a href="index.html#events" class="mobile-link">Categorii</a>
-            <a href="schedule.html" class="mobile-link">Program</a>
-            <a href="rules.html" class="mobile-link">Regulament</a>
-            <a href="amintiri.html" class="mobile-link">Amintiri</a>
-            <a href="contact.html" class="mobile-link active">Contact</a>
-            <a href="index.html#register" class="mobile-cta">Înscrie-te</a>
+            <a href="index.html#about" class="mobile-link" data-i18n="nav.about">Despre</a>
+            <a href="index.html#venue" class="mobile-link" data-i18n="nav.venue">Locație</a>
+            <a href="index.html#events" class="mobile-link" data-i18n="nav.categories">Categorii</a>
+            <a href="schedule.html" class="mobile-link" data-i18n="nav.schedule">Program</a>
+            <a href="rules.html" class="mobile-link" data-i18n="nav.rules">Regulament</a>
+            <a href="amintiri.html" class="mobile-link" data-i18n="nav.memories">Amintiri</a>
+            <a href="contact.html" class="mobile-link active" data-i18n="nav.contact">Contact</a>
+            <a href="index.html#register" class="mobile-cta" data-i18n="nav.register">Înscrie-te</a>
+            <div class="mobile-language-switcher">
+                <button class="lang-btn active" data-lang="ro">RO</button>
+                <span class="lang-separator">|</span>
+                <button class="lang-btn" data-lang="en">EN</button>
+            </div>
         </div>
     </div>
 
@@ -79,9 +94,9 @@
         <div class="contact-hero-overlay"></div>
         <div class="container">
             <div class="contact-hero-content">
-                <span class="contact-hero-tag"><svg viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg" fill="currentColor"><path d="M477.518 181.966a25 25 0 0 1-34.91 23l-62.29 150.26h-248.92l-62.24-150.19a25 25 0 1 1 9.73-7.29l87 71.2 20.92-126.4a25 25 0 1 1 14.7-1.85l54.31 117 54.42-117.3a25 25 0 1 1 14.58 2.08l20.93 126.42 87.26-71.3a25 25 0 1 1 44.51-15.63zm-71.66 241.25h-300v60h300v-60zm-27.75-52h-244.22v36h244.22v-36z"/></svg>Contactează-ne</span>
-                <h1 class="contact-hero-title">Suntem Aici <em>Pentru Tine</em></h1>
-                <p class="contact-hero-subtitle">Ai întrebări despre turneu? Echipa noastră îți stă la dispoziție.</p>
+                <span class="contact-hero-tag"><svg viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg" fill="currentColor"><path d="M477.518 181.966a25 25 0 0 1-34.91 23l-62.29 150.26h-248.92l-62.24-150.19a25 25 0 1 1 9.73-7.29l87 71.2 20.92-126.4a25 25 0 1 1 14.7-1.85l54.31 117 54.42-117.3a25 25 0 1 1 14.58 2.08l20.93 126.42 87.26-71.3a25 25 0 1 1 44.51-15.63zm-71.66 241.25h-300v60h300v-60zm-27.75-52h-244.22v36h244.22v-36z"/></svg><span data-i18n="contact.heroTag">Contactează-ne</span></span>
+                <h1 class="contact-hero-title"><span data-i18n="contact.heroTitle">Suntem Aici</span> <em data-i18n="contact.heroTitleEmphasis">Pentru Tine</em></h1>
+                <p class="contact-hero-subtitle" data-i18n="contact.heroSubtitle">Ai întrebări despre turneu? Echipa noastră îți stă la dispoziție.</p>
             </div>
         </div>
     </section>
@@ -91,8 +106,8 @@
             <div class="contact-layout">
                 <div class="contact-form-wrapper">
                     <div class="contact-form-header">
-                        <h2 class="contact-form-title">Trimite-ne un Mesaj</h2>
-                        <p class="contact-form-subtitle">Completează formularul și îți vom răspunde în cel mai scurt timp.</p>
+                        <h2 class="contact-form-title" data-i18n="contact.formTitle">Trimite-ne un Mesaj</h2>
+                        <p class="contact-form-subtitle" data-i18n="contact.formSubtitle">Completează formularul și îți vom răspunde în cel mai scurt timp.</p>
                     </div>
                     <form class="contact-form" id="contactForm" action="https://api.web3forms.com/submit" method="POST">
                         <input type="hidden" name="access_key" value="e8bd70d0-01a2-445f-b01b-dc64cef4b284">
@@ -101,49 +116,49 @@
                         <input type="checkbox" name="botcheck" class="honeypot-field" style="display:none !important" tabindex="-1" autocomplete="off">
                         <div class="contact-form-row">
                             <div class="contact-form-field">
-                                <label for="name">Nume Complet</label>
-                                <input type="text" id="name" name="name" placeholder="Numele tău complet" required minlength="3" maxlength="100">
+                                <label for="name" data-i18n="contact.name">Nume Complet</label>
+                                <input type="text" id="name" name="name" placeholder="Numele tău complet" data-i18n-placeholder="contact.name.placeholder" required minlength="3" maxlength="100">
                             </div>
                             <div class="contact-form-field">
-                                <label for="email">Email</label>
-                                <input type="email" id="email" name="email" placeholder="adresa@email.com" required>
+                                <label for="email" data-i18n="contact.email">Email</label>
+                                <input type="email" id="email" name="email" placeholder="adresa@email.com" data-i18n-placeholder="contact.email.placeholder" required>
                             </div>
                         </div>
                         <div class="contact-form-field contact-select-wrapper">
-                            <label for="topic">Subiect</label>
+                            <label for="topic" data-i18n="contact.topic">Subiect</label>
                             <select id="topic" name="topic" required class="visually-hidden-select">
-                                <option value="" disabled selected>Selectează subiectul</option>
-                                <option value="Înscriere turneu">Înscriere turneu</option>
-                                <option value="Informații generale">Informații generale</option>
-                                <option value="Altceva">Altceva</option>
+                                <option value="" disabled selected data-i18n="contact.topic.placeholder">Selectează subiectul</option>
+                                <option value="Înscriere turneu" data-i18n="contact.topic.registration">Înscriere turneu</option>
+                                <option value="Informații generale" data-i18n="contact.topic.info">Informații generale</option>
+                                <option value="Altceva" data-i18n="contact.topic.other">Altceva</option>
                             </select>
                             <div class="custom-select contact-custom-select" data-for="topic">
                                 <div class="custom-select-trigger">
-                                    <span class="custom-select-value">Selectează subiectul</span>
+                                    <span class="custom-select-value" data-i18n="contact.topic.placeholder">Selectează subiectul</span>
                                     <svg class="custom-select-arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6,9 12,15 18,9"></polyline></svg>
                                 </div>
                                 <div class="custom-select-options">
                                     <div class="custom-select-option" data-value="Înscriere turneu">
                                         <span class="option-icon">•</span>
-                                        <span class="option-text">Înscriere turneu</span>
+                                        <span class="option-text" data-i18n="contact.topic.registration">Înscriere turneu</span>
                                     </div>
                                     <div class="custom-select-option" data-value="Informații generale">
                                         <span class="option-icon">•</span>
-                                        <span class="option-text">Informații generale</span>
+                                        <span class="option-text" data-i18n="contact.topic.info">Informații generale</span>
                                     </div>
                                     <div class="custom-select-option" data-value="Altceva">
                                         <span class="option-icon">•</span>
-                                        <span class="option-text">Altceva</span>
+                                        <span class="option-text" data-i18n="contact.topic.other">Altceva</span>
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <div class="contact-form-field">
-                            <label for="message">Mesaj</label>
-                            <textarea id="message" name="message" rows="5" placeholder="Scrie mesajul tău aici" required minlength="10" maxlength="2000"></textarea>
+                            <label for="message" data-i18n="contact.message">Mesaj</label>
+                            <textarea id="message" name="message" rows="5" placeholder="Scrie mesajul tău aici" data-i18n-placeholder="contact.message.placeholder" required minlength="10" maxlength="2000"></textarea>
                         </div>
                         <button type="submit" class="contact-form-submit">
-                            <span>Trimite Mesajul</span>
+                            <span data-i18n="contact.submit">Trimite Mesajul</span>
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                                 <path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/>
                             </svg>
@@ -161,7 +176,7 @@
                                 </svg>
                             </div>
                             <div class="contact-card-content">
-                                <h3>Email</h3>
+                                <h3 data-i18n="contact.emailTitle">Email</h3>
                                 <a href="mailto:contact@thesquarechessclub.com">contact@thesquarechessclub.com</a>
                             </div>
                         </div>
@@ -174,8 +189,8 @@
                                 </svg>
                             </div>
                             <div class="contact-card-content">
-                                <h3>Locație</h3>
-                                <p>Nod Makerspace<br>Splaiul Unirii 160, București</p>
+                                <h3 data-i18n="contact.locationTitle">Locație</h3>
+                                <p>Aurrum Palace<br>Șoseaua Electronicii 19, București</p>
                             </div>
                         </div>
 
@@ -186,15 +201,15 @@
                                 </svg>
                             </div>
                             <div class="contact-card-content">
-                                <h3>Data Turneului</h3>
-                                <p>10-11 Octombrie 2026</p>
+                                <h3 data-i18n="contact.dateTitle">Data Turneului</h3>
+                                <p data-i18n="hero.date">14-15 Noiembrie 2026</p>
                             </div>
                         </div>
                     </div>
 
                     <div class="contact-payment">
                         <div class="contact-payment-header">
-                            <span class="payment-label">Date Plată</span>
+                            <span class="payment-label" data-i18n="contact.paymentTitle">Date Plată</span>
                         </div>
                         <div class="contact-payment-content">
                             <h4 class="payment-name">ASOCIAȚIA CLUB SPORTIV DE ȘAH "THE SQUARE"</h4>
@@ -221,21 +236,21 @@
 
                     <div class="contact-director">
                         <div class="contact-director-header">
-                            <span class="director-label">Director Turneu</span>
+                            <span class="director-label" data-i18n="contact.directorTitle">Director Turneu</span>
                         </div>
                         <div class="contact-director-info">
                             <div class="director-avatar">
-                                <img loading="lazy" decoding="async" src="images/organizer-center.webp" alt="Stanciu Cristiana">
+                                <img loading="lazy" decoding="async" src="images/Cristiana-organizer.webp" alt="Stanciu Cristiana">
                             </div>
                             <div class="director-details">
                                 <h4>Stanciu Cristiana</h4>
-                                <p>Organizator Principal</p>
+                                <p data-i18n="contact.directorRole">Organizator Principal</p>
                             </div>
                         </div>
                     </div>
 
                     <div class="contact-social">
-                        <span class="social-title">Urmărește-ne</span>
+                        <span class="social-title" data-i18n="contact.followUs">Urmărește-ne</span>
                         <div class="contact-social-links">
                             <a href="https://www.instagram.com/thesquare_chess?igsh=MWNwcXdjcW9sNDNvcA==" target="_blank" rel="noopener noreferrer" class="contact-social-link" aria-label="Instagram">
                                 <svg viewBox="0 0 24 24" fill="currentColor">
@@ -262,8 +277,8 @@
     <section class="contact-map-section" id="map">
         <div class="contact-map-header">
             <div class="container">
-                <h2 class="contact-map-title">Găsește-ne</h2>
-                <p class="contact-map-subtitle">Nod Makerspace - locația perfectă pentru competiții de șah</p>
+                <h2 class="contact-map-title" data-i18n="contact.mapTitle">Găsește-ne</h2>
+                <p class="contact-map-subtitle" data-i18n="contact.mapSubtitle">Aurrum Palace - locația perfectă pentru competiții de șah</p>
             </div>
         </div>
         <div class="contact-map-wrapper">
@@ -273,10 +288,10 @@
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
                         </div>
                     <div class="map-info-content">
-                        <h3>Nod Makerspace</h3>
-                        <p>Splaiul Unirii 160, București</p>
-                        <a href="https://maps.google.com/?q=Nod+Makerspace+Splaiul+Unirii+160+Bucuresti" target="_blank" rel="noopener noreferrer" class="map-directions-btn">
-                            <span>Obține direcții</span>
+                        <h3>Aurrum Palace</h3>
+                        <p>Șoseaua Electronicii 19, București</p>
+                        <a href="https://maps.google.com/?q=Aurrum+Palace+Soseaua+Electronicii+19+Bucuresti" target="_blank" rel="noopener noreferrer" class="map-directions-btn">
+                            <span data-i18n="contact.getDirections">Obține direcții</span>
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
                         </a>
                     </div>
@@ -284,8 +299,8 @@
             </div>
             <div class="contact-map-inner">
                 <iframe
-                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2849.5!2d26.1156205!3d44.4123422!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x40b1fefc6852eb39%3A0x43e37d228154dfc1!2sNod%20makerspace!5e0!3m2!1sen!2sro"
-                    title="Locația turneului - Nod Makerspace, București"
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2848.5!2d26.1089!3d44.4265!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x40b1ff0c2b7c5b5b%3A0x1234567890abcdef!2sAurrum%20Palace!5e0!3m2!1sen!2sro"
+                    title="Locația turneului - Aurrum Palace, București"
                     width="100%"
                     height="100%"
                     style="border:0;"
@@ -300,8 +315,8 @@
     <section class="contact-faq">
         <div class="container">
             <div class="contact-faq-header">
-                <span class="faq-tag"><svg viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg" fill="currentColor"><path d="M477.518 181.966a25 25 0 0 1-34.91 23l-62.29 150.26h-248.92l-62.24-150.19a25 25 0 1 1 9.73-7.29l87 71.2 20.92-126.4a25 25 0 1 1 14.7-1.85l54.31 117 54.42-117.3a25 25 0 1 1 14.58 2.08l20.93 126.42 87.26-71.3a25 25 0 1 1 44.51-15.63zm-71.66 241.25h-300v60h300v-60zm-27.75-52h-244.22v36h244.22v-36z"/></svg>Întrebări Frecvente</span>
-                <h2 class="faq-title">Ai Nevoie de Ajutor?</h2>
+                <span class="faq-tag"><svg viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg" fill="currentColor"><path d="M477.518 181.966a25 25 0 0 1-34.91 23l-62.29 150.26h-248.92l-62.24-150.19a25 25 0 1 1 9.73-7.29l87 71.2 20.92-126.4a25 25 0 1 1 14.7-1.85l54.31 117 54.42-117.3a25 25 0 1 1 14.58 2.08l20.93 126.42 87.26-71.3a25 25 0 1 1 44.51-15.63zm-71.66 241.25h-300v60h300v-60zm-27.75-52h-244.22v36h244.22v-36z"/></svg><span data-i18n="contact.faqTag">Întrebări Frecvente</span></span>
+                <h2 class="faq-title" data-i18n="contact.faqTitle">Ai Nevoie de Ajutor?</h2>
             </div>
             <div class="faq-grid">
                 <div class="faq-item">
@@ -310,8 +325,8 @@
                             <path d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
                         </svg>
                     </div>
-                    <h3>Care este programul turneului?</h3>
-                    <p>Turneul se desfășoară pe parcursul a 2 zile, 10-11 Octombrie 2026. Consultă pagina de Program pentru detalii complete.</p>
+                    <h3 data-i18n="contact.faq1.title">Care este programul turneului?</h3>
+                    <p data-i18n="contact.faq1.desc">Turneul se desfășoară pe parcursul a 2 zile, 14-15 Noiembrie 2026. Consultă pagina de Program pentru detalii complete.</p>
                 </div>
                 <div class="faq-item">
                     <div class="faq-icon">
@@ -319,8 +334,8 @@
                             <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
                         </svg>
                     </div>
-                    <h3>Cum mă pot înscrie?</h3>
-                    <p>Poți să te înscrii online prin formularul de pe pagina principală sau să ne contactezi direct pentru asistență.</p>
+                    <h3 data-i18n="contact.faq2.title">Cum mă pot înscrie?</h3>
+                    <p data-i18n="contact.faq2.desc">Poți să te înscrii online prin formularul de pe pagina principală sau să ne contactezi direct pentru asistență.</p>
                 </div>
                 <div class="faq-item">
                     <div class="faq-icon">
@@ -328,8 +343,8 @@
                             <path d="M17 9V7a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2m2 4h10a2 2 0 002-2v-6a2 2 0 00-2-2H9a2 2 0 00-2 2v6a2 2 0 002 2zm7-5a2 2 0 11-4 0 2 2 0 014 0z"/>
                         </svg>
                     </div>
-                    <h3>Cum mă pot legitima?</h3>
-                    <p>Contactează-ne pe e-mail <a href="mailto:contact@thesquarechessclub.com">contact@thesquarechessclub.com</a> cu textul „Vreau să mă legitimez", Georgiana Stanciu îți va răspunde și te va ajuta cu tot procesul.</p>
+                    <h3 data-i18n="contact.faq3.title">Cum mă pot legitima?</h3>
+                    <p data-i18n="contact.faq3.desc">Contactează-ne pe e-mail contact@thesquarechessclub.com cu textul „Vreau să mă legitimez", Georgiana Stanciu îți va răspunde și te va ajuta cu tot procesul.</p>
                 </div>
                 <div class="faq-item">
                     <div class="faq-icon">
@@ -337,8 +352,8 @@
                             <path d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
                         </svg>
                     </div>
-                    <h3>Am alte întrebări</h3>
-                    <p>Nu ezita să ne contactezi prin formularul de mai sus sau prin email. Îți vom răspunde în cel mai scurt timp posibil.</p>
+                    <h3 data-i18n="contact.faq4.title">Am alte întrebări</h3>
+                    <p data-i18n="contact.faq4.desc">Nu ezita să ne contactezi prin formularul de mai sus sau prin email. Îți vom răspunde în cel mai scurt timp posibil.</p>
                 </div>
             </div>
         </div>
@@ -346,6 +361,7 @@
 
     <div id="footer-placeholder"></div>
 
+    <script src="i18n.js?v=1"></script>
     <script src="script.js"></script>
 </body>
 </html>

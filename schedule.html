@@ -41,15 +41,25 @@
                 <img src="images/logo.webp" alt="THE SQUARE" class="logo-img">
             </a>
             <div class="nav-links">
-                <a href="index.html#about" class="nav-link">Despre</a>
-                <a href="index.html#venue" class="nav-link">Locație</a>
-                <a href="index.html#events" class="nav-link">Categorii</a>
-                <a href="schedule.html" class="nav-link active">Program</a>
-                <a href="rules.html" class="nav-link">Regulament</a>
-                <a href="amintiri.html" class="nav-link">Amintiri</a>
-                <a href="contact.html" class="nav-link">Contact</a>
+                <a href="index.html#about" class="nav-link" data-i18n="nav.about">Despre</a>
+                <a href="index.html#venue" class="nav-link" data-i18n="nav.venue">Locație</a>
+                <a href="index.html#events" class="nav-link" data-i18n="nav.categories">Categorii</a>
+                <a href="schedule.html" class="nav-link active" data-i18n="nav.schedule">Program</a>
+                <a href="rules.html" class="nav-link" data-i18n="nav.rules">Regulament</a>
+                <a href="amintiri.html" class="nav-link" data-i18n="nav.memories">Amintiri</a>
+                <a href="contact.html" class="nav-link" data-i18n="nav.contact">Contact</a>
             </div>
-            <a href="index.html#register" class="nav-cta">Înscrie-te</a>
+            <div class="lang-dropdown">
+                <button class="lang-toggle" id="langToggle">
+                    <span class="lang-current">RO</span>
+                    <svg class="lang-arrow" viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                </button>
+                <div class="lang-menu" id="langMenu">
+                    <button class="lang-option active" data-lang="ro">Română</button>
+                    <button class="lang-option" data-lang="en">English</button>
+                </div>
+            </div>
+            <a href="index.html#register" class="nav-cta" data-i18n="nav.register">Înscrie-te</a>
             <button class="nav-toggle" id="navToggle">
                 <span></span>
                 <span></span>
@@ -63,14 +73,19 @@
             <a href="index.html" class="mobile-logo">
                 <img src="images/logo-footer.webp" alt="THE SQUARE" class="mobile-logo-img">
             </a>
-            <a href="index.html#about" class="mobile-link">Despre</a>
-            <a href="index.html#venue" class="mobile-link">Locație</a>
-            <a href="index.html#events" class="mobile-link">Categorii</a>
-            <a href="schedule.html" class="mobile-link active">Program</a>
-            <a href="rules.html" class="mobile-link">Regulament</a>
-            <a href="amintiri.html" class="mobile-link">Amintiri</a>
-            <a href="contact.html" class="mobile-link">Contact</a>
-            <a href="index.html#register" class="mobile-cta">Înscrie-te</a>
+            <a href="index.html#about" class="mobile-link" data-i18n="nav.about">Despre</a>
+            <a href="index.html#venue" class="mobile-link" data-i18n="nav.venue">Locație</a>
+            <a href="index.html#events" class="mobile-link" data-i18n="nav.categories">Categorii</a>
+            <a href="schedule.html" class="mobile-link active" data-i18n="nav.schedule">Program</a>
+            <a href="rules.html" class="mobile-link" data-i18n="nav.rules">Regulament</a>
+            <a href="amintiri.html" class="mobile-link" data-i18n="nav.memories">Amintiri</a>
+            <a href="contact.html" class="mobile-link" data-i18n="nav.contact">Contact</a>
+            <a href="index.html#register" class="mobile-cta" data-i18n="nav.register">Înscrie-te</a>
+            <div class="mobile-language-switcher">
+                <button class="lang-btn active" data-lang="ro">RO</button>
+                <span class="lang-separator">|</span>
+                <button class="lang-btn" data-lang="en">EN</button>
+            </div>
         </div>
     </div>
 
@@ -78,11 +93,11 @@
         <div class="container">
             <div class="schedule-layout">
                 <div class="schedule-header">
-                    <span class="section-tag reveal-up">Program Tehnic</span>
+                    <span class="section-tag reveal-up" data-i18n="schedule.tag">Program Tehnic</span>
                     <h2 class="section-title reveal-up" style="--delay: 0.1s">
-                        Două Zile de <br><em>Competiție</em>
+                        <span data-i18n="schedule.title">Două Zile de</span> <br><em data-i18n="schedule.titleEmphasis">Competiție</em>
                     </h2>
-                    <p class="schedule-note reveal-up" style="--delay: 0.2s">
+                    <p class="schedule-note reveal-up" style="--delay: 0.2s" data-i18n="schedule.dates">
                         14 – 15 Noiembrie 2026
                     </p>
                 </div>
@@ -90,117 +105,117 @@
                 <div class="schedule-content">
                     <div class="schedule-group-title reveal-up">
                         <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="20" height="20"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-                        Șah Rapid
+                        <span data-i18n="schedule.rapid">Șah Rapid</span>
                         <span class="schedule-group-badge">15 + 10</span>
                     </div>
                     <div class="schedule-day reveal-up" style="--delay: 0.1s">
                         <div class="day-header">
-                            <span class="day-date">14 Nov</span>
-                            <span class="day-name">Sâmbătă</span>
+                            <span class="day-date" data-i18n="schedule.day1.date">14 Nov</span>
+                            <span class="day-name" data-i18n="schedule.day1.name">Sâmbătă</span>
                         </div>
                         <div class="day-events">
                             <div class="day-event">
                                 <span class="event-time">09:30</span>
-                                <span class="event-name">Ședința tehnică</span>
+                                <span class="event-name" data-i18n="schedule.technicalMeeting">Ședința tehnică</span>
                             </div>
                             <div class="day-event">
                                 <span class="event-time">10:00</span>
-                                <span class="event-name">Runda 1</span>
+                                <span class="event-name" data-i18n="schedule.round1">Runda 1</span>
                             </div>
                             <div class="day-event">
                                 <span class="event-time">11:00</span>
-                                <span class="event-name">Runda 2</span>
+                                <span class="event-name" data-i18n="schedule.round2">Runda 2</span>
                             </div>
                             <div class="day-event highlight">
                                 <span class="event-time">12:00</span>
-                                <span class="event-name">Pauză de masă</span>
+                                <span class="event-name" data-i18n="schedule.lunchBreak">Pauză de masă</span>
                             </div>
                             <div class="day-event">
                                 <span class="event-time">15:00</span>
-                                <span class="event-name">Runda 3</span>
+                                <span class="event-name" data-i18n="schedule.round3">Runda 3</span>
                             </div>
                             <div class="day-event">
                                 <span class="event-time">16:00</span>
-                                <span class="event-name">Runda 4</span>
+                                <span class="event-name" data-i18n="schedule.round4">Runda 4</span>
                             </div>
                             <div class="day-event">
                                 <span class="event-time">17:00</span>
-                                <span class="event-name">Runda 5</span>
+                                <span class="event-name" data-i18n="schedule.round5">Runda 5</span>
                             </div>
                         </div>
                     </div>
 
                     <div class="schedule-day reveal-up" style="--delay: 0.2s">
                         <div class="day-header">
-                            <span class="day-date">15 Nov</span>
-                            <span class="day-name">Duminică</span>
+                            <span class="day-date" data-i18n="schedule.day2.date">15 Nov</span>
+                            <span class="day-name" data-i18n="schedule.day2.name">Duminică</span>
                         </div>
                         <div class="day-events">
                             <div class="day-event">
-                                <span class="event-time">09:00</span>
-                                <span class="event-name">Runda 6</span>
+                                <span class="event-time">10:00</span>
+                                <span class="event-name" data-i18n="schedule.round6">Runda 6</span>
                             </div>
                             <div class="day-event">
-                                <span class="event-time">10:00</span>
-                                <span class="event-name">Runda 7</span>
+                                <span class="event-time">11:00</span>
+                                <span class="event-name" data-i18n="schedule.round7">Runda 7</span>
                             </div>
                             <div class="day-event highlight">
-                                <span class="event-time">11:00</span>
-                                <span class="event-name">Festivitatea de Premiere – Rapid</span>
+                                <span class="event-time">12:00</span>
+                                <span class="event-name" data-i18n="schedule.awardRapid">Festivitatea de Premiere – Rapid</span>
                             </div>
                         </div>
                     </div>
 
                     <div class="schedule-group-title reveal-up" style="--delay: 0.25s">
                         <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="20" height="20"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
-                        Blitz
+                        <span data-i18n="schedule.blitz">Blitz</span>
                         <span class="schedule-group-badge">3 + 2</span>
                     </div>
                     <div class="schedule-day reveal-up" style="--delay: 0.3s" id="blitz">
                         <div class="day-header">
-                            <span class="day-date">15 Nov</span>
-                            <span class="day-name">Duminică</span>
+                            <span class="day-date" data-i18n="schedule.day2.date">15 Nov</span>
+                            <span class="day-name" data-i18n="schedule.day2.name">Duminică</span>
                         </div>
                         <div class="day-events">
                             <div class="day-event">
-                                <span class="event-time">12:00</span>
-                                <span class="event-name">Ședința tehnică Blitz</span>
+                                <span class="event-time">13:00</span>
+                                <span class="event-name" data-i18n="schedule.technicalMeetingBlitz">Ședința tehnică Blitz</span>
                             </div>
                             <div class="day-event">
-                                <span class="event-time">12:15</span>
-                                <span class="event-name">Runda 1</span>
+                                <span class="event-time">13:15</span>
+                                <span class="event-name" data-i18n="schedule.round1">Runda 1</span>
                             </div>
                             <div class="day-event">
-                                <span class="event-time">12:35</span>
-                                <span class="event-name">Runda 2</span>
+                                <span class="event-time">13:35</span>
+                                <span class="event-name" data-i18n="schedule.round2">Runda 2</span>
                             </div>
                             <div class="day-event">
-                                <span class="event-time">12:55</span>
-                                <span class="event-name">Runda 3</span>
+                                <span class="event-time">13:55</span>
+                                <span class="event-name" data-i18n="schedule.round3">Runda 3</span>
                             </div>
                             <div class="day-event highlight">
-                                <span class="event-time">13:15</span>
-                                <span class="event-name">Pauză</span>
-                            </div>
-                            <div class="day-event">
                                 <span class="event-time">14:15</span>
-                                <span class="event-name">Runda 4</span>
-                            </div>
-                            <div class="day-event">
-                                <span class="event-time">14:35</span>
-                                <span class="event-name">Runda 5</span>
-                            </div>
-                            <div class="day-event">
-                                <span class="event-time">14:55</span>
-                                <span class="event-name">Runda 6</span>
+                                <span class="event-name" data-i18n="schedule.break">Pauză</span>
                             </div>
                             <div class="day-event">
                                 <span class="event-time">15:15</span>
-                                <span class="event-name">Runda 7</span>
+                                <span class="event-name" data-i18n="schedule.round4">Runda 4</span>
+                            </div>
+                            <div class="day-event">
+                                <span class="event-time">15:35</span>
+                                <span class="event-name" data-i18n="schedule.round5">Runda 5</span>
+                            </div>
+                            <div class="day-event">
+                                <span class="event-time">15:55</span>
+                                <span class="event-name" data-i18n="schedule.round6">Runda 6</span>
+                            </div>
+                            <div class="day-event">
+                                <span class="event-time">16:15</span>
+                                <span class="event-name" data-i18n="schedule.round7">Runda 7</span>
                             </div>
                             <div class="day-event highlight">
-                                <span class="event-time">15:45</span>
-                                <span class="event-name">Festivitatea de Premiere – Blitz</span>
+                                <span class="event-time">16:45</span>
+                                <span class="event-name" data-i18n="schedule.awardBlitz">Festivitatea de Premiere – Blitz</span>
                             </div>
                         </div>
                     </div>
@@ -211,6 +226,7 @@
 
     <div id="footer-placeholder"></div>
 
+    <script src="i18n.js?v=1"></script>
     <script src="script.js"></script>
 </body>
 </html>

@@ -42,15 +42,25 @@
                 <img src="images/logo.webp" alt="THE SQUARE" class="logo-img">
             </a>
             <div class="nav-links">
-                <a href="index.html#about" class="nav-link">Despre</a>
-                <a href="index.html#venue" class="nav-link">Locație</a>
-                <a href="index.html#events" class="nav-link">Categorii</a>
-                <a href="schedule.html" class="nav-link">Program</a>
-                <a href="rules.html" class="nav-link active">Regulament</a>
-                <a href="amintiri.html" class="nav-link">Amintiri</a>
-                <a href="contact.html" class="nav-link">Contact</a>
+                <a href="index.html#about" class="nav-link" data-i18n="nav.about">Despre</a>
+                <a href="index.html#venue" class="nav-link" data-i18n="nav.venue">Locație</a>
+                <a href="index.html#events" class="nav-link" data-i18n="nav.categories">Categorii</a>
+                <a href="schedule.html" class="nav-link" data-i18n="nav.schedule">Program</a>
+                <a href="rules.html" class="nav-link active" data-i18n="nav.rules">Regulament</a>
+                <a href="amintiri.html" class="nav-link" data-i18n="nav.memories">Amintiri</a>
+                <a href="contact.html" class="nav-link" data-i18n="nav.contact">Contact</a>
             </div>
-            <a href="index.html#register" class="nav-cta">Înscrie-te</a>
+            <div class="lang-dropdown">
+                <button class="lang-toggle" id="langToggle">
+                    <span class="lang-current">RO</span>
+                    <svg class="lang-arrow" viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                </button>
+                <div class="lang-menu" id="langMenu">
+                    <button class="lang-option active" data-lang="ro">Română</button>
+                    <button class="lang-option" data-lang="en">English</button>
+                </div>
+            </div>
+            <a href="index.html#register" class="nav-cta" data-i18n="nav.register">Înscrie-te</a>
             <button class="nav-toggle" id="navToggle">
                 <span></span>
                 <span></span>
@@ -64,21 +74,26 @@
             <a href="index.html" class="mobile-logo">
                 <img src="images/logo-footer.webp" alt="THE SQUARE" class="mobile-logo-img">
             </a>
-            <a href="index.html#about" class="mobile-link">Despre</a>
-            <a href="index.html#venue" class="mobile-link">Locație</a>
-            <a href="index.html#events" class="mobile-link">Categorii</a>
-            <a href="schedule.html" class="mobile-link">Program</a>
-            <a href="rules.html" class="mobile-link active">Regulament</a>
-            <a href="amintiri.html" class="mobile-link">Amintiri</a>
-            <a href="contact.html" class="mobile-link">Contact</a>
-            <a href="index.html#register" class="mobile-cta">Înscrie-te</a>
+            <a href="index.html#about" class="mobile-link" data-i18n="nav.about">Despre</a>
+            <a href="index.html#venue" class="mobile-link" data-i18n="nav.venue">Locație</a>
+            <a href="index.html#events" class="mobile-link" data-i18n="nav.categories">Categorii</a>
+            <a href="schedule.html" class="mobile-link" data-i18n="nav.schedule">Program</a>
+            <a href="rules.html" class="mobile-link active" data-i18n="nav.rules">Regulament</a>
+            <a href="amintiri.html" class="mobile-link" data-i18n="nav.memories">Amintiri</a>
+            <a href="contact.html" class="mobile-link" data-i18n="nav.contact">Contact</a>
+            <a href="index.html#register" class="mobile-cta" data-i18n="nav.register">Înscrie-te</a>
+            <div class="mobile-language-switcher">
+                <button class="lang-btn active" data-lang="ro">RO</button>
+                <span class="lang-separator">|</span>
+                <button class="lang-btn" data-lang="en">EN</button>
+            </div>
         </div>
     </div>
 
     <section class="page-hero">
         <div class="container">
-            <h1 class="page-hero-title reveal-up">Regulamentul <em>Turneului</em></h1>
-            <p class="page-hero-subtitle reveal-up" style="--delay: 0.2s">
+            <h1 class="page-hero-title reveal-up"><span data-i18n="rules.heroTitle">Regulamentul</span> <em data-i18n="rules.heroTitleEmphasis">Turneului</em></h1>
+            <p class="page-hero-subtitle reveal-up" style="--delay: 0.2s" data-i18n="rules.heroSubtitle">
                 Tot ce trebuie să știi despre regulamentul competiției, timpul de joc și standardele de fair play.
             </p>
 
@@ -174,13 +189,13 @@
             <div class="rules-layout">
                 <aside class="rules-sidebar">
                     <nav class="rules-nav">
-                        <a href="#general" class="rules-nav-link active">Reguli Generale</a>
-                        <a href="#time-controls" class="rules-nav-link">Timpul de Joc</a>
-                        <a href="#pairings" class="rules-nav-link">Împerecheri și Clasament</a>
-                        <a href="#conduct" class="rules-nav-link">Conduita Jucătorilor</a>
-                        <a href="#equipment" class="rules-nav-link">Echipament</a>
-                        <a href="#appeals" class="rules-nav-link">Apeluri și Dispute</a>
-                        <a href="#prizes" class="rules-nav-link">Premii și Departajări</a>
+                        <a href="#general" class="rules-nav-link active" data-i18n="rules.nav.general">Reguli Generale</a>
+                        <a href="#time-controls" class="rules-nav-link" data-i18n="rules.nav.timeControls">Timpul de Joc</a>
+                        <a href="#pairings" class="rules-nav-link" data-i18n="rules.nav.pairings">Împerecheri și Clasament</a>
+                        <a href="#conduct" class="rules-nav-link" data-i18n="rules.nav.conduct">Conduita Jucătorilor</a>
+                        <a href="#equipment" class="rules-nav-link" data-i18n="rules.nav.equipment">Echipament</a>
+                        <a href="#appeals" class="rules-nav-link" data-i18n="rules.nav.appeals">Apeluri și Dispute</a>
+                        <a href="#prizes" class="rules-nav-link" data-i18n="rules.nav.prizes">Premii și Departajări</a>
                     </nav>
                 </aside>
 
@@ -405,7 +420,7 @@
                                     <li>Buchholz Total</li>
                                     <li>Sonneborn-Berger</li>
                                     <li>Numărul de victorii</li>
-                                    <li>Tragere la sorți</li>
+                                    <li>Armageddon (Albul are 5 minute, Negrul 4 minute; Negrul câștigă la remiză)</li>
                                 </ol>
                             </div>
 
@@ -429,10 +444,10 @@
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                                 <path d="M19 12H5M12 19l-7-7 7-7"/>
                             </svg>
-                            <span>Înapoi la Pagina Principală</span>
+                            <span data-i18n="rules.backHome">Înapoi la Pagina Principală</span>
                         </a>
                         <a href="index.html#register" class="btn btn-secondary">
-                            <span>Înscrie-te Acum</span>
+                            <span data-i18n="rules.registerNow">Înscrie-te Acum</span>
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                                 <path d="M5 12h14M12 5l7 7-7 7"/>
                             </svg>
@@ -445,6 +460,7 @@
 
     <div id="footer-placeholder"></div>
 
+    <script src="i18n.js?v=1"></script>
     <script src="script.js"></script>
     <script src="rules.js"></script>
 </body>

@@ -1,10 +1,9 @@
 import type { VercelRequest, VercelResponse } from '@vercel/node';
 import Stripe from 'stripe';
 import { supabase } from '../../lib/supabase.js';
+import { sendPaymentConfirmationEmail } from '../../lib/email.js';
 
-const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
-  apiVersion: '2023-10-16',
-});
+const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!);
 
 const webhookSecret = process.env.STRIPE_WEBHOOK_SECRET;
 
@@ -59,6 +58,13 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
         return res.status(400).json({ error: 'Missing registration_id' });
       }
 
+      // Fetch registration details for email
+      const { data: registration } = await supabase
+        .from('registrations')
+        .select('*')
+        .eq('id', registrationId)
+        .single();
+
       // Update registration status to paid
       const { error: updateError } = await supabase
         .from('registrations')
@@ -72,6 +78,17 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
       if (updateError) {
         console.error('Failed to update registration:', updateError);
         return res.status(500).json({ error: 'Failed to update registration' });
+      }
+
+      // Send payment confirmation email
+      if (registration) {
+        sendPaymentConfirmationEmail({
+          fullName: registration.full_name,
+          email: registration.email,
+          category: registration.category,
+          fideId: registration.fide_id,
+          amountRon: registration.amount_ron,
+        });
       }
 
       console.log(`Payment completed for registration ${registrationId}`);

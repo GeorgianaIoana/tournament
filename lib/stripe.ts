@@ -6,10 +6,7 @@ if (!stripeSecretKey) {
   throw new Error('Missing STRIPE_SECRET_KEY environment variable');
 }
 
-export const stripe = new Stripe(stripeSecretKey, {
-  apiVersion: '2023-10-16',
-  typescript: true,
-});
+export const stripe = new Stripe(stripeSecretKey);
 
 // Stripe product descriptions for checkout
 export const PRODUCT_DESCRIPTIONS = {
