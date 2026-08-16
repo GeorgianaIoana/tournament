@@ -6,6 +6,12 @@ function playCarouselClickSound() {
         if (!carouselAudioContext) {
             carouselAudioContext = new (window.AudioContext || window.webkitAudioContext)();
         }
+
+        // Resume audio context if suspended (required on mobile)
+        if (carouselAudioContext.state === 'suspended') {
+            carouselAudioContext.resume();
+        }
+
         const oscillator = carouselAudioContext.createOscillator();
         const gainNode = carouselAudioContext.createGain();
 
