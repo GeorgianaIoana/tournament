@@ -1413,10 +1413,14 @@
     /* Coverflow - mobile adjustments */
     .coverflow-carousel {
         padding: 0.5rem 0 1.5rem;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
     }
 
     .coverflow-track {
         height: 240px;
+        order: 1;
     }
 
     .coverflow-item.active {
@@ -1460,8 +1464,22 @@
     }
 
     .coverflow-nav {
+        position: static;
+        transform: none;
         width: 44px;
         height: 44px;
+        order: 2;
+        margin-top: 1rem;
+        background-color: #fff;
+        border: 2px solid var(--color-gray-300);
+    }
+
+    .coverflow-nav:hover {
+        transform: scale(1.05);
+    }
+
+    .coverflow-nav:active {
+        transform: scale(0.95);
     }
 
     .coverflow-nav svg {
@@ -1470,11 +1488,12 @@
     }
 
     .coverflow-prev {
-        left: 0.5rem;
+        left: auto;
+        margin-right: 1rem;
     }
 
     .coverflow-next {
-        right: 0.5rem;
+        right: auto;
     }
 
     .coverflow-indicators {
@@ -1685,11 +1704,7 @@
     }
 
     .coverflow-prev {
-        left: 0.25rem;
-    }
-
-    .coverflow-next {
-        right: 0.25rem;
+        margin-right: 0.75rem;
     }
 
     .coverflow-dot {
