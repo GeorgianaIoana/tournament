@@ -17,7 +17,7 @@ class I18n {
 
     async load(lang) {
         try {
-            const response = await fetch(`/locales/${lang}.json?v=5`);
+            const response = await fetch(`/locales/${lang}.json?v=6`);
             if (!response.ok) throw new Error(`Failed to load ${lang} translations`);
             this.messages = await response.json();
             this.currentLang = lang;
