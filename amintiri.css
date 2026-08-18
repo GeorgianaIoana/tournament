@@ -1321,9 +1321,14 @@
     }
 
     .amintiri-hero-bg {
-        background-image: url('images/galerie-16.webp');
-        background-position: center top;
-        filter: brightness(1.25);
+        background-image: url('images/hero-mobile-amintiri.jpeg');
+        background-position: center center;
+        filter: brightness(1.1);
+    }
+
+    /* Hide videos on mobile */
+    .coverflow-item[data-type="video"] {
+        display: none !important;
     }
 
     .hero-content-badge {

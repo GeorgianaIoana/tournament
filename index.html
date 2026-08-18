@@ -167,8 +167,22 @@
                         <label class="field-label" for="message" data-i18n="form.message">Mesaj</label>
                         <textarea id="message" name="message" placeholder="Mesaj (Opțional)" data-i18n-placeholder="form.message.placeholder" rows="3"></textarea>
                     </div>
-                    <div class="form-field payment-method-field" style="display: none;">
-                        <input type="hidden" name="paymentMethod" value="stripe">
+                    <div class="form-field payment-method-field">
+                        <label class="field-label" data-i18n="form.paymentMethod">Metodă de plată</label>
+                        <div class="payment-options">
+                            <label class="payment-option">
+                                <input type="radio" name="paymentMethod" value="stripe" checked>
+                                <div class="payment-option-content">
+                                    <span class="payment-option-text" data-i18n="form.paymentMethod.card">Card</span>
+                                </div>
+                            </label>
+                            <label class="payment-option">
+                                <input type="radio" name="paymentMethod" value="bank_transfer">
+                                <div class="payment-option-content">
+                                    <span class="payment-option-text" data-i18n="form.paymentMethod.bank">Transfer Bancar</span>
+                                </div>
+                            </label>
+                        </div>
                     </div>
                     <div class="form-field form-checkbox">
                         <label class="checkbox-label">

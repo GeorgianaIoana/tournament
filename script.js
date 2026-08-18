@@ -1565,10 +1565,17 @@ function initCoverflowCarousel() {
 
     carousels.forEach((carousel) => {
         const track = carousel.querySelector('.coverflow-track');
-        const items = carousel.querySelectorAll('.coverflow-item');
+        const allItems = carousel.querySelectorAll('.coverflow-item');
         const prevBtn = carousel.querySelector('.coverflow-prev');
         const nextBtn = carousel.querySelector('.coverflow-next');
         const indicatorsContainer = carousel.querySelector('.coverflow-indicators');
+
+        if (!allItems.length) return;
+
+        // Filter out hidden items (e.g., videos hidden on mobile)
+        const items = Array.from(allItems).filter(item => {
+            return getComputedStyle(item).display !== 'none';
+        });
 
         if (!items.length) return;
 
