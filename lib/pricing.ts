@@ -2,9 +2,9 @@
 // Prices are stored in bani (1 RON = 100 bani) for Stripe compatibility
 
 export const TOURNAMENT_PRICES = {
-  'Open Șah Rapid': 22000, // 220 RON
+  'Open Șah Rapid': 25000, // 250 RON
   'Open Blitz': 15000,      // 150 RON
-  'Rapid + Blitz': 32000,   // 320 RON
+  'Rapid + Blitz': 35000,   // 350 RON
 } as const;
 
 export type TournamentCategory = keyof typeof TOURNAMENT_PRICES;
