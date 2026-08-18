@@ -85,7 +85,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
       return res.status(400).json({ error: 'Categoria selectată nu este validă.' });
     }
 
-    // Check for duplicate registration (same FIDE ID + category)
+    // Check for existing registration (same FIDE ID + category)
     const { data: existing } = await supabase
       .from('registrations')
       .select('id, status')
@@ -93,12 +93,6 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
       .eq('category', sanitizedData.category)
       .not('status', 'eq', 'cancelled')
       .single();
-
-    if (existing) {
-      return res.status(409).json({
-        error: 'Există deja o înscriere cu acest ID FIDE pentru această categorie.',
-      });
-    }
 
     // Calculate price
     const priceResult = calculatePrice(sanitizedData.category, sanitizedData.fideTitle);
@@ -111,8 +105,8 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
       ? `OTS-${randomUUID().slice(0, 8).toUpperCase()}`
       : undefined;
 
-    // Create registration record
-    const registration: NewRegistration = {
+    // Create or update registration record
+    const registrationData = {
       full_name: sanitizedData.fullName,
       email: sanitizedData.email,
       phone: sanitizedData.phone,
@@ -128,14 +122,32 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
       bank_transfer_reference: bankTransferReference,
     };
 
-    const { data: insertedReg, error: insertError } = await supabase
-      .from('registrations')
-      .insert(registration)
-      .select()
-      .single();
+    let insertedReg;
+    let insertError;
+
+    if (existing) {
+      // Update existing registration
+      const result = await supabase
+        .from('registrations')
+        .update(registrationData)
+        .eq('id', existing.id)
+        .select()
+        .single();
+      insertedReg = result.data;
+      insertError = result.error;
+    } else {
+      // Create new registration
+      const result = await supabase
+        .from('registrations')
+        .insert(registrationData as NewRegistration)
+        .select()
+        .single();
+      insertedReg = result.data;
+      insertError = result.error;
+    }
 
     if (insertError) {
-      console.error('Supabase insert error:', insertError);
+      console.error('Supabase insert/update error:', insertError);
       return res.status(500).json({ error: 'Eroare la salvarea înscrierii. Încearcă din nou.' });
     }
 
