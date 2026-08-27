@@ -1,15 +1,9 @@
 import { Resend } from 'resend';
 
-// Debug logging
-console.log('[Email Init] RESEND_API_KEY present:', !!process.env.RESEND_API_KEY);
-console.log('[Email Init] EMAIL_FROM:', process.env.EMAIL_FROM);
-
 // Make email optional - if no API key, emails will be skipped
 const resend = process.env.RESEND_API_KEY
   ? new Resend(process.env.RESEND_API_KEY)
   : null;
-
-console.log('[Email Init] Resend client created:', !!resend);
 
 const EMAIL_FROM = process.env.EMAIL_FROM || 'Open THE SQUARE <onboarding@resend.dev>';
 
@@ -180,19 +174,27 @@ export async function sendPaymentConfirmationEmail(data: PaymentConfirmationData
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
-<body style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; line-height: 1.6; color: #233d36; max-width: 600px; margin: 0 auto; padding: 20px;">
+<body style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; line-height: 1.8; color: #233d36; max-width: 600px; margin: 0 auto; padding: 20px;">
   <div style="background: linear-gradient(135deg, #a6b6e0 0%, #badad5 100%); padding: 30px; border-radius: 12px 12px 0 0; text-align: center;">
-    <h1 style="margin: 0; color: #1a2e28; font-size: 24px; font-weight: 700; text-shadow: 0 1px 2px rgba(255,255,255,0.5), 0 0 20px rgba(255,255,255,0.3);">Open THE SQUARE 2026</h1>
+    <h1 style="margin: 0; color: #1a2e28; font-size: 24px; font-weight: 700;">Open THE SQUARE II 2026</h1>
   </div>
 
   <div style="background: #ffffff; padding: 30px; border: 1px solid #e2e6f0; border-top: none;">
     <p style="margin: 0 0 20px; color: #233d36; font-size: 16px;">Bună ziua!</p>
 
-    <p style="margin: 0 0 20px; color: #233d36;">Vă confirmăm participarea la competiția <strong>${category}</strong>.</p>
+    <p style="margin: 0 0 20px; color: #233d36;">Mulțumim pentru înscrierea la Turneul Open THE SQUARE II 2026.</p>
 
-    <p style="margin: 0 0 20px; color: #233d36;">Vă așteptăm <strong>14-15 Noiembrie 2026</strong> la <strong>Aurrum Palace</strong>, București!</p>
+    <p style="margin: 0 0 20px; color: #233d36;"><strong>Confirmăm participarea dvs. la concursul ${category}.</strong></p>
 
-    <p style="margin: 0; color: #233d36; font-weight: 600;">Mult succes!</p>
+    <p style="margin: 0 0 20px; color: #233d36;">Detaliile programului se regăsesc pe site: <a href="https://www.openthesquare.ro/schedule" style="color: #7868a8;">www.openthesquare.ro/schedule</a></p>
+
+    <p style="margin: 0 0 20px; color: #233d36;">Vă așteptăm cu drag la ședința tehnică.</p>
+
+    <p style="margin: 0 0 20px; color: #233d36;">Dacă aveți întrebări sau doriți mai multe informații, ne puteți răspunde la această adresă sau ne puteți contacta la <strong>0765 815 641</strong>.</p>
+
+    <p style="margin: 0 0 20px; color: #233d36;">Vă dorim mult succes la competiție!</p>
+
+    <p style="margin: 0; color: #233d36;">O zi frumoasă,<br><strong>Echipa THE SQUARE</strong></p>
   </div>
 
   <div style="background: #233d36; padding: 20px; border-radius: 0 0 12px 12px; text-align: center;">
@@ -223,7 +225,6 @@ export async function sendPaymentConfirmationEmail(data: PaymentConfirmationData
 }
 
 export async function sendBankTransferEmail(data: BankTransferEmailData): Promise<void> {
-  console.log('[sendBankTransferEmail] Called with email:', data.email);
   const { fullName, email, category, fideId, club, amountRon, bankTransferReference, language = 'ro' } = data;
   const t = emailTranslations[language];
   const amountInRon = Math.round(amountRon / 100);
@@ -235,74 +236,47 @@ export async function sendBankTransferEmail(data: BankTransferEmailData): Promis
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
-<body style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; line-height: 1.6; color: #233d36; max-width: 600px; margin: 0 auto; padding: 20px;">
+<body style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; line-height: 1.8; color: #233d36; max-width: 600px; margin: 0 auto; padding: 20px;">
   <div style="background: linear-gradient(135deg, #a6b6e0 0%, #badad5 100%); padding: 30px; border-radius: 12px 12px 0 0; text-align: center;">
-    <h1 style="margin: 0; color: #233d36; font-size: 24px;">Open THE SQUARE 2026</h1>
-    <p style="margin: 8px 0 0; color: #233d36; opacity: 0.8;">14-15 ${language === 'en' ? 'November' : 'Noiembrie'} 2026 | Aurrum Palace</p>
+    <h1 style="margin: 0; color: #1a2e28; font-size: 24px; font-weight: 700;">Open THE SQUARE II 2026</h1>
   </div>
 
   <div style="background: #ffffff; padding: 30px; border: 1px solid #e2e6f0; border-top: none;">
-    <h2 style="margin: 0 0 20px; color: #233d36;">${t.hello}, ${fullName}!</h2>
+    <p style="margin: 0 0 20px; color: #233d36; font-size: 16px;">Bună ziua!</p>
 
-    <p>${t.bankTransferPending}</p>
+    <p style="margin: 0 0 20px; color: #233d36;">Mulțumim pentru înscrierea la Turneul Open THE SQUARE II 2026.</p>
+
+    <p style="margin: 0 0 20px; color: #233d36;">Înscrierea dvs. la concursul <strong>${category}</strong> a fost înregistrată și așteaptă plata prin transfer bancar.</p>
 
     <div style="background: #f8f9fc; padding: 20px; border-radius: 8px; margin: 20px 0;">
-      <h3 style="margin: 0 0 15px; color: #233d36; font-size: 16px;">${t.bankTransferDetails}</h3>
-      <table style="width: 100%; border-collapse: collapse;">
-        <tr>
-          <td style="padding: 8px 0; color: #5a6a8a;">${t.iban}</td>
-          <td style="padding: 8px 0; font-weight: 600; font-family: monospace; font-size: 14px;">RO51INGB0000999916814361</td>
-        </tr>
-        <tr>
-          <td style="padding: 8px 0; color: #5a6a8a;">${t.beneficiary}</td>
-          <td style="padding: 8px 0; font-weight: 500;">ASOCIAȚIA CLUB SPORTIV DE ȘAH "THE SQUARE"</td>
-        </tr>
-        <tr>
-          <td style="padding: 8px 0; color: #5a6a8a;">${t.bank}</td>
-          <td style="padding: 8px 0; font-weight: 500;">ING BANK NV</td>
-        </tr>
-        <tr>
-          <td style="padding: 8px 0; color: #5a6a8a;">${t.amount}</td>
-          <td style="padding: 8px 0; font-weight: 600; color: #233d36; font-size: 18px;">${amountInRon} RON</td>
-        </tr>
-      </table>
+      <p style="margin: 0 0 15px; color: #233d36; font-weight: 600;">Detalii pentru transfer bancar:</p>
+      <p style="margin: 0 0 8px; color: #233d36;"><strong>IBAN:</strong> RO51INGB0000999916814361</p>
+      <p style="margin: 0 0 8px; color: #233d36;"><strong>Beneficiar:</strong> ASOCIAȚIA CLUB SPORTIV DE ȘAH "THE SQUARE"</p>
+      <p style="margin: 0 0 8px; color: #233d36;"><strong>Banca:</strong> ING BANK NV</p>
+      <p style="margin: 0; color: #233d36;"><strong>Sumă:</strong> ${amountInRon} RON</p>
     </div>
 
     <div style="background: #fef3c7; border: 1px solid #f59e0b; padding: 15px; border-radius: 8px; margin: 20px 0;">
       <p style="margin: 0; color: #92400e; font-weight: 600;">
-        ${t.importantReference}
+        Important: Includeți această referință în detaliile transferului!
       </p>
       <p style="margin: 10px 0 0; text-align: center;">
         <span style="display: inline-block; background: #fff; padding: 10px 20px; border-radius: 6px; font-family: monospace; font-size: 18px; font-weight: 700; color: #233d36; letter-spacing: 2px;">${bankTransferReference}</span>
       </p>
     </div>
 
-    <div style="background: #f8f9fc; padding: 20px; border-radius: 8px; margin: 20px 0;">
-      <h3 style="margin: 0 0 15px; color: #233d36; font-size: 16px;">${t.registrationDetails}</h3>
-      <table style="width: 100%; border-collapse: collapse;">
-        <tr>
-          <td style="padding: 8px 0; color: #5a6a8a;">${t.category}</td>
-          <td style="padding: 8px 0; font-weight: 500;">${category}</td>
-        </tr>
-        <tr>
-          <td style="padding: 8px 0; color: #5a6a8a;">${t.fideId}</td>
-          <td style="padding: 8px 0; font-weight: 500;">${fideId}</td>
-        </tr>
-        <tr>
-          <td style="padding: 8px 0; color: #5a6a8a;">${t.club}</td>
-          <td style="padding: 8px 0; font-weight: 500;">${club}</td>
-        </tr>
-      </table>
-    </div>
+    <p style="margin: 0 0 20px; color: #233d36;">După efectuarea transferului, înscrierea dvs. va fi confirmată manual în maxim 24-48 de ore lucrătoare.</p>
 
-    <p>${t.afterTransfer}</p>
+    <p style="margin: 0 0 20px; color: #233d36;">Detaliile programului se regăsesc pe site: <a href="https://www.openthesquare.ro/schedule" style="color: #7868a8;">www.openthesquare.ro/schedule</a></p>
 
-    <p style="color: #5a6a8a; font-size: 14px; margin-top: 20px;">${t.questions} <a href="mailto:contact@thesquarechessclub.com" style="color: #7868a8;">contact@thesquarechessclub.com</a></p>
+    <p style="margin: 0 0 20px; color: #233d36;">Dacă aveți întrebări sau doriți mai multe informații, ne puteți răspunde la această adresă sau ne puteți contacta la <strong>0765 815 641</strong>.</p>
+
+    <p style="margin: 0; color: #233d36;">O zi frumoasă,<br><strong>Echipa THE SQUARE</strong></p>
   </div>
 
   <div style="background: #233d36; padding: 20px; border-radius: 0 0 12px 12px; text-align: center;">
     <p style="margin: 0; color: #badad5; font-size: 14px;">THE SQUARE Chess Club</p>
-    <p style="margin: 8px 0 0; color: rgba(186, 218, 213, 0.6); font-size: 12px;">${language === 'en' ? 'Bucharest, Romania' : 'București, România'}</p>
+    <p style="margin: 8px 0 0; color: rgba(186, 218, 213, 0.8); font-size: 12px;">contact@thesquarechessclub.com | 0765 815 641</p>
   </div>
 </body>
 </html>
