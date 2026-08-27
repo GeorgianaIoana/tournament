@@ -1,9 +1,15 @@
 import { Resend } from 'resend';
 
+// Debug logging
+console.log('[Email Init] RESEND_API_KEY present:', !!process.env.RESEND_API_KEY);
+console.log('[Email Init] EMAIL_FROM:', process.env.EMAIL_FROM);
+
 // Make email optional - if no API key, emails will be skipped
 const resend = process.env.RESEND_API_KEY
   ? new Resend(process.env.RESEND_API_KEY)
   : null;
+
+console.log('[Email Init] Resend client created:', !!resend);
 
 const EMAIL_FROM = process.env.EMAIL_FROM || 'Open THE SQUARE <onboarding@resend.dev>';
 
@@ -217,6 +223,7 @@ export async function sendPaymentConfirmationEmail(data: PaymentConfirmationData
 }
 
 export async function sendBankTransferEmail(data: BankTransferEmailData): Promise<void> {
+  console.log('[sendBankTransferEmail] Called with email:', data.email);
   const { fullName, email, category, fideId, club, amountRon, bankTransferReference, language = 'ro' } = data;
   const t = emailTranslations[language];
   const amountInRon = Math.round(amountRon / 100);
