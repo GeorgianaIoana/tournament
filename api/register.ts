@@ -2,7 +2,7 @@ import type { VercelRequest, VercelResponse } from '@vercel/node';
 import { supabase, type NewRegistration } from '../lib/supabase.js';
 import { stripe, PRODUCT_DESCRIPTIONS, type ProductCategory } from '../lib/stripe.js';
 import { calculatePrice, isValidCategory } from '../lib/pricing.js';
-import { sendRegistrationEmail, sendBankTransferEmail } from '../lib/email.js';
+import { sendRegistrationEmail } from '../lib/email.js';
 import { randomUUID } from 'crypto';
 
 type Language = 'ro' | 'en';
@@ -173,20 +173,8 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
       });
     }
 
-    // If bank transfer, send email and return bank details
+    // If bank transfer, return bank details (email sent after confirmation)
     if (selectedPaymentMethod === 'bank_transfer') {
-      // Send bank transfer email with instructions
-      sendBankTransferEmail({
-        fullName: sanitizedData.fullName,
-        email: sanitizedData.email,
-        category: sanitizedData.category,
-        fideId: sanitizedData.fideId,
-        club: sanitizedData.club,
-        amountRon: priceResult.amountBani,
-        bankTransferReference: bankTransferReference!,
-        language: userLanguage,
-      });
-
       return res.status(200).json({
         success: true,
         isBankTransfer: true,
