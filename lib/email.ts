@@ -227,7 +227,6 @@ export async function sendPaymentConfirmationEmail(data: PaymentConfirmationData
 export async function sendBankTransferEmail(data: BankTransferEmailData): Promise<void> {
   const { fullName, email, category, fideId, club, amountRon, bankTransferReference, language = 'ro' } = data;
   const t = emailTranslations[language];
-  const amountInRon = Math.round(amountRon / 100);
 
   const html = `
 <!DOCTYPE html>
@@ -246,30 +245,15 @@ export async function sendBankTransferEmail(data: BankTransferEmailData): Promis
 
     <p style="margin: 0 0 20px; color: #233d36;">Mulțumim pentru înscrierea la Turneul Open THE SQUARE II 2026.</p>
 
-    <p style="margin: 0 0 20px; color: #233d36;">Înscrierea dvs. la concursul <strong>${category}</strong> a fost înregistrată și așteaptă plata prin transfer bancar.</p>
-
-    <div style="background: #f8f9fc; padding: 20px; border-radius: 8px; margin: 20px 0;">
-      <p style="margin: 0 0 15px; color: #233d36; font-weight: 600;">Detalii pentru transfer bancar:</p>
-      <p style="margin: 0 0 8px; color: #233d36;"><strong>IBAN:</strong> RO51INGB0000999916814361</p>
-      <p style="margin: 0 0 8px; color: #233d36;"><strong>Beneficiar:</strong> ASOCIAȚIA CLUB SPORTIV DE ȘAH "THE SQUARE"</p>
-      <p style="margin: 0 0 8px; color: #233d36;"><strong>Banca:</strong> ING BANK NV</p>
-      <p style="margin: 0; color: #233d36;"><strong>Sumă:</strong> ${amountInRon} RON</p>
-    </div>
-
-    <div style="background: #fef3c7; border: 1px solid #f59e0b; padding: 15px; border-radius: 8px; margin: 20px 0;">
-      <p style="margin: 0; color: #92400e; font-weight: 600;">
-        Important: Includeți această referință în detaliile transferului!
-      </p>
-      <p style="margin: 10px 0 0; text-align: center;">
-        <span style="display: inline-block; background: #fff; padding: 10px 20px; border-radius: 6px; font-family: monospace; font-size: 18px; font-weight: 700; color: #233d36; letter-spacing: 2px;">${bankTransferReference}</span>
-      </p>
-    </div>
-
-    <p style="margin: 0 0 20px; color: #233d36;">După efectuarea transferului, înscrierea dvs. va fi confirmată manual în maxim 24-48 de ore lucrătoare.</p>
+    <p style="margin: 0 0 20px; color: #233d36;"><strong>Confirmăm participarea dvs. la concursul ${category}.</strong></p>
 
     <p style="margin: 0 0 20px; color: #233d36;">Detaliile programului se regăsesc pe site: <a href="https://www.openthesquare.ro/schedule" style="color: #7868a8;">www.openthesquare.ro/schedule</a></p>
 
+    <p style="margin: 0 0 20px; color: #233d36;">Vă așteptăm cu drag la ședința tehnică.</p>
+
     <p style="margin: 0 0 20px; color: #233d36;">Dacă aveți întrebări sau doriți mai multe informații, ne puteți răspunde la această adresă sau ne puteți contacta la <strong>0765 815 641</strong>.</p>
+
+    <p style="margin: 0 0 20px; color: #233d36;">Vă dorim mult succes la competiție!</p>
 
     <p style="margin: 0; color: #233d36;">O zi frumoasă,<br><strong>Echipa THE SQUARE</strong></p>
   </div>
